@@ -3,7 +3,7 @@ Figma：https://www.figma.com/design/rr4YtUJWptHfXsmJmxlNvF/PurinMania?node-id=4
 
 ## ER図
 詳細：https://dbdiagram.io/d/66fa6e4ef9b1444815e145c8
-[![Image from Gyazo](https://i.gyazo.com/f5b182b22068d3327ac7b9602573903a.png)](https://gyazo.com/f5b182b22068d3327ac7b9602573903a)
+[![Image from Gyazo](https://i.gyazo.com/0f44ecdd68b84b0272e1785db06f83de.png)](https://gyazo.com/0f44ecdd68b84b0272e1785db06f83de)
 
 ##　■サービス概要
 「Purin Mania」は、プリン愛好家のためのレビュー・検索アプリです。
