@@ -11,6 +11,7 @@ module.exports = {
         main: '#FFD681',
         accent: '#9C661F',
         base: '#FFF5E6',
+        hover: '#805A27',
         text: '#2C1803',
         placeholder: '#C5B6A8',
       },
