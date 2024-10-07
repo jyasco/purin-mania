@@ -22,7 +22,12 @@
   </head>
 
   <body class="flex flex-col min-h-screen font-kosugi bg-base text-text pt-16 pb-16">
+  <% if user_signed_in? %>
     <%= render 'shared/header' %>
+  <% else %>
+    <%= render 'shared/before_login_header' %>
+  <% end %>
+  <%= render 'shared/flash_message' %>
     <main class="flex-grow">
       <%= yield %>
     </main>
