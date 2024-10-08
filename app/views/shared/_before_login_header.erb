@@ -4,9 +4,15 @@
       PurinMania
     <% end %>
     <nav>
-      <%= link_to new_user_session_path, class: "text-accent hover:text-hover" do %>
-        <i class="fa-solid fa-right-to-bracket text-xl sm:text-2xl align-middle"></i>
-      <% end %>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle p-0">
+          <i class="fa-solid fa-right-to-bracket text-xl sm:text-2xl text-accent align-middle hover:text-hover"></i>
+        </label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-28 mt-2">
+          <li><%= link_to "ログイン", new_user_session_path, class: "block px-4 py-2 text-text hover:bg-gray-100" %></li>
+          <li class="border-t border-placeholder"><%= link_to "新規登録", new_user_registration_path, class: "block px-4 py-2 text-text hover:bg-gray-100" %></li>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
