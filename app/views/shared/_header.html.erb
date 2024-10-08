@@ -4,9 +4,15 @@
       PurinMania
     <% end %>
     <nav>
-    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-accent hover:text-hover" do %>
-        <i class="fa-solid fas fa-user-circle text-xl sm:text-2xl align-middle"></i>
-      <% end %>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+          <i class="fa-solid fas fa-user-circle text-xl sm:text-2xl text-accent hover:text-hover"></i>
+        </label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-32 mt-2">
+          <li><%= link_to "マイページ", "#", class: "block px-4 py-2 text-text hover:bg-gray-100" %></li>
+          <li class="border-t border-placeholder"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-text hover:bg-gray-100" %></li>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
