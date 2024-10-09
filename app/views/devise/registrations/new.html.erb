@@ -1,38 +1,39 @@
 <div class="flex flex-col justify-between items-center h-full mt-8">
   <div class="w-full max-w-md">
-    <h2 class="text-neutral text-2xl font-bold text-center mb-6">新規登録</h2>
+    <h2 class="text-neutral text-2xl font-bold text-center mb-6"><%= t('.title') %></h2>
     
     <div class="bg-base-100 p-6">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> 
         <%= render "devise/shared/error_messages", resource: resource %>
         
         <div class="mb-4">
-          <%= f.label :name, "ユーザー名", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :name, class: "block text-neutral font-semibold mb-2" %>
           <%= f.text_field :name, autofocus: true, class: "input input-bordered w-full bg-white" %>
         </div>
         
         <div class="mb-4">
-          <%= f.label :email, "メールアドレス", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :email, class: "block text-neutral font-semibold mb-2" %>
           <%= f.email_field :email, class: "input input-bordered w-full bg-white", autocomplete: "email" %>
         </div>
 
         <div class="mb-4">
-          <%= f.label :password, "パスワード", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :password, class: "block text-neutral font-semibold mb-2" %>
           <%= f.password_field :password, class: "input input-bordered w-full bg-white", autocomplete: "new-password" %>
         </div>
 
         <div class="mb-6">
-          <%= f.label :password_confirmation, "パスワード確認", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :password_confirmation, class: "block text-neutral font-semibold mb-2" %>
           <%= f.password_field :password_confirmation, class: "input input-bordered w-full bg-white", autocomplete: "new-password" %>
         </div>
 
         <div class="text-center">
-          <%= f.submit "登録", class: "btn btn-primary text-white w-20" %>
+          <%= f.submit t('.button'), class: "btn btn-primary text-white w-20" %>
         </div>
       <% end %>
 
       <div class="text-center mt-4">
-        すでにアカウントをお持ちの方は<%= link_to "こちら", new_session_path(resource_name), class: "text-accent hover:underline" %>
+        <%= t('devise.shared.links.already_have_account') %><!--
+        --><%= link_to t('devise.shared.links.here'), new_session_path(resource_name), class: "text-accent hover:underline" %>
       </div>
     </div>
   </div>

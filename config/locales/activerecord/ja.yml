@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      post: プリン
+    attributes:
+      post:
+        title: プリン
+        body: 内容

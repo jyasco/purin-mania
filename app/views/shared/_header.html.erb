@@ -9,8 +9,8 @@
           <i class="fa-solid fas fa-user-circle text-xl sm:text-2xl text-accent align-middle hover:text-hover"></i>
         </label>
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-32 mt-2">
-          <li class="text-center"><%= link_to "マイページ", "#", class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
-          <li class="border-t border-placeholder text-center"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
+          <li class="text-center"><%= link_to t('header.my_page'), "#", class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
+          <li class="border-t border-placeholder text-center"><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
         </ul>
       </div>
     </nav>
