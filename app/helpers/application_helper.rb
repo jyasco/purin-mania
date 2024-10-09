@@ -6,7 +6,7 @@ module ApplicationHelper
     when :alert, :error
       'bg-[#FF6B6B] text-white'
     else
-      'bg-[#FFF5E6] text-[#2C1803]'
+      'bg-[#4CAF50] text-white'
     end
   end
 end
