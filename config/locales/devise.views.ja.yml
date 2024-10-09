@@ -130,6 +130,10 @@ ja:
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
+        sign_up_prompt: "ユーザー登録の方は"
+        forgot_password_prompt: "パスワードを忘れた方は"
+        already_have_account: "すでにアカウントをお持ちの方は"
+        here: "こちら"
       minimum_password_length: "（%{count}字以上）"
     unlocks:
       new:

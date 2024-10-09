@@ -32,7 +32,8 @@
       <% end %>
 
       <div class="text-center mt-4">
-        すでにアカウントをお持ちの方は<%= link_to "こちら", new_session_path(resource_name), class: "text-accent hover:underline" %>
+        <%= t('devise.shared.links.already_have_account') %><!--
+        --><%= link_to t('devise.shared.links.here'), new_session_path(resource_name), class: "text-accent hover:underline" %>
       </div>
     </div>
   </div>
