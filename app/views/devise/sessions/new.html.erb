@@ -1,25 +1,25 @@
 <div class="flex flex-col justify-between items-center h-full mt-8">
   <div class="w-full max-w-md">
-    <h2 class="text-neutral text-2xl font-bold text-center mb-6">ログイン</h2>
+    <h2 class="text-neutral text-2xl font-bold text-center mb-6"><%= t('.title') %></h2>
     
     <div class="bg-base-100 p-6">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="mb-4">
-          <%= f.label :email, "メールアドレス", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :email, class: "block text-neutral font-semibold mb-2" %>
           <%= f.email_field :email, autofocus: true, class: "input input-bordered w-full bg-white", autocomplete: "email" %>
         </div>
         
         <div class="mb-6">
-          <%= f.label :password, "パスワード", class: "block text-neutral font-semibold mb-2" %>
+          <%= f.label :password, class: "block text-neutral font-semibold mb-2" %>
           <%= f.password_field :password, class: "input input-bordered w-full bg-white", autocomplete: "current-password" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
           <div class="flex items-center mb-4">
             <%= f.check_box :remember_me, class: "checkbox checkbox-accent bg-white" %>
-            <%= f.label :remember_me, "ログイン状態を保持する", class: "ml-2 text-neutral" %>
+            <%= f.label :remember_me, class: "ml-2 text-neutral" %>
           </div>
         <% end %>
 
