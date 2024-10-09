@@ -7,6 +7,9 @@ ja:
     label:
       email: メールアドレス
       password: パスワード
+  tops:
+    top:
+      title: トップページ
   header:
     sign_up: 新規登録
     login: ログイン
