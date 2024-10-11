@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_07_112930) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_11_124459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shop_id"
+    t.text "body", null: false
+    t.integer "sweetness", null: false
+    t.integer "firmness", null: false
+    t.integer "overall_rating", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["firmness"], name: "index_posts_on_firmness"
+    t.index ["overall_rating"], name: "index_posts_on_overall_rating"
+    t.index ["shop_id", "user_id"], name: "index_posts_on_shop_id_and_user_id"
+    t.index ["shop_id"], name: "index_posts_on_shop_id"
+    t.index ["sweetness"], name: "index_posts_on_sweetness"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_shops_on_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -27,4 +52,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_07_112930) do
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "posts", "shops"
+  add_foreign_key "posts", "users"
 end
