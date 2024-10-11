@@ -1,0 +1,17 @@
+<div class="card bg-base-100 shadow-md mb-4">
+  <div class="card-body flex">
+    <div class="w-1/4">
+      <div class="bg-gray-300 h-24 w-24"></div>
+    </div>
+    <div class="w-3/4 pl-4">
+      <h2 class="text-lg font-bold"><%= post.shop&.name || "お店" %></h2>
+      <div class="rating">
+        <% post.rating_as_integer.times do %>
+          <input type="radio" class="mask mask-star-2 bg-accent" checked />
+        <% end %>
+      </div>
+      <p>固さ: <%= Post.firmnesses[post.firmness] %> | 甘さ: <%= Post.sweetnesses[post.sweetness] %></p>
+      <p><i class="fa fa-map-marker-alt"></i> <%= post.shop&.address || "" %></p>
+    </div>
+  </div>
+</div>

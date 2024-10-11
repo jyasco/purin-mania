@@ -6,3 +6,11 @@ ja:
       post:
         title: プリン
         body: 内容
+        sweetness:
+          sweet: 甘党向け
+          medium_sweet: ほどよい
+          mild: 控えめ
+        firmness:
+          smooth: なめらか
+          medium_firm: しっとり
+          firm: むっちり

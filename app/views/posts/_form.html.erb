@@ -1,0 +1,41 @@
+<%= form_with(model: post, local: true, class: "bg-base-100 p-6 shadow-md rounded-md") do |f| %>
+  <div class="mb-4">
+    <%= f.label :shop_name, "お店", class: "label" %>
+    <%= f.text_field :shop_name, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :shop_address, "住所", class: "label" %>
+    <%= f.text_field :shop_address, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :sweetness, "甘さ", class: "label" %>
+    <%= f.select :sweetness, Post.sweetnesses.keys.map { |s| [I18n.t("enums.sweetness.#{s}"), s] }, {}, class: "select select-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :firmness, "固さ", class: "label" %>
+    <%= f.select :firmness, Post.firmnesses.keys.map { |f| [I18n.t("enums.firmness.#{f}"), f] }, {}, class: "select select-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+  <%= f.label :overall_rating, "総合評価", class: "label" %>
+    <div class="rating">
+      <%= f.radio_button :overall_rating, :very_poor, class: "mask mask-star-2" %>
+      <%= f.radio_button :overall_rating, :poor, class: "mask mask-star-2" %>
+      <%= f.radio_button :overall_rating, :ordinary, class: "mask mask-star-2" %>
+      <%= f.radio_button :overall_rating, :good, class: "mask mask-star-2" %>
+      <%= f.radio_button :overall_rating, :excellent, class: "mask mask-star-2" %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :body, "コメント", class: "label" %>
+    <%= f.text_area :body, placeholder: "プリンやお店の詳細を入力してください", class: "textarea textarea-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.submit "投稿", class: "btn btn-primary w-full" %>
+  </div>
+<% end %>
