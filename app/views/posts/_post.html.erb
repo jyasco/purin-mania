@@ -1,15 +1,22 @@
-<div class="card bg-base-100 shadow-md mb-4">
-  <div class="card-body flex">
-    <div class="w-1/4">
-      <div class="bg-gray-300 h-24 w-24"></div>
-    </div>
-    <div class="w-3/4 pl-4">
-      <h2 class="text-lg font-bold"><%= post.shop&.name || "お店" %></h2>
-      <div class="rating">
-        <%= display_stars(@post.overall_rating) %>
+<div class="card bg-white shadow-sm mb-4 max-w-xl mx-auto"> <!-- max-w-mdからmax-w-xlに変更 -->
+  <div class="card-body p-5"> <!-- p-4からp-5に変更 -->
+    <div class="flex flex-wrap -mx-3"> <!-- -mx-2から-mx-3に変更 -->
+      <div class="w-full md:w-1/3 px-3 mb-4 sm:mb-0"> <!-- px-2からpx-3に変更 -->
+        <div class="bg-gray-300 h-36 w-full rounded-md"></div> <!-- h-32からh-36に変更 -->
       </div>
-      <p>固さ: <%= Post.firmnesses[post.firmness] %> | 甘さ: <%= Post.sweetnesses[post.sweetness] %></p>
-      <p><i class="fa fa-map-marker-alt"></i> <%= post.shop&.address || "" %></p>
+      <div class="w-full md:w-2/3 px-3"> <!-- px-2からpx-3に変更 -->
+        <h2 class="text-xl font-bold mb-3"><%= post.shop&.name || "お店" %></h2> <!-- サイズと余白を調整 -->
+        <div class="rating rating-sm mb-3"> <!-- mb-2からmb-3に変更 -->
+          <% Post.overall_ratings[post.overall_rating].times do %>
+            <input type="radio" name="rating-<%= post.id %>" class="mask mask-star-2 bg-accent" checked disabled />
+          <% end %>
+        </div>
+        <p class="mb-2 text-sm">
+          固さ: <%= I18n.t("enums.post.firmness.#{post.firmness}") %> | 
+          甘さ: <%= I18n.t("enums.post.sweetness.#{post.sweetness}") %>
+        </p>
+        <p class="text-sm"><i class="fa fa-map-marker-alt mr-2"></i><%= post.shop&.address || "" %></p>
+      </div>
     </div>
   </div>
 </div>

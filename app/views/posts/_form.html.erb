@@ -12,22 +12,20 @@
 
     <div class="mb-4">
       <%= f.label :sweetness, "甘さ", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.select :sweetness, Post.sweetnesses.keys.map { |s| [I18n.t("enums.sweetness.#{s}"), s] }, {}, class: "select select-bordered w-full bg-white" %>
+      <%= f.select :sweetness, Post.sweetnesses.keys.map { |s| [I18n.t("enums.post.sweetness.#{s}"), s] }, {}, class: "select select-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">
       <%= f.label :firmness, "固さ", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.select :firmness, Post.firmnesses.keys.map { |f| [I18n.t("enums.firmness.#{f}"), f] }, {}, class: "select select-bordered w-full bg-white" %>
+      <%= f.select :firmness, Post.firmnesses.keys.map { |f| [I18n.t("enums.post.firmness.#{f}"), f] }, {}, class: "select select-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">
       <%= f.label :overall_rating, "総合評価", class: "block text-neutral font-semibold mb-2" %>
       <div class="rating">
-        <%= f.radio_button :overall_rating, :very_poor, class: "mask mask-star-2 bg-accent" %>
-        <%= f.radio_button :overall_rating, :poor, class: "mask mask-star-2 bg-accent" %>
-        <%= f.radio_button :overall_rating, :ordinary, class: "mask mask-star-2 bg-accent" %>
-        <%= f.radio_button :overall_rating, :good, class: "mask mask-star-2 bg-accent" %>
-        <%= f.radio_button :overall_rating, :excellent, class: "mask mask-star-2 bg-accent" %>
+        <% Post.overall_ratings.each do |key, value| %>
+          <%= f.radio_button :overall_rating, key, class: "mask mask-star-2 bg-accent" %>
+        <% end %>
       </div>
     </div>
 

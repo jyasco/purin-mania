@@ -21,14 +21,14 @@
     <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="flex flex-col min-h-screen font-kosugi bg-base text-text pt-16 pb-16">
-  <% if user_signed_in? %>
-    <%= render 'shared/header' %>
-  <% else %>
-    <%= render 'shared/before_login_header' %>
-  <% end %>
-  <%= render 'shared/flash_messages' %>
-    <main class="flex-grow">
+  <body class="font-kosugi bg-base text-text">
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    <%= render 'shared/flash_messages' %>
+    <main class="py-16">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
