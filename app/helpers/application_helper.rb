@@ -9,4 +9,10 @@ module ApplicationHelper
       'bg-[#4CAF50] text-white'
     end
   end
+
+  def display_stars(rating)
+    full_stars = "★" * rating.to_i
+    empty_stars = "☆" * (5 - rating.to_i)
+    full_stars + empty_stars
+  end
 end

@@ -23,9 +23,6 @@ class Post < ApplicationRecord
   # belongs_to :category
   # has_many :bookmarks
   # has_many :bookmarked_users, through: :bookmarks, source: :user
-  def rating_as_integer
-    Post.overall_ratings[overall_rating]
-  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["body", "sweetness", "firmness", "overall_rating", "created_at"]
