@@ -5,7 +5,9 @@
         <div class="bg-gray-300  h-48 w-full rounded-md"></div>
       </div>
       <div class="w-full md:w-2/3 px-3">
-        <h2 class="text-xl font-bold mb-3"><%= post.shop&.name || "お店" %></h2>
+        <h2 class="text-xl font-bold mb-3">
+          <%= link_to (post.shop&.name || "お店"), post_path(post) %>
+        </h2>
         <div class="rating rating-sm mb-3">
           <% Post.overall_ratings[post.overall_rating].times do %>
             <input type="radio" name="rating-<%= post.id %>" class="mask mask-star-2 bg-accent" checked disabled />
