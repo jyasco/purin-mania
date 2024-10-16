@@ -13,10 +13,6 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params.except(:shop_name, :shop_address))
-    Rails.logger.debug "Post params: #{post_params.inspect}"
-    Rails.logger.debug "Post valid? #{@post.valid?}"
-    Rails.logger.debug "Post errors: #{@post.errors.full_messages}" if @post.invalid?
-
     if @post.save
       # Shopの作成または更新
       shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
@@ -25,8 +21,13 @@ class PostsController < ApplicationController
   
       redirect_to @post, notice: '投稿が作成されました。'
     else
-      render :new
+      flash.now[:danger] = "投稿に失敗しました。"
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   private
