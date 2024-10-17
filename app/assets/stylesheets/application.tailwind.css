@@ -3,7 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.rating-sm {
-  --rating-size: 1rem !important; /* 16px */
-}
