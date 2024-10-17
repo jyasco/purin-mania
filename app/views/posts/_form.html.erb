@@ -3,12 +3,12 @@
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
       <%= f.label :shop_name, "お店", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_field :shop_name, class: "input input-bordered w-full bg-white" %>
+      <%= f.text_field :shop_name, value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white" %>
     </div>
-
+    
     <div class="mb-4">
       <%= f.label :shop_address, "住所", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_field :shop_address, class: "input input-bordered w-full bg-white" %>
+      <%= f.text_field :shop_address, value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">

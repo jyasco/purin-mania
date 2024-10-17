@@ -7,6 +7,16 @@ ja:
     label:
       email: メールアドレス
       password: パスワード
+  defaults:
+    create: 作成
+    post: 投稿
+    delete_confirm: 削除しますか？
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新出来ませんでした"
+      deleted: "%{item}を削除しました"
   tops:
     top:
       title: トップページ
