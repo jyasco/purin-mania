@@ -8,9 +8,12 @@
         <h2 class="text-xl font-bold mb-3">
           <%= link_to (post.shop&.name || "お店"), post_path(post) %>
         </h2>
-        <div class="rating rating-sm mb-3">
-          <% Post.overall_ratings[post.overall_rating].times do %>
-            <input type="radio" name="rating-<%= post.id %>" class="mask mask-star-2 bg-accent" checked disabled />
+        <div class="flex mb-3">
+          <% Post.overall_ratings.size.times do |i| %>
+            <span 
+              class="inline-block w-4 h-4 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+              aria-hidden="true"
+            ></span>
           <% end %>
         </div>
         <p class="mb-2 text-sm">
