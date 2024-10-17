@@ -1,0 +1,13 @@
+<% if object.errors.any? %>
+  <div id="error_explanation" class="alert alert-error shadow-lg mb-4">
+    <div>
+      <div>
+        <ul class="mt-2 list-disc list-inside text-sm text-white">
+          <% object.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>

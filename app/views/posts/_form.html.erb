@@ -1,5 +1,6 @@
 <div class="bg-base-100 p-6 rounded-md">
   <%= form_with(model: post, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
       <%= f.label :shop_name, "お店", class: "block text-neutral font-semibold mb-2" %>
       <%= f.text_field :shop_name, class: "input input-bordered w-full bg-white" %>
