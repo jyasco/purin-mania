@@ -1,27 +1,39 @@
-<div class="card bg-white shadow-lg mb-6 max-w-2xl mx-auto  h-54 flex-shrink">
-  <div class="card-body p-5">
-    <div class="flex flex-wrap -mx-3">
-      <div class="w-full md:w-1/3 px-3 mb-4 sm:mb-0">
-        <div class="bg-gray-300  h-48 w-full rounded-md"></div>
+<div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl">
+  <div class="card-body p-4 sm:p-5">
+    <div class="flex flex-wrap -mx-2">
+      <div class="w-full sm:w-1/3 px-2 mb-4 sm:mb-0">
+        <!-- ユーザー情報 -->
+        <div class="flex items-center mb-3">
+          <!-- アバタープレースホルダー -->
+          <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+          <div>
+            <p class="text-sm font-semibold"><%= post.user.name %></p>
+            <p class="text-xs text-subtleText"><%= post.created_at.strftime("%Y/%m/%d") %></p>
+          </div>
+        </div>
+        <!-- 画像プレースホルダー -->
+        <div class="aspect-square rounded-md overflow-hidden">
+          <div class="w-full h-full bg-gray-300"></div>
+        </div>
       </div>
-      <div class="w-full md:w-2/3 px-3">
-        <h2 class="text-xl font-bold mb-3">
+      <div class="w-full sm:w-2/3 p-4">
+        <h2 class="text-xl font-bold mb-4">
           <%= link_to (post.shop&.name || "お店"), post_path(post) %>
         </h2>
-        <div class="flex mb-3">
+        <div class="flex mb-4">
           <% Post.overall_ratings.size.times do |i| %>
             <span 
-              class="inline-block w-4 h-4 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+              class="inline-block w-5 h-5 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
               aria-hidden="true"
             ></span>
           <% end %>
         </div>
         <p class="mb-2 text-sm">
-          固さ: <%= I18n.t("enums.post.firmness.#{post.firmness}") %> | 
-          甘さ: <%= I18n.t("enums.post.sweetness.#{post.sweetness}") %>
+          <span class="font-semibold">固さ:</span> <%= I18n.t("enums.post.firmness.#{post.firmness}") %> | 
+          <span class="font-semibold">甘さ:</span> <%= I18n.t("enums.post.sweetness.#{post.sweetness}") %>
         </p>
-        <p class="mb-2 text-sm"><i class="fa fa-map-marker-alt mr-2"></i><%= post.shop&.address || "" %></p>
-        <p class="text-sm text-hover"><%= post.body.truncate(50) %></p>
+        <p class="mb-2 text-sm text-subtleText"><i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address || "住所不明" %></p>
+        <p class="text-sm"><%= post.body.truncate(50) %></p>
       </div>
     </div>
   </div>

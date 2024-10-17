@@ -14,6 +14,7 @@ module.exports = {
         hover: '#805A27',
         text: '#2C1803',
         placeholder: '#C5B6A8',
+        subtleText: '#8F7A66',
       },
       fontFamily: {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],
