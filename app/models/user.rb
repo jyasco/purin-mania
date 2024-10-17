@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
 
   has_many :posts
+
+  def own?(object)
+    object&.user_id == id
+  end
 end

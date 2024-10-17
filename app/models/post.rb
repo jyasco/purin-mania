@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  attr_accessor :shop_name, :shop_address
+  
   belongs_to :user
   belongs_to :shop, optional: true
   

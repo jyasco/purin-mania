@@ -13,21 +13,53 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params.except(:shop_name, :shop_address))
-    if @post.save
-      # Shopの作成または更新
-      shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
-      shop.update(address: post_params[:shop_address])
-      @post.update(shop: shop)
   
-      redirect_to @post, notice: '投稿が作成されました。'
+    # 既存の店舗を探すか、新しい店舗を作成
+    shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
+    shop.address = post_params[:shop_address] if shop.new_record? || shop.address.blank?
+  
+    @post.shop = shop
+  
+    if @post.save && shop.save
+      redirect_to @post, notice: t('defaults.flash_message.created', item: Post.model_name.human)
     else
-      flash.now[:alert] = "投稿に失敗しました。"
+      flash.now[:alert] = t('defaults.flash_message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = current_user.posts.find(params[:id])
+    @post.shop_name = @post.shop&.name
+    @post.shop_address = @post.shop&.address
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    @post.assign_attributes(post_params.except(:shop_name, :shop_address))
+  
+    # 既存の店舗を探すか、新しい店舗を作成
+    shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
+    shop.address = post_params[:shop_address] if shop.new_record? || shop.address.blank?
+  
+    @post.shop = shop
+  
+    if @post.save && shop.save
+      redirect_to @post, notice: t('defaults.flash_message.updated', item: Post.model_name.human)
+    else
+      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Post.model_name.human)
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    post = current_user.posts.find(params[:id])
+    post.destroy!
+    redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
   end
 
   private

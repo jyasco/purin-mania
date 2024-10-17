@@ -1,10 +1,20 @@
-<div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl">
+<div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl relative"> <!-- relative を追加 -->
+  <!-- 編集・削除ボタン -->
+  <% if user_signed_in? && current_user.own?(post) %>
+    <div class="absolute top-8 right-8 flex space-x-2 z-10"> <!-- 新しく追加 -->
+      <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}" do %>
+        <i class="fas fa-edit text-lg"></i>
+      <% end %>
+      <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
+        <i class="fas fa-trash text-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
   <div class="card-body p-4 sm:p-5">
     <div class="flex flex-wrap -mx-2">
       <div class="w-full sm:w-1/3 px-2 mb-4 sm:mb-0">
         <!-- ユーザー情報 -->
         <div class="flex items-center mb-3">
-          <!-- アバタープレースホルダー -->
           <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
           <div>
             <p class="text-sm font-semibold"><%= post.user.name %></p>
