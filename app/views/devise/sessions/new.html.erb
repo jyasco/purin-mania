@@ -4,7 +4,7 @@
     
     <div class="bg-base-100 p-6">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render 'shared/error_messages', object: f.object %>
 
         <div class="mb-4">
           <%= f.label :email, class: "block text-neutral font-semibold mb-2" %>
