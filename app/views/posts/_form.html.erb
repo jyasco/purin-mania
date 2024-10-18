@@ -1,5 +1,5 @@
 <div class="bg-base-100 p-6 rounded-md">
-  <%= form_with(model: post, local: true) do |f| %>
+  <%= form_with(model: post, local: true, multipart: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
       <%= f.label :shop_name, "お店", class: "block text-neutral font-semibold mb-2" %>
@@ -33,6 +33,29 @@
         <% Post.overall_ratings.each do |key, value| %>
           <%= f.radio_button :overall_rating, key, class: "mask mask-star-2 bg-accent" %>
         <% end %>
+      </div>
+    </div>
+
+    <div id="image-upload-container" class="mb-4" data-image-count="<%= @post.post_images.size %>">
+      <%= f.label :post_images, "画像（最大3枚）", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.fields_for :post_images do |image_form| %>
+        <div class="mb-2 relative">
+          <label for="<%= image_form.object_name %>_image" class="file-input-label flex">
+            <span class="flex-none px-4 py-2 rounded-l bg-main text-white">ファイルを選択</span>
+            <span class="flex-grow px-4 py-2 rounded-r bg-white text-placeholder truncate" data-file-name>ファイルが選択されていません</span>
+          </label>
+          <%= image_form.file_field :image, class: "hidden", accept: 'image/*' %>
+          <% if image_form.object.persisted? && image_form.object.image.present? %>
+            <%= image_tag image_form.object.image.url, class: "mt-2 w-24 h-24 object-cover rounded" %>
+            <%= image_form.check_box :_destroy %>
+            <%= image_form.label :_destroy, "削除", class: "ml-2" %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="flex justify-center mt-2">
+        <button type="button" id="add-image-btn" class="btn btn-ghost btn-circle btn-sm text-accent hover:bg-accent hover:text-white transition-colors duration-300">
+          <i class="fas fa-plus"></i>
+        </button>
       </div>
     </div>
 

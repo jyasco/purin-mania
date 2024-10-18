@@ -20,5 +20,7 @@ ja:
         firmness: 固さ
         overall_rating: 総合評価
       shop:
-        name: 店名
+        name: お店
         address: 住所
+      post_image:
+        image: プリンの写真
