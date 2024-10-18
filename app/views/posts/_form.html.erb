@@ -40,11 +40,13 @@
       <%= f.label :post_images, "画像（最大3枚）", class: "block text-neutral font-semibold mb-2" %>
       <%= f.fields_for :post_images do |image_form| %>
         <div class="mb-2 relative">
-          <label for="<%= image_form.object_name %>_image" class="file-input-label flex">
+          <label for="<%= image_form.object_name %>_image" class="file-input-label flex cursor-pointer">
             <span class="flex-none px-4 py-2 rounded-l bg-main text-white">ファイルを選択</span>
-            <span class="flex-grow px-4 py-2 rounded-r bg-white text-placeholder truncate" data-file-name>ファイルが選択されていません</span>
+            <span class="flex-grow px-4 py-2 rounded-r bg-white text-placeholder truncate" data-file-name>
+              <%= image_form.object.image.present? ? image_form.object.image.file.filename : 'ファイルが選択されていません' %>
+            </span>
           </label>
-          <%= image_form.file_field :image, class: "hidden", accept: 'image/*' %>
+          <%= image_form.file_field :image, class: "hidden image-upload", accept: 'image/*' %>
           <% if image_form.object.persisted? && image_form.object.image.present? %>
             <%= image_tag image_form.object.image.url, class: "mt-2 w-24 h-24 object-cover rounded" %>
             <%= image_form.check_box :_destroy %>

@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.build_shop  # 新しい店舗を作成するための空のオブジェクトを用意
+    @post.post_images.build  # 1つだけpost_imageを作成
   end
 
   def create
