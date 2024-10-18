@@ -3,9 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-  .file-input-label {
-    @apply cursor-pointer border-0 overflow-hidden;
-  }
-}

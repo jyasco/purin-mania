@@ -2,4 +2,3 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./custom/select_placeholder"
-import "./custom/image_upload"

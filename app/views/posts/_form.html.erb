@@ -36,31 +36,6 @@
       </div>
     </div>
 
-    <div id="image-upload-container" class="mb-4" data-image-count="<%= @post.post_images.size %>">
-      <%= f.label :post_images, "画像（最大3枚）", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.fields_for :post_images do |image_form| %>
-        <div class="mb-2 relative">
-          <label for="<%= image_form.object_name %>_image" class="file-input-label flex cursor-pointer">
-            <span class="flex-none px-4 py-2 rounded-l bg-main text-white">ファイルを選択</span>
-            <span class="flex-grow px-4 py-2 rounded-r bg-white text-placeholder truncate" data-file-name>
-              <%= image_form.object.image.present? ? image_form.object.image.file.filename : 'ファイルが選択されていません' %>
-            </span>
-          </label>
-          <%= image_form.file_field :image, class: "hidden image-upload", accept: 'image/*' %>
-          <% if image_form.object.persisted? && image_form.object.image.present? %>
-            <%= image_tag image_form.object.image.url, class: "mt-2 w-24 h-24 object-cover rounded" %>
-            <%= image_form.check_box :_destroy %>
-            <%= image_form.label :_destroy, "削除", class: "ml-2" %>
-          <% end %>
-        </div>
-      <% end %>
-      <div class="flex justify-center mt-2">
-        <button type="button" id="add-image-btn" class="btn btn-ghost btn-circle btn-sm text-accent hover:bg-accent hover:text-white transition-colors duration-300">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-    </div>
-
     <div class="mb-6">
       <%= f.label :body, "コメント", class: "block text-neutral font-semibold mb-2" %>
       <%= f.text_area :body, placeholder: "プリンやお店の詳細を入力してください", class: "textarea textarea-bordered w-full bg-white placeholder-placeholder", rows: 4 %>
