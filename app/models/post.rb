@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   
   belongs_to :user
   belongs_to :shop, optional: true
+  has_one_attached :image
 
   accepts_nested_attributes_for :shop
 

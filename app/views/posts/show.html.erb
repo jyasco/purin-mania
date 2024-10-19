@@ -25,9 +25,13 @@
     <!-- 店舗名 -->
     <h1 class="text-2xl font-bold my-6 text-center"><%= @post.shop&.name || "お店" %></h1>
 
-    <!-- 投稿画像（仮） -->
-    <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8">
-      <i class="fas fa-image text-4xl text-gray-500"></i>
+    <!-- 投稿画像 -->
+    <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, class: "w-full h-full object-cover" %>
+      <% else %>
+        <i class="fas fa-image text-4xl text-gray-500"></i>
+      <% end %>
     </div>
 
     <!-- 評価 -->

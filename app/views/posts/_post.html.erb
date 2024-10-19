@@ -21,9 +21,15 @@
             <p class="text-xs text-subtleText"><%= post.created_at.strftime("%Y/%m/%d") %></p>
           </div>
         </div>
-        <!-- 画像プレースホルダー -->
+        <!-- 画像ー -->
         <div class="aspect-square rounded-md overflow-hidden">
-          <div class="w-full h-full bg-gray-300"></div>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "w-full h-full object-cover" %>
+          <% else %>
+            <div class="w-full h-full bg-gray-300 flex items-center justify-center">
+              <i class="fas fa-image text-4xl text-gray-500"></i>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="w-full sm:w-3/5 p-4">
