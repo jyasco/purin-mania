@@ -1,5 +1,5 @@
 <div class="bg-base-100 p-6 rounded-md">
-  <%= form_with(model: post, local: true, multipart: true) do |f| %>
+  <%= form_with(model: post, url: posts_path, method: 'post', local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
       <%= f.label :shop_name, "お店", class: "block text-neutral font-semibold mb-2" %>
@@ -34,6 +34,11 @@
           <%= f.radio_button :overall_rating, key, class: "mask mask-star-2 bg-accent" %>
         <% end %>
       </div>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :image, "画像", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.file_field :image, accept: 'image/*', class: "file-input file-input-bordered file-input-secondary form-control w-full mx-auto" %>
     </div>
 
     <div class="mb-6">
