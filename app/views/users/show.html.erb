@@ -2,15 +2,13 @@
   <!-- プロフィールセクション -->
   <div class="flex flex-col items-center py-8 bg-base-100">
     <div class="avatar">
-      <% if @user.avatar.attached? %>
-        <div class="w-24 h-24 rounded-full">
-          <%= image_tag @user.avatar.variant(resize_to_limit: [600, 600]), class: "rounded-full" %>
-        </div>
-      <% else %>
-        <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center">
-          <i class="fas fa-user text-3xl text-white"></i>
-        </div>
-      <% end %>
+      <div class="w-24 h-24 rounded-full overflow-hidden">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
+        <% else %>
+          <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+        <% end %>
+      </div>
     </div>
     <h2 class="text-neutral text-2xl font-bold mt-4"><%= @user.name %></h2>
     <%= link_to edit_user_registration_path, class: "btn btn-primary mt-4 text-white" do %>

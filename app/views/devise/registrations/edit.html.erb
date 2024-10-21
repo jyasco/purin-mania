@@ -17,12 +17,14 @@
         </div>
 
         <% if resource.avatar.attached? %>
-          <div class="mb-4 w-24 h-24 overflow-hidden rounded-full">
-            <%= image_tag resource.avatar.variant(resize_to_fill: [100, 100]), class: "w-full h-full object-cover" %>
+          <div class="mt-8 mb-4 flex justify-center">
+            <div class="w-24 h-24 overflow-hidden rounded-full">
+              <%= image_tag resource.avatar.variant(resize_to_fill: [100, 100]), class: "w-full h-full object-cover" %>
+            </div>
           </div>
         <% end %>
 
-        <div class="text-center mt-12">
+        <div class="text-center mt-8">
           <%= f.submit t('.update'), class: "btn btn-primary text-white w-20" %>
         </div>
       <% end %>

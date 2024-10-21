@@ -3,7 +3,13 @@
     <!-- ユーザー情報とアクションボタン -->
     <div class="p-2 sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
       <div class="flex items-center">
-        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+        <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+          <% if @post.user.avatar.attached? %>
+            <%= image_tag @post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
+          <% else %>
+            <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+          <% end %>
+        </div>
         <div>
           <p class="font-semibold"><%= @post.user.name %></p>
           <p class="text-xs text-subtleText"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
