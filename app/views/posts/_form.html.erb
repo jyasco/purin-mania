@@ -41,6 +41,12 @@
       <%= f.file_field :image, accept: 'image/*', class: "file-input custom-file-input" %>
     </div>
 
+    <% if post.image.attached? %>
+      <div class="mb-4 flex justify-center">
+        <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "rounded-lg object-cover w-64 h-64" %>
+      </div>
+    <% end %>
+
     <div class="mb-6">
       <%= f.label :body, "コメント", class: "block text-neutral font-semibold mb-2" %>
       <%= f.text_area :body, placeholder: "プリンやお店の詳細を入力してください", class: "textarea textarea-bordered w-full bg-white placeholder-placeholder", rows: 4 %>

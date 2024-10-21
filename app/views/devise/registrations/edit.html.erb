@@ -17,8 +17,8 @@
         </div>
 
         <% if resource.avatar.attached? %>
-          <div class="mb-4">
-            <%= image_tag resource.avatar.variant(resize_to_limit: [100, 100]), class: "rounded-full" %>
+          <div class="mb-4 w-24 h-24 overflow-hidden rounded-full">
+            <%= image_tag resource.avatar.variant(resize_to_fill: [100, 100]), class: "w-full h-full object-cover" %>
           </div>
         <% end %>
 
