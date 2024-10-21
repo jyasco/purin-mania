@@ -1,0 +1,37 @@
+<div class="bg-base-100 min-h-screen">
+  <!-- プロフィールセクション -->
+  <div class="flex flex-col items-center py-8 bg-base-100">
+    <div class="avatar">
+      <div class="w-24 h-24 rounded-full overflow-hidden">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
+        <% else %>
+          <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+        <% end %>
+      </div>
+    </div>
+    <h2 class="text-neutral text-2xl font-bold mt-4"><%= @user.name %></h2>
+    <%= link_to edit_user_registration_path, class: "btn btn-primary mt-4 text-white" do %>
+      プロフィール編集
+    <% end %>
+  </div>
+
+  <!-- 投稿したプリンと保存したプリンの切り替えボタン -->
+  <div class="flex justify-center space-x-4 py-4">
+    <button class="btn btn-primary  text-white" id="my-posts-tab">投稿したプリン</button>
+    <button class="btn btn-outline btn-primary  text-white" id="saved-posts-tab">保存したプリン</button>
+  </div>
+
+  <!-- 投稿リスト: 投稿したプリン -->
+  <div id="my-posts" class="container mx-auto px-4 max-w-4xl">
+    <div class="space-y-4">
+      <% if @posts.present? %>
+        <%= render @posts %>
+      <% else %>
+        <div class='text-lg text-center'>投稿はありません</div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+

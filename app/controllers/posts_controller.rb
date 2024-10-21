@@ -41,6 +41,11 @@ class PostsController < ApplicationController
 
   def update
     @post = current_user.posts.find(params[:id])
+    # 新しい画像がアップロードされた場合、古い画像を削除
+    if post_params[:image].present? && @post.image.attached?
+      @post.image.purge
+    end
+    
     @post.assign_attributes(post_params.except(:shop_name, :shop_address))
   
     # 既存の店舗を探すか、新しい店舗を作成

@@ -38,8 +38,14 @@
 
     <div class="mb-4">
       <%= f.label :image, "画像", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.file_field :image, accept: 'image/*', class: "file-input file-input-bordered file-input-secondary form-control w-full mx-auto" %>
+      <%= f.file_field :image, accept: 'image/*', class: "file-input custom-file-input" %>
     </div>
+
+    <% if post.image.attached? %>
+      <div class="mb-4 flex justify-center">
+        <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "rounded-lg object-cover w-64 h-64" %>
+      </div>
+    <% end %>
 
     <div class="mb-6">
       <%= f.label :body, "コメント", class: "block text-neutral font-semibold mb-2" %>
