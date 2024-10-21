@@ -30,7 +30,7 @@
       <% if @post.image.attached? %>
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
       <% else %>
-        <i class="fas fa-image text-4xl text-gray-500"></i>
+        <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
       <% end %>
     </div>
 
