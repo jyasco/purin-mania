@@ -24,7 +24,7 @@
         <!-- 画像ー -->
         <div class="aspect-square rounded-md overflow-hidden">
           <% if post.image.attached? %>
-            <%= image_tag post.image, class: "w-full h-full object-cover" %>
+            <%= image_tag post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
           <% else %>
             <div class="w-full h-full bg-gray-300 flex items-center justify-center">
               <i class="fas fa-image text-4xl text-gray-500"></i>
