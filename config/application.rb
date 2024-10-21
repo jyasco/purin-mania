@@ -24,6 +24,9 @@ module Myapp
     #
     config.time_zone = 'Tokyo'
     # config.eager_load_paths << Rails.root.join("extras")
+    
+    config.active_storage.variant_processor = :vips
+
     config.generators do |g|
       g.helper false             # helperファイルを自動生成しない
       g.test_framework false     # testファイルを自動生成しない
