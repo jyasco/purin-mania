@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
 
   has_many :posts
+  has_one_attached :avatar
 
   def own?(object)
     object&.user_id == id
