@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def own?(object)
     object&.user_id == id
   end
+
+  def update_avatar(new_avatar)
+    avatar.purge if avatar.attached?
+    avatar.attach(new_avatar)
+  end
 end
