@@ -1,0 +1,15 @@
+<div class="flex flex-col items-center py-8 bg-base-100">
+  <div class="avatar">
+    <div class="w-24 h-24 rounded-full overflow-hidden">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
+      <% else %>
+        <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+      <% end %>
+    </div>
+  </div>
+  <h2 class="text-neutral text-2xl font-bold mt-4"><%= current_user.name %></h2>
+  <%= link_to edit_user_registration_path, class: "btn btn-primary mt-4 text-white" do %>
+    プロフィール編集
+  <% end %>
+</div>

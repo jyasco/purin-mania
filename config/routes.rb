@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    passwords: 'users/passwords'
-  }, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    sign_up: 'sign_up'
-  }
 
-  get 'mypage', to: 'users#show', as: :mypage
-  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -24,5 +13,24 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root 'static_pages#top'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    sign_up: 'sign_up'
+  }
+
   resources :posts
+
+  namespace :mypage do
+    root to: 'posts#index'
+    resources :posts, only: [:index]
+    resources :bookmark_posts, only: [:index]
+  end
+
+  resources :bookmarks, only: %i[create destroy]
 end
