@@ -25,3 +25,15 @@ ja:
     login: ログイン
     logout: ログアウト
     my_page: マイページ
+  posts:
+    new:
+      title: プリン投稿作成
+    show:
+      title: プリン詳細
+    index:
+      title: プリン一覧
+    edit:
+      title: プリン投稿編集
+    bookmarks:
+      title: 保存したプリン一覧
+      no_result: 保存したプリンがありません。

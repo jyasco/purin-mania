@@ -1,0 +1,7 @@
+<div class='ms-auto'>
+  <% if current_user.bookmark?(post) %>
+    <%= render 'posts/unbookmark', { post: post } %>
+  <% else %>
+    <%= render 'posts/bookmark', { post: post } %>
+  <% end %>
+</div>

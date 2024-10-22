@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
 
   has_many :posts
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_posts, through: :bookmarks, source: :post
   has_one_attached :avatar
 
   def own?(object)
@@ -16,5 +18,17 @@ class User < ApplicationRecord
   def update_avatar(new_avatar)
     avatar.purge if avatar.attached?
     avatar.attach(new_avatar)
+  end
+
+  def bookmark(post)
+    bookmark_posts << post
+  end
+
+  def unbookmark(post)
+    bookmark_posts.destroy(post)
+  end
+
+  def bookmark?(post)
+    bookmark_posts.include?(post)
   end
 end
