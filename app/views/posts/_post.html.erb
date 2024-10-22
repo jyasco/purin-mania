@@ -1,12 +1,18 @@
 <div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl relative">
-  <!-- 編集・削除ボタン -->
+  <!-- 編集・削除ボタンまたはブックマーク -->
   <% if user_signed_in? && current_user.own?(post) %>
     <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
       <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}" do %>
-        <i class="fas fa-edit text-xl"></i>
+        <i class="fas fa-edit text-2xl"></i>
       <% end %>
       <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
-        <i class="fas fa-trash text-xl"></i>
+        <i class="fas fa-trash text-2xl"></i>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
+      <% if user_signed_in? %>
+        <%= render 'posts/bookmark_buttons', { post: post } %>
       <% end %>
     </div>
   <% end %>
