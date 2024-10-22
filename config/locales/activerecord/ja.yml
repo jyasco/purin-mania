@@ -7,8 +7,8 @@ ja:
         mild: 控えめ
       firmness:
         smooth: なめらか
-        medium_firm: しっとり
-        firm: むっちり
+        medium_firm: ふつう
+        firm: かため
   activerecord:
     models:
       post: 投稿
