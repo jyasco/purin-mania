@@ -19,4 +19,16 @@ class User < ApplicationRecord
     avatar.purge if avatar.attached?
     avatar.attach(new_avatar)
   end
+
+  def bookmark(post)
+    bookmark_posts << post
+  end
+
+  def unbookmark(post)
+    bookmark_posts.destroy(post)
+  end
+
+  def bookmark?(post)
+    bookmark_posts.include?(post)
+  end
 end

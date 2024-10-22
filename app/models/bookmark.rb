@@ -1,6 +1,6 @@
 class Bookmark < ApplicationRecord
   belongs_to :user
-  belongs_to :board
+  belongs_to :post
 
-  validates :user_id, uniqueness: { scope: :board_id }
+  validates :user_id, uniqueness: { scope: :post_id }
 end
