@@ -3,12 +3,12 @@
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
       <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_field :shop_name, value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white" %>
+      <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
     
     <div class="mb-4">
       <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_field :shop_address, value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white" %>
+      <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
 
     <div class="mb-4">
@@ -49,7 +49,7 @@
 
     <div class="mb-6">
       <%= f.label :body, class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_area :body, placeholder: t('posts.form.body_placeholder'), class: "textarea textarea-bordered w-full bg-white placeholder-placeholder", rows: 4 %>
+      <%= f.text_area :body, placeholder: t('posts.form.body_placeholder'), class: "textarea textarea-bordered w-full bg-white placeholder-placeholder text-sm placeholder:text-placeholder", rows: 4 %>
     </div>
 
     <div class="text-center">

@@ -39,6 +39,8 @@ ja:
       title: 保存したプリン
       no_result: 保存したプリンがありません。
     form:
+      shop_name_placeholder: お店の名前を入力してください
+      shop_address_placeholder: お店の住所を入力してください
       body_placeholder: プリンやお店の詳細を入力してください
     shop_name_default: お店
     address_not_registered: 住所未登録

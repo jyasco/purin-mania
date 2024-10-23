@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["tab", "frame"]
+  static targets = ["tab"]
 
   connect() {
     this.updateActiveTab()
@@ -35,12 +35,12 @@ export default class extends Controller {
   }
 
   activateTab(tab) {
-    tab.classList.add('tab-active', 'text-white', 'bg-accent')
-    tab.classList.remove('hover:tab-active')
+    tab.classList.remove('text-placeholder', 'border-placeholder', 'hover:text-neutral', 'hover:border-accent')
+    tab.classList.add('text-neutral', 'border-accent', 'tab-active', '!border-accent')
   }
 
   deactivateTab(tab) {
-    tab.classList.remove('tab-active', 'text-white', 'bg-accent')
-    tab.classList.add('hover:tab-active')
+    tab.classList.remove('text-neutral', 'border-accent', 'tab-active', '!border-accent')
+    tab.classList.add('text-placeholder', 'border-placeholder', 'hover:text-neutral', 'hover:border-accent')
   }
 }
