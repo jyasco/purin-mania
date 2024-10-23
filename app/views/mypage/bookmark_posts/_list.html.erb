@@ -3,7 +3,7 @@
     <% if @bookmarked_posts.present? %>
       <%= render partial: 'posts/post', collection: @bookmarked_posts %>
     <% else %>
-      <div class='text-lg text-center'>保存したプリンはありません</div>
+      <div class='text-sm md:text-[16px] text-center'><%= t('.no_posts') %></div>
     <% end %>
   </div>
 </div>

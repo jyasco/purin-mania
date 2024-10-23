@@ -3,7 +3,7 @@
     <% if @posts.present? %>
       <%= render partial: 'posts/post', collection: @posts %>
     <% else %>
-      <div class='text-lg text-center'>投稿したプリンはありません</div>
+      <div class='text-sm md:text-[16px] text-center'><%= t('.no_posts') %></div>
     <% end %>
   </div>
 </div>

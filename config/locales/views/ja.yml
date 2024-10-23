@@ -4,6 +4,7 @@ ja:
       create: 登録
       submit: 保存
       update: 更新
+      edit: 編集
     label:
       email: メールアドレス
       password: パスワード
@@ -35,9 +36,6 @@ ja:
       title: プリン一覧
     edit:
       title: プリン投稿編集
-    bookmarks:
-      title: 保存したプリン
-      no_result: 保存したプリンがありません。
     form:
       shop_name_placeholder: お店の名前を入力してください
       shop_address_placeholder: お店の住所を入力してください
@@ -46,3 +44,15 @@ ja:
     address_not_registered: 住所未登録
     index:
       no_posts: 投稿はありません
+  mypage:
+    title: マイページ
+    bookmark_posts:
+      list:
+        no_posts: 保存しているプリンはありません
+    posts:
+      list:
+        no_posts: 投稿したプリンはありません
+    shared:
+      nav_buttons:
+        posts: 投稿したプリン
+        bookmarks: 保存したプリン

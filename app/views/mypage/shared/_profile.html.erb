@@ -10,6 +10,6 @@
   </div>
   <h2 class="text-neutral text-2xl font-bold mt-4"><%= current_user.name %></h2>
   <%= link_to edit_user_registration_path, class: "btn btn-primary btn-sm mt-4 px-4 text-white" do %>
-    編集
+    <%= t('helpers.submit.edit') %>
   <% end %>
 </div>
