@@ -68,14 +68,16 @@ class PostsController < ApplicationController
   private
 
   def find_or_create_shop(name, address)
+    # 店名と住所が完全に一致する店舗を探す
     shop = Shop.find_by(name: name, address: address)
     return shop if shop
   
-    existing_shop = Shop.find_by(name: name)
-    if existing_shop
-      # 名前が同じで住所が異なる場合、既存の店舗の住所を更新
-      existing_shop.update(address: address)
-      return existing_shop
+    # 店名のみが一致する店舗を探す
+    existing_shops = Shop.where(name: name)
+    
+    if existing_shops.exists?
+      # 店名が一致する店舗があるが、住所が異なる場合は新しい店舗を作成
+      return Shop.create(name: name, address: address)
     end
   
     # 完全に新しい店舗の場合
