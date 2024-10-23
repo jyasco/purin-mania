@@ -14,14 +14,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params.except(:shop_name, :shop_address))
   
-    # 既存の店舗を探すか、新しい店舗を作成
-    shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
-    shop.address = post_params[:shop_address] if shop.new_record? || shop.address.blank?
+    shop = find_or_create_shop(post_params[:shop_name], post_params[:shop_address])
   
     @post.shop = shop
   
     if @post.save
-      shop.save
       redirect_to @post, notice: t('defaults.flash_message.created', item: Post.model_name.human)
     else
       flash.now[:alert] = t('defaults.flash_message.not_created', item: Post.model_name.human)
@@ -49,13 +46,11 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params.except(:shop_name, :shop_address))
   
     # 既存の店舗を探すか、新しい店舗を作成
-    shop = Shop.find_or_initialize_by(name: post_params[:shop_name])
-    shop.address = post_params[:shop_address] if shop.new_record? || shop.address.blank?
+    shop = find_or_create_shop(post_params[:shop_name], post_params[:shop_address])
   
     @post.shop = shop
   
     if @post.save
-      shop.save
       redirect_to @post, notice: t('defaults.flash_message.updated', item: Post.model_name.human)
     else
       flash.now[:alert] = t('defaults.flash_message.not_updated', item: Post.model_name.human)
@@ -71,6 +66,21 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def find_or_create_shop(name, address)
+    shop = Shop.find_by(name: name, address: address)
+    return shop if shop
+  
+    existing_shop = Shop.find_by(name: name)
+    if existing_shop
+      # 名前が同じで住所が異なる場合、既存の店舗の住所を更新
+      existing_shop.update(address: address)
+      return existing_shop
+    end
+  
+    # 完全に新しい店舗の場合
+    Shop.create(name: name, address: address)
+  end
 
   def post_params
     params.require(:post).permit(:body, :sweetness, :firmness, :overall_rating, :shop_name, :shop_address, :image)
