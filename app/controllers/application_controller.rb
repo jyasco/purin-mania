@@ -10,9 +10,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
   end
 
-  private
-
-  def not_authenticated
-    redirect_to new_user_session_path, alert: 'ログインしてください'
-  end
 end
