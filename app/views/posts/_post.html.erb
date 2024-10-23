@@ -65,7 +65,7 @@
             <span><%= I18n.t("enums.post.sweetness.#{post.sweetness}") %></span>
           </div>
         </div>
-        <p class="mb-2 text-sm sm:text-[16px] text-subtleText"><i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address || "住所不明" %></p>
+        <p class="mb-2 text-sm sm:text-[16px] text-subtleText"><i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address || "住所未登録" %></p>
         <p class="text-sm sm:text-[16px]"><%= post.body.truncate(50) %></p>
       </div>
     </div>
