@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   resources :posts
 
   namespace :mypage do
-    root to: 'posts#index'
+    get '/', to: 'users#show', as: :mypage
     resources :posts, only: [:index]
     resources :bookmark_posts, only: [:index]
-  end
+  end  
 
   resources :bookmarks, only: %i[create destroy]
 end

@@ -1,14 +1,3 @@
-<div class="bg-base-100 min-h-screen">
-  <%= render 'mypage/shared/profile' %>
-  <%= render 'mypage/shared/nav_buttons' %>
-
-  <div id="saved-posts" class="container mx-auto max-w-4xl">
-    <div class="space-y-4 mt-4">
-      <% if @bookmarked_posts.present? %>
-        <%= render partial: 'posts/post', collection: @bookmarked_posts %>
-      <% else %>
-        <div class='text-lg text-center'>保存した投稿はありません</div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= turbo_frame_tag "mypage_content" do %>
+  <%= render 'list' %>
+<% end %>
