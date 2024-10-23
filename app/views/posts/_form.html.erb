@@ -2,33 +2,33 @@
   <%= form_with(model: post, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-4">
-      <%= f.label :shop_name, "お店", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block text-neutral font-semibold mb-2" %>
       <%= f.text_field :shop_name, value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white" %>
     </div>
     
     <div class="mb-4">
-      <%= f.label :shop_address, "住所", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block text-neutral font-semibold mb-2" %>
       <%= f.text_field :shop_address, value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :sweetness, "甘さ", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :sweetness, class: "block text-neutral font-semibold mb-2" %>
       <%= f.select :sweetness, 
                    Post.sweetnesses.keys.map { |s| [I18n.t("enums.post.sweetness.#{s}"), s] }, 
-                   { prompt: "選択してください" }, 
+                   { prompt: t('defaults.select_prompt') }, 
                    class: "select select-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :firmness, "固さ", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :firmness, class: "block text-neutral font-semibold mb-2" %>
       <%= f.select :firmness, 
                    Post.firmnesses.keys.map { |f| [I18n.t("enums.post.firmness.#{f}"), f] }, 
-                   { prompt: "選択してください" }, 
+                   { prompt: t('defaults.select_prompt') }, 
                    class: "select select-bordered w-full bg-white" %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :overall_rating, "総合評価", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :overall_rating, class: "block text-neutral font-semibold mb-2" %>
       <div class="rating rating-lg flex justify-center space-x-2">
         <% Post.overall_ratings.each do |key, value| %>
           <%= f.radio_button :overall_rating, key, class: "mask mask-star-2 bg-accent" %>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="mb-4">
-      <%= f.label :image, "プリンの写真", class: "block text-neutral font-semibold mb-2" %>
+      <%= f.label :image, class: "block text-neutral font-semibold mb-2" %>
       <%= f.file_field :image, accept: 'image/*', class: "file-input custom-file-input" %>
     </div>
 
@@ -48,12 +48,12 @@
     <% end %>
 
     <div class="mb-6">
-      <%= f.label :body, "コメント", class: "block text-neutral font-semibold mb-2" %>
-      <%= f.text_area :body, placeholder: "プリンやお店の詳細を入力してください", class: "textarea textarea-bordered w-full bg-white placeholder-placeholder", rows: 4 %>
+      <%= f.label :body, class: "block text-neutral font-semibold mb-2" %>
+      <%= f.text_area :body, placeholder: t('posts.form.body_placeholder'), class: "textarea textarea-bordered w-full bg-white placeholder-placeholder", rows: 4 %>
     </div>
 
     <div class="text-center">
-      <%= f.submit "投稿", class: "btn btn-primary text-white w-28" %>
+      <%= f.submit t('defaults.post'), class: "btn btn-primary text-white w-28" %>
     </div>
   <% end %>
 </div>

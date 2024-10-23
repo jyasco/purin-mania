@@ -11,6 +11,7 @@ ja:
     create: 作成
     post: 投稿
     delete_confirm: 削除しますか？
+    select_prompt: 選択してください
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
@@ -35,5 +36,11 @@ ja:
     edit:
       title: プリン投稿編集
     bookmarks:
-      title: 保存したプリン一覧
+      title: 保存したプリン
       no_result: 保存したプリンがありません。
+    form:
+      body_placeholder: プリンやお店の詳細を入力してください
+    shop_name_default: お店
+    address_not_registered: 住所未登録
+    index:
+      no_posts: 投稿はありません

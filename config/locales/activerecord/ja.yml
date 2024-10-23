@@ -19,8 +19,7 @@ ja:
         sweetness: 甘さ
         firmness: 固さ
         overall_rating: 総合評価
+        image: プリンの写真
       shop:
         name: お店
         address: 住所
-      post_image:
-        image: プリンの写真
