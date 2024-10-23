@@ -1,8 +1,0 @@
-<div class="bg-base-100 min-h-screen">
-  <%= render 'mypage/shared/profile' %>
-  <%= render 'mypage/shared/nav_buttons' %>
-
-  <%= turbo_frame_tag "mypage_content" do %>
-    <%= render 'mypage/posts/list' %>
-  <% end %>
-</div>

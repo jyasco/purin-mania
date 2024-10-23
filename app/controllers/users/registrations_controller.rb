@@ -61,7 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    mypage_root_path
+    mypage_mypage_path
   end
 
   def update_resource(resource, params)

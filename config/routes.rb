@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :posts
 
   namespace :mypage do
-    get '/', to: 'users#show', as: :mypage
+    get '/', to: 'posts#index', as: :mypage
     resources :posts, only: [:index]
     resources :bookmark_posts, only: [:index]
   end
