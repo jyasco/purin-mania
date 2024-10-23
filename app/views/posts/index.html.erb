@@ -3,7 +3,7 @@
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <div class='text-lg text-center'>投稿はありません</div>
+      <div class='text-lg text-center'><%= t('posts.index.no_posts') %></div>
     <% end %>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <%= render 'mypage/shared/profile' %>
   <%= render 'mypage/shared/nav_buttons' %>
 
-  <div id="saved-posts" class="container mx-auto px-4 max-w-4xl">
+  <div id="saved-posts" class="container mx-auto max-w-4xl">
     <div class="space-y-4 mt-4">
       <% if @bookmarked_posts.present? %>
         <%= render partial: 'posts/post', collection: @bookmarked_posts %>
