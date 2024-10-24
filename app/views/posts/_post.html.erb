@@ -2,10 +2,10 @@
   <!-- 編集・削除ボタンまたはブックマーク -->
   <% if user_signed_in? && current_user.own?(post) %>
     <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
-      <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}" do %>
+      <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}", data: { turbo_frame: "_top" } do %>
         <i class="fas fa-edit text-2xl"></i>
       <% end %>
-      <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
+      <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } , data: { turbo_frame: "_top" } do %>
         <i class="fas fa-trash text-2xl"></i>
       <% end %>
     </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="w-full sm:w-3/5 p-4">
         <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:my-4 text-center sm:text-left">
-          <%= link_to post.shop.name, post_path(post) %>
+          <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
         </h2>
         <div class="flex justify-center sm:justify-start mb-4 space-x-1">
           <% Post.overall_ratings.size.times do |i| %>
