@@ -66,7 +66,10 @@ class PostsController < ApplicationController
     post = current_user.posts.find(params[:id])
     post.image.purge if post.image.attached?
     post.destroy!
-    redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
+    respond_to do |format|
+      format.html { redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other }
+      format.turbo_stream
+    end
   end
 
   private
