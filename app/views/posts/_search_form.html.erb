@@ -1,16 +1,16 @@
 <div class="container mx-auto pt-4 max-w-2xl">
   <%= search_form_for @q, class: 'mb-4' do |f| %>
     <!-- キーワード検索と並び替えの行 -->
-    <div class="grid grid-cols-4 gap-1 sm:gap-2">
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2">
       <!-- キーワード検索 -->
-      <div class="col-span-3">
+      <div class="col-span-2 sm:col-span-3">
         <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
             class: 'input input-bordered w-full text-xs sm:text-sm bg-white placeholder:text-placeholder', 
             placeholder: 'フリーワード検索' %>
       </div>
 
       <!-- 並び替え -->
-      <div class="col-span-1">
+      <div class="col-span-1 sm:col-span-1">
         <%= f.select :s,
             [['評価が高い順', 'overall_rating desc'], ['評価が低い順', 'overall_rating asc'], ['新しい順', 'created_at desc'], ['古い順', 'created_at asc']],
             { include_blank: '並び替え' },
@@ -19,7 +19,7 @@
     </div>
 
     <!-- 甘さ・固さ・総合評価と検索ボタンの行 -->
-    <div class="grid grid-cols-4 gap-1 sm:gap-2 mt-4">
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2 mt-1 sm:mt-2">
       <!-- 甘さの絞り込み -->
       <div class="col-span-1">
         <%= f.select :sweetness_eq, 
@@ -44,10 +44,15 @@
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
       </div>
 
-      <!-- 検索ボタン -->
-      <div class="col-span-1 flex items-center justify-center">
-        <%= f.submit t('helpers.submit.search'), class: 'mx-4 btn btn-accent text-white btn-sm w-20 h-10 sm:w-36 sm:h-10 mx-2 text-xs sm:text-sm' %>
+      <!-- 検索ボタン（タブレット/PC用） -->
+      <div class="hidden sm:flex sm:col-span-1 sm:items-center sm:justify-center">
+        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-full h-10 text-xs sm:text-sm' %>
       </div>
+    </div>
+
+    <!-- 検索ボタン（スマートフォン用） -->
+    <div class="sm:hidden mt-4 flex justify-center">
+      <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-20 h-10 text-xs' %>
     </div>
   <% end %>
 </div>

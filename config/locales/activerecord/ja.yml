@@ -9,6 +9,12 @@ ja:
         smooth: なめらか
         medium_firm: ほどよい
         firm: かため
+      overall_rating:
+        very_poor: "⭐️"
+        poor: "⭐️⭐️"
+        ordinary: "⭐️⭐️⭐️"
+        good: "⭐️⭐️⭐️⭐️"
+        excellent: "⭐️⭐️⭐️⭐️⭐️"
   activerecord:
     models:
       post: 投稿
