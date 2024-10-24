@@ -3,7 +3,11 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @posts = Post.includes(:user, :shop).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+              .includes(:user, :shop)
+              .with_attached_image
+              .order(created_at: :desc)
   end
 
   def new
