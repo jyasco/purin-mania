@@ -14,6 +14,7 @@ ja:
     post: 投稿
     delete_confirm: 削除しますか？
     select_prompt: 選択してください
+    search_word: フリーワード検索
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
@@ -45,6 +46,17 @@ ja:
     address_not_registered: 住所未登録
     index:
       no_posts: 投稿はありません
+    search_form:
+      sweetness: 甘さ
+      firmness: 固さ
+      overall_rating: 評価
+      sort: 並び替え
+      highest_rated: 評価が高い順
+      lowest_rated: 評価が低い順
+      newest_first: 新しい順
+      oldest_first: 古い順
+
+
   mypage:
     title: マイページ
     bookmark_posts:
@@ -57,3 +69,4 @@ ja:
       nav_buttons:
         posts: 投稿したプリン
         bookmarks: 保存したプリン
+

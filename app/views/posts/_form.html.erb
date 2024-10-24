@@ -14,7 +14,7 @@
     <div class="mb-4">
       <%= f.label :sweetness, class: "block text-neutral font-semibold mb-2" %>
       <%= f.select :sweetness, 
-                   Post.sweetnesses.keys.map { |s| [I18n.t("enums.post.sweetness.#{s}"), s] }, 
+                   Post.sweetnesses.keys.map { |s| [t("enums.post.sweetness.#{s}"), s] }, 
                    { prompt: t('defaults.select_prompt') }, 
                    class: "select select-bordered w-full bg-white" %>
     </div>
@@ -22,7 +22,7 @@
     <div class="mb-4">
       <%= f.label :firmness, class: "block text-neutral font-semibold mb-2" %>
       <%= f.select :firmness, 
-                   Post.firmnesses.keys.map { |f| [I18n.t("enums.post.firmness.#{f}"), f] }, 
+                   Post.firmnesses.keys.map { |f| [t("enums.post.firmness.#{f}"), f] }, 
                    { prompt: t('defaults.select_prompt') }, 
                    class: "select select-bordered w-full bg-white" %>
     </div>

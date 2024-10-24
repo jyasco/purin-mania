@@ -6,14 +6,14 @@
       <div class="col-span-2 sm:col-span-3">
         <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
             class: 'input input-bordered w-full text-xs sm:text-sm bg-white placeholder:text-placeholder', 
-            placeholder: 'フリーワード検索' %>
+            placeholder: t('defaults.search_word') %>
       </div>
 
       <!-- 並び替え -->
       <div class="col-span-1 sm:col-span-1">
         <%= f.select :s,
-            [['評価が高い順', 'overall_rating desc'], ['評価が低い順', 'overall_rating asc'], ['新しい順', 'created_at desc'], ['古い順', 'created_at asc']],
-            { include_blank: '並び替え' },
+            [[t('.highest_rated'), 'overall_rating desc'], [t('.lowest_rated'), 'overall_rating asc'], [t('.newest_first'), 'created_at desc'], [t('.oldest_first'), 'created_at asc']],
+            { include_blank: t('.sort') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
       </div>
     </div>
@@ -23,24 +23,24 @@
       <!-- 甘さの絞り込み -->
       <div class="col-span-1">
         <%= f.select :sweetness_eq, 
-            Post.sweetnesses.map { |k, v| [Post.human_attribute_name("sweetness.#{k}"), v] },
-            { include_blank: '甘さ' },
+            Post.sweetnesses.map { |k, v| [t("enums.post.sweetness.#{k}"), v] },
+            { include_blank: t('.sweetness') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
       </div>
 
       <!-- 固さの絞り込み -->
       <div class="col-span-1">
         <%= f.select :firmness_eq,
-            Post.firmnesses.map { |k, v| [Post.human_attribute_name("firmness.#{k}"), v] },
-            { include_blank: '固さ' },
+            Post.firmnesses.map { |k, v| [t("enums.post.firmness.#{k}"), v] },
+            { include_blank: t('.firmness') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
       </div>
 
       <!-- 総合評価の絞り込み -->
       <div class="col-span-1">
         <%= f.select :overall_rating_eq,
-            Post.overall_ratings.map { |k, v| [Post.human_attribute_name("overall_rating.#{k}"), v] },
-            { include_blank: '評価' },
+            Post.overall_ratings.map { |k, v| [t("enums.post.overall_rating.#{k}"), v] },
+            { include_blank: t('.overall_rating') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
       </div>
 

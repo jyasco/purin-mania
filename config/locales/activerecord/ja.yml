@@ -10,11 +10,11 @@ ja:
         medium_firm: ほどよい
         firm: かため
       overall_rating:
-        very_poor: "⭐️"
-        poor: "⭐️⭐️"
-        ordinary: "⭐️⭐️⭐️"
-        good: "⭐️⭐️⭐️⭐️"
-        excellent: "⭐️⭐️⭐️⭐️⭐️"
+        very_poor: "1"
+        poor: "2"
+        ordinary: "3"
+        good: "4"
+        excellent: "5"
   activerecord:
     models:
       post: 投稿
