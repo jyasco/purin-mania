@@ -4,15 +4,11 @@ document.addEventListener('turbo:load', function() {
   selects.forEach(select => {
     const placeholder = select.querySelector('option[value=""]');
     
-    // プレースホルダーの色を設定
-    select.style.color = '#C5B6A8'; // placeholderの色
+    // 初期状態の色を設定
+    updateSelectColor(select);
 
     select.addEventListener('change', function() {
-      if (this.value) {
-        this.style.color = '#2C1803'; // 通常のテキスト色
-      } else {
-        this.style.color = '#C5B6A8'; // placeholderの色
-      }
+      updateSelectColor(this);
     });
 
     // フォーカス時の処理
@@ -30,4 +26,13 @@ document.addEventListener('turbo:load', function() {
       }
     });
   });
+
+  // 色を更新する関数
+  function updateSelectColor(select) {
+    if (select.value) {
+      select.style.color = '#2C1803'; // 通常のテキスト色
+    } else {
+      select.style.color = '#C5B6A8'; // placeholderの色
+    }
+  }
 });
