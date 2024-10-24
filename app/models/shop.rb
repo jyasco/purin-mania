@@ -13,7 +13,4 @@ class Shop < ApplicationRecord
     ["name", "address"]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["posts"]
-  end
 end
