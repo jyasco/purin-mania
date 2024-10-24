@@ -1,0 +1,58 @@
+<div class="container mx-auto pt-4 max-w-2xl">
+  <%= search_form_for @q, class: 'mb-4' do |f| %>
+    <!-- キーワード検索と並び替えの行 -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2">
+      <!-- キーワード検索 -->
+      <div class="col-span-2 sm:col-span-3">
+        <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
+            class: 'input input-bordered w-full text-xs sm:text-sm bg-white placeholder:text-placeholder', 
+            placeholder: t('defaults.search_word') %>
+      </div>
+
+      <!-- 並び替え -->
+      <div class="col-span-1 sm:col-span-1">
+        <%= f.select :s,
+            [[t('.highest_rated'), 'overall_rating desc'], [t('.lowest_rated'), 'overall_rating asc'], [t('.newest_first'), 'created_at desc'], [t('.oldest_first'), 'created_at asc']],
+            { include_blank: t('.sort') },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
+    </div>
+
+    <!-- 甘さ・固さ・総合評価と検索ボタンの行 -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2 mt-1 sm:mt-2">
+      <!-- 甘さの絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :sweetness_eq, 
+            Post.sweetnesses.map { |k, v| [t("enums.post.sweetness.#{k}"), v] },
+            { include_blank: t('.sweetness') },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
+
+      <!-- 固さの絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :firmness_eq,
+            Post.firmnesses.map { |k, v| [t("enums.post.firmness.#{k}"), v] },
+            { include_blank: t('.firmness') },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
+
+      <!-- 総合評価の絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :overall_rating_eq,
+            Post.overall_ratings.map { |k, v| [t("enums.post.overall_rating.#{k}"), v] },
+            { include_blank: t('.overall_rating') },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
+
+      <!-- 検索ボタン（タブレット/PC用） -->
+      <div class="hidden sm:flex sm:col-span-1 sm:items-center sm:justify-center">
+        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-full h-10 text-xs sm:text-sm' %>
+      </div>
+    </div>
+
+    <!-- 検索ボタン（スマートフォン用） -->
+    <div class="sm:hidden mt-4 flex justify-center">
+      <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-20 h-10 text-xs' %>
+    </div>
+  <% end %>
+</div>
