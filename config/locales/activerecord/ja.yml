@@ -7,7 +7,7 @@ ja:
         mild: 控えめ
       firmness:
         smooth: なめらか
-        medium_firm: ふつう
+        medium_firm: ほどよい
         firm: かため
   activerecord:
     models:

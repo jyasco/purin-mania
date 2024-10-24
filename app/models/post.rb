@@ -25,8 +25,6 @@ class Post < ApplicationRecord
 
   # 将来的に実装予定の機能のためのコメントアウト
   # belongs_to :category
-  # has_many :bookmarks
-  # has_many :bookmarked_users, through: :bookmarks, source: :user
 
   def self.ransackable_attributes(auth_object = nil)
     ["body", "sweetness", "firmness", "overall_rating", "created_at"]
