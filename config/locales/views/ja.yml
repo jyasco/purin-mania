@@ -5,6 +5,7 @@ ja:
       submit: 保存
       update: 更新
       edit: 編集
+      search: 検索
     label:
       email: メールアドレス
       password: パスワード

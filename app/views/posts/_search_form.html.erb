@@ -1,51 +1,53 @@
-<%= search_form_for @q, class: 'mb-4' do |f| %>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-    <!-- キーワード検索 -->
-    <div>
-      <%= f.label :body_or_shop_name_or_shop_address_or_user_name_cont, '検索ワード', class: 'block text-sm' %>
-      <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
-          class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-          placeholder: 'キーワードを入力' %>
+<div class="container mx-auto pt-4 max-w-2xl">
+  <%= search_form_for @q, class: 'mb-4' do |f| %>
+    <!-- キーワード検索と並び替えの行 -->
+    <div class="grid grid-cols-4 gap-1 sm:gap-2">
+      <!-- キーワード検索 -->
+      <div class="col-span-3">
+        <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
+            class: 'input input-bordered w-full text-xs sm:text-sm bg-white placeholder:text-placeholder', 
+            placeholder: 'フリーワード検索' %>
+      </div>
+
+      <!-- 並び替え -->
+      <div class="col-span-1">
+        <%= f.select :s,
+            [['評価が高い順', 'overall_rating desc'], ['評価が低い順', 'overall_rating asc'], ['新しい順', 'created_at desc'], ['古い順', 'created_at asc']],
+            { include_blank: '並び替え' },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
     </div>
 
-    <!-- 並び替え -->
-    <div>
-      <%= f.label :s, '並び替え', class: 'block text-sm' %>
-      <%= f.select :s,
-          [['評価が高い順', 'overall_rating desc'], ['評価が低い順', 'overall_rating asc'], ['新しい順', 'created_at desc'], ['古い順', 'created_at asc']],
-          { include_blank: '指定なし' },
-          class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm' %>
-    </div>
+    <!-- 甘さ・固さ・総合評価と検索ボタンの行 -->
+    <div class="grid grid-cols-4 gap-1 sm:gap-2 mt-4">
+      <!-- 甘さの絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :sweetness_eq, 
+            Post.sweetnesses.map { |k, v| [Post.human_attribute_name("sweetness.#{k}"), v] },
+            { include_blank: '甘さ' },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
 
-    <!-- 甘さでの絞り込み -->
-    <div>
-      <%= f.label :sweetness_eq, '甘さ', class: 'block text-sm' %>
-      <%= f.select :sweetness_eq, 
-          Post.sweetnesses.map { |k, v| [Post.human_attribute_name("sweetness.#{k}"), v] },
-          { include_blank: '指定なし' },
-          class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm' %>
-    </div>
+      <!-- 固さの絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :firmness_eq,
+            Post.firmnesses.map { |k, v| [Post.human_attribute_name("firmness.#{k}"), v] },
+            { include_blank: '固さ' },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
 
-    <!-- 固さでの絞り込み -->
-    <div>
-      <%= f.label :firmness_eq, '固さ', class: 'block text-sm' %>
-      <%= f.select :firmness_eq,
-          Post.firmnesses.map { |k, v| [Post.human_attribute_name("firmness.#{k}"), v] },
-          { include_blank: '指定なし' },
-          class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm' %>
-    </div>
+      <!-- 総合評価の絞り込み -->
+      <div class="col-span-1">
+        <%= f.select :overall_rating_eq,
+            Post.overall_ratings.map { |k, v| [Post.human_attribute_name("overall_rating.#{k}"), v] },
+            { include_blank: '評価' },
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+      </div>
 
-    <!-- 総合評価での並び替え -->
-    <div>
-      <%= f.label :overall_rating_eq, '総合評価', class: 'block text-sm' %>
-      <%= f.select :overall_rating_eq,
-          Post.overall_ratings.map { |k, v| [Post.human_attribute_name("overall_rating.#{k}"), v] },
-          { include_blank: '指定なし' },
-          class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm' %>
+      <!-- 検索ボタン -->
+      <div class="col-span-1 flex items-center justify-center">
+        <%= f.submit t('helpers.submit.search'), class: 'mx-4 btn btn-accent text-white btn-sm w-20 h-10 sm:w-36 sm:h-10 mx-2 text-xs sm:text-sm' %>
+      </div>
     </div>
-  </div>
-
-  <div class="mt-4 flex justify-center">
-    <%= f.submit '検索', class: 'inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
-  </div>
-<% end %>
+  <% end %>
+</div>
