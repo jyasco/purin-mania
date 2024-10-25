@@ -1,7 +1,7 @@
 <div id="saved-posts" class="container mx-auto px-8 sm:px-4 max-w-4xl">
   <div class="space-y-4 mt-4">
     <% if @bookmarked_posts.present? %>
-      <% @posts.each do |post| %>
+      <% @bookmarked_posts.each do |post| %>
         <%= turbo_frame_tag dom_id(post) do %>
           <%= render 'posts/post', post: post %>
         <% end %>
