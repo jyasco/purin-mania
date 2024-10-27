@@ -14,7 +14,7 @@ ja:
     post: 投稿
     delete_confirm: 削除しますか？
     select_prompt: 選択してください
-    search_word: フリーワード検索
+    search_word: エリア・店名など
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
