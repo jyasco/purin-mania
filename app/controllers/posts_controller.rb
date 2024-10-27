@@ -63,12 +63,30 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = current_user.posts.find(params[:id])
-    post.image.purge if post.image.attached?
-    post.destroy!
+    @post = current_user.posts.find(params[:id])
+    @post.image.purge if @post.image.attached?
+    @post.destroy!
+    
+    flash[:notice] = t('defaults.flash_message.deleted', item: Post.model_name.human)
+    
     respond_to do |format|
-      format.html { redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other }
-      format.turbo_stream
+      format.html do
+        if request.referer&.include?('mypage')
+          redirect_to mypage_posts_path, status: :see_other
+        else
+          redirect_to posts_path, status: :see_other
+        end
+      end
+      format.turbo_stream do
+        if request.referer&.include?(post_path(@post))
+          redirect_to posts_path, status: :see_other
+        else
+          render turbo_stream: [
+            turbo_stream.remove(@post),
+            turbo_stream.replace('flash', partial: 'shared/flash_messages')
+          ]
+        end
+      end
     end
   end
 

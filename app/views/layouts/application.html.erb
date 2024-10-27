@@ -28,7 +28,9 @@
       <%= render 'shared/before_login_header' %>
     <% end %>
     <main class="py-16">
-      <%= render 'shared/flash_messages' %>
+      <%= turbo_frame_tag "flash" do %>
+        <%= render 'shared/flash_messages' %>
+      <% end %>
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>

@@ -1,74 +1,76 @@
-<div id="<%= dom_id(post) %>" class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl relative">
-  <!-- 編集・削除ボタンまたはブックマーク -->
-  <% if user_signed_in? && current_user.own?(post) %>
-    <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
-      <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}", data: { turbo_frame: "_top" } do %>
-        <i class="fas fa-edit text-2xl"></i>
-      <% end %>
-      <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'), turbo_frame: "_top" } do %>
-        <i class="fas fa-trash text-2xl"></i>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
-      <% if user_signed_in? %>
-        <%= render 'posts/bookmark_buttons', { post: post } %>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="card-body p-4 sm:p-5">
-    <div class="flex flex-wrap">
-      <div class="w-full sm:w-2/5">
-        <!-- ユーザー情報 -->
-        <div class="flex items-center mb-3">
-          <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-            <% if post.user.avatar.attached? %>
-              <%= image_tag post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
+<%= turbo_frame_tag dom_id(post) do %>
+  <div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-4 sm:px-0 max-w-sm sm:max-w-2xl relative">
+    <!-- 編集・削除ボタンまたはブックマーク -->
+    <% if user_signed_in? && current_user.own?(post) %>
+      <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
+        <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}", data: { turbo_frame: "_top" } do %>
+          <i class="fas fa-edit text-2xl"></i>
+        <% end %>
+        <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
+          <i class="fas fa-trash text-2xl"></i>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="absolute top-6 right-8 sm:top-6 sm:right-6 flex space-x-2 z-[5]">
+        <% if user_signed_in? %>
+          <%= render 'posts/bookmark_buttons', { post: post } %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="card-body p-4 sm:p-5">
+      <div class="flex flex-wrap">
+        <div class="w-full sm:w-2/5">
+          <!-- ユーザー情報 -->
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+              <% if post.user.avatar.attached? %>
+                <%= image_tag post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
+              <% else %>
+                <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+              <% end %>
+            </div>
+            <div>
+              <p class="text-sm font-semibold"><%= post.user.name %></p>
+              <p class="text-xs text-subtleText"><%= post.created_at.strftime("%Y/%m/%d") %></p>
+            </div>
+          </div>
+          <!-- 画像ー -->
+          <div class="aspect-square rounded-md overflow-hidden">
+            <% if post.image.attached? %>
+              <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: "w-full h-full object-cover" %>
             <% else %>
-              <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+              <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
             <% end %>
           </div>
-          <div>
-            <p class="text-sm font-semibold"><%= post.user.name %></p>
-            <p class="text-xs text-subtleText"><%= post.created_at.strftime("%Y/%m/%d") %></p>
+        </div>
+        <div class="w-full sm:w-3/5 p-4">
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:my-4 text-center sm:text-left">
+            <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
+          </h2>
+          <div class="flex justify-center sm:justify-start mb-4 space-x-1">
+            <% Post.overall_ratings.size.times do |i| %>
+              <span 
+                class="inline-block w-5 h-5 sm:w-6 sm:h-6 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+                aria-hidden="true"
+              ></span>
+            <% end %>
           </div>
-        </div>
-        <!-- 画像ー -->
-        <div class="aspect-square rounded-md overflow-hidden">
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: "w-full h-full object-cover" %>
-          <% else %>
-            <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="w-full sm:w-3/5 p-4">
-        <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:my-4 text-center sm:text-left">
-          <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
-        </h2>
-        <div class="flex justify-center sm:justify-start mb-4 space-x-1">
-          <% Post.overall_ratings.size.times do |i| %>
-            <span 
-              class="inline-block w-5 h-5 sm:w-6 sm:h-6 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
-              aria-hidden="true"
-            ></span>
-          <% end %>
-        </div>
-        <div class="flex flex-wrap justify-center sm:justify-start items-center mb-2 text-sm sm:text-[16px] text-center sm:text-left">
-          <div class="flex items-center">
-            <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.firmness') %>:</span>
-            <span><%= I18n.t("enums.post.firmness.#{post.firmness}") %></span>
+          <div class="flex flex-wrap justify-center sm:justify-start items-center mb-2 text-sm sm:text-[16px] text-center sm:text-left">
+            <div class="flex items-center">
+              <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.firmness') %>:</span>
+              <span><%= I18n.t("enums.post.firmness.#{post.firmness}") %></span>
+            </div>
+            <div class="mx-1">|</div>
+            <div class="flex items-center">
+              <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.sweetness') %>:</span>
+              <span><%= I18n.t("enums.post.sweetness.#{post.sweetness}") %></span>
+            </div>
           </div>
-          <div class="mx-1">|</div>
-          <div class="flex items-center">
-            <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.sweetness') %>:</span>
-            <span><%= I18n.t("enums.post.sweetness.#{post.sweetness}") %></span>
-          </div>
+          <p class="mb-2 text-sm sm:text-[16px] text-subtleText">
+            <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address.present? ? post.shop.address : t('posts.address_not_registered') %>
+          <p class="text-sm sm:text-[16px]"><%= post.body.truncate(50) %></p>
         </div>
-        <p class="mb-2 text-sm sm:text-[16px] text-subtleText">
-          <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address.present? ? post.shop.address : t('posts.address_not_registered') %>
-        <p class="text-sm sm:text-[16px]"><%= post.body.truncate(50) %></p>
       </div>
     </div>
   </div>
-</div>
+<% end %>
