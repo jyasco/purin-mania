@@ -6,6 +6,7 @@ ja:
       update: 更新
       edit: 編集
       search: 検索
+      clear: クリア
     label:
       email: メールアドレス
       password: パスワード

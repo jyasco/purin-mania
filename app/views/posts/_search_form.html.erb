@@ -1,12 +1,13 @@
-<div class="container mx-auto pt-4 max-w-2xl">
-  <%= search_form_for @q, class: 'mb-4' do |f| %>
+<div class="container mx-auto pt-4 max-w-2xl" data-controller="search-clear">
+  <%= search_form_for @q, class: 'mb-4', data: { search_clear_target: "form" } do |f| %>
     <!-- キーワード検索と並び替えの行 -->
     <div class="grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2">
       <!-- キーワード検索 -->
       <div class="col-span-2 sm:col-span-3">
         <%= f.search_field :body_or_shop_name_or_shop_address_or_user_name_cont, 
             class: 'input input-bordered w-full text-xs sm:text-sm bg-white placeholder:text-placeholder', 
-            placeholder: t('defaults.search_word') %>
+            placeholder: t('defaults.search_word'),
+            data: { search_clear_target: "input" } %>
       </div>
 
       <!-- 並び替え -->
@@ -14,7 +15,8 @@
         <%= f.select :s,
             [[t('.highest_rated'), 'overall_rating desc'], [t('.lowest_rated'), 'overall_rating asc'], [t('.newest_first'), 'created_at desc'], [t('.oldest_first'), 'created_at asc']],
             { include_blank: t('.sort') },
-            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
+            data: { search_clear_target: "select" } %>
       </div>
     </div>
 
@@ -25,7 +27,8 @@
         <%= f.select :sweetness_eq, 
             Post.sweetnesses.map { |k, v| [t("enums.post.sweetness.#{k}"), v] },
             { include_blank: t('.sweetness') },
-            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
+            data: { search_clear_target: "select" } %>
       </div>
 
       <!-- 固さの絞り込み -->
@@ -33,7 +36,8 @@
         <%= f.select :firmness_eq,
             Post.firmnesses.map { |k, v| [t("enums.post.firmness.#{k}"), v] },
             { include_blank: t('.firmness') },
-            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
+            data: { search_clear_target: "select" } %>
       </div>
 
       <!-- 総合評価の絞り込み -->
@@ -41,17 +45,20 @@
         <%= f.select :overall_rating_eq,
             Post.overall_ratings.map { |k, v| [t("enums.post.overall_rating.#{k}"), v] },
             { include_blank: t('.overall_rating') },
-            class: 'select select-bordered w-full text-xs sm:text-sm bg-white' %>
+            class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
+            data: { search_clear_target: "select" } %>
       </div>
 
-      <!-- 検索ボタン（タブレット/PC用） -->
+      <!-- 検索ボタンとクリアボタン（タブレット/PC用） -->
       <div class="hidden sm:flex sm:col-span-1 sm:items-center sm:justify-center">
-        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-full h-10 text-xs sm:text-sm' %>
+        <button type="button" id="search-clear" class="btn btn-subtleText btn-sm w-16 h-10 text-[10px]" data-action="search-clear#clear"><%= t('helpers.submit.clear') %></button>
+        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-24 h-10 text-xs sm:text-sm ml-1' %>
       </div>
     </div>
 
     <!-- 検索ボタン（スマートフォン用） -->
     <div class="sm:hidden mt-4 flex justify-center">
+      <button type="button" id="search-clear-mobile" class="btn btn-subtleText btn-sm w-16 h-10 mr-1 text-xs" data-action="search-clear#clear"><%= t('helpers.submit.clear') %></button>
       <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-20 h-10 text-xs' %>
     </div>
   <% end %>
