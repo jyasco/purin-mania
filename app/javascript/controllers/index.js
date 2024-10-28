@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import TabController from "./tab_controller"
 application.register("tab", TabController)
+
+import SearchClearController from "./search_clear_controller"
+application.register("search-clear", SearchClearController)
