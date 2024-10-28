@@ -1,86 +1,84 @@
-<%= turbo_frame_tag "_top" do %>
-  <div class="container mx-auto px-8 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-2xl">
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden px-6 sm:px-20 py-4 sm:py-6 md:py-10">
-      <!-- ユーザー情報とアクションボタン -->
-      <div class="p-2 sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-            <% if @post.user.avatar.attached? %>
-              <%= image_tag @post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
-            <% else %>
-              <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
-            <% end %>
-          </div>
-          <div>
-            <p class="font-semibold"><%= @post.user.name %></p>
-            <p class="text-xs text-subtleText"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
-          </div>
+<div class="container mx-auto px-8 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-2xl">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden px-6 sm:px-20 py-4 sm:py-6 md:py-10">
+    <!-- ユーザー情報とアクションボタン -->
+    <div class="p-2 sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+          <% if @post.user.avatar.attached? %>
+            <%= image_tag @post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
+          <% else %>
+            <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+          <% end %>
         </div>
-        <!-- 編集・削除ボタンまたはブックマーク -->
-        <% if user_signed_in? && current_user.own?(@post) %>
-          <div class="flex space-x-2">
-            <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
-              <i class="fas fa-edit text-2xl"></i>
-            <% end %>
-            <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
-              <i class="fas fa-trash text-2xl"></i>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="flex space-x-2">  
-            <% if user_signed_in? %>
-              <%= render 'bookmark_buttons', { post: @post } %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-  
-      <!-- 店舗名 -->
-      <h1 class="text-2xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
-  
-      <!-- 投稿画像 -->
-      <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
-        <% if @post.image.attached? %>
-          <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
-        <% else %>
-          <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
-        <% end %>
-      </div>
-  
-      <!-- 評価 -->
-      <div class="flex justify-center mb-4">
-        <% Post.overall_ratings.size.times do |i| %>
-          <span 
-            class="inline-block w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mask mask-star-2 mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
-            aria-hidden="true"
-          ></span>
-        <% end %>
-      </div>
-  
-      <!-- 固さと甘さ -->
-      <div class="px-4 py-2 text-center font-bold my-6">
-        <div class="flex justify-center items-center space-x-2 sm:space-x-4">
-          <span class="sm:text-lg md:text-xl lg:text-2xl">
-            固さ: <%= t("enums.post.firmness.#{@post.firmness}") %>
-          </span>
-          <span class="sm:text-lg md:text-xl lg:text-2xl">|</span>
-          <span class="sm:text-lg md:text-xl lg:text-2xl">
-            甘さ: <%= t("enums.post.sweetness.#{@post.sweetness}") %>
-          </span>
+        <div>
+          <p class="font-semibold"><%= @post.user.name %></p>
+          <p class="text-xs text-subtleText"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
         </div>
       </div>
-  
-      <!-- コメント -->
-      <div class="px-4 sm:px-6 md:px-8 lg:px-14 py-4">
-        <%= simple_format(@post.body, class: "text-sm sm:text-[16px] text-left break-words") %>
-      </div>
-  
-      <hr class="mt-6 mb-4 border-placeholder">
-  
-      <!-- 住所 -->
-      <div class="px-4 pb-4 text-sm sm:text-[16px] text-subtleText">
-        <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
+      <!-- 編集・削除ボタンまたはブックマーク -->
+      <% if user_signed_in? && current_user.own?(@post) %>
+        <div class="flex space-x-2">
+          <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
+            <i class="fas fa-edit text-2xl"></i>
+          <% end %>
+          <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'),turbo_frame: "_top" } do %>
+            <i class="fas fa-trash text-2xl"></i>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex space-x-2">  
+          <% if user_signed_in? %>
+            <%= render 'bookmark_buttons', { post: @post } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 店舗名 -->
+    <h1 class="text-2xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
+
+    <!-- 投稿画像 -->
+    <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
+      <% else %>
+        <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
+      <% end %>
+    </div>
+
+    <!-- 評価 -->
+    <div class="flex justify-center mb-4">
+      <% Post.overall_ratings.size.times do |i| %>
+        <span 
+          class="inline-block w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mask mask-star-2 mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+          aria-hidden="true"
+        ></span>
+      <% end %>
+    </div>
+
+    <!-- 固さと甘さ -->
+    <div class="px-4 py-2 text-center font-bold my-6">
+      <div class="flex justify-center items-center space-x-2 sm:space-x-4">
+        <span class="sm:text-lg md:text-xl lg:text-2xl">
+          固さ: <%= t("enums.post.firmness.#{@post.firmness}") %>
+        </span>
+        <span class="sm:text-lg md:text-xl lg:text-2xl">|</span>
+        <span class="sm:text-lg md:text-xl lg:text-2xl">
+          甘さ: <%= t("enums.post.sweetness.#{@post.sweetness}") %>
+        </span>
       </div>
     </div>
+
+    <!-- コメント -->
+    <div class="px-4 sm:px-6 md:px-8 lg:px-14 py-4">
+      <%= simple_format(@post.body, class: "text-sm sm:text-[16px] text-left break-words") %>
+    </div>
+
+    <hr class="mt-6 mb-4 border-placeholder">
+
+    <!-- 住所 -->
+    <div class="px-4 pb-4 text-sm sm:text-[16px] text-subtleText">
+      <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
+    </div>
   </div>
-<% end %>
+</div>

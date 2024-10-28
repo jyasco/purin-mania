@@ -1,11 +1,7 @@
 <div id="my-posts" class="container mx-auto px-8 sm:px-4 max-w-4xl">
   <div class="space-y-4 mt-4">
     <% if @posts.present? %>
-      <% @posts.each do |post| %>
-        <%= turbo_frame_tag dom_id(post) do %>
-          <%= render 'posts/post', post: post %>
-        <% end %>
-      <% end %>
+      <%= render partial: 'posts/post', collection: @posts %>
     <% else %>
       <div class='text-sm md:text-[16px] text-center'><%= t('.no_posts') %></div>
     <% end %>
