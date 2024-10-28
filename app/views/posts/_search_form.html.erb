@@ -51,7 +51,7 @@
 
       <!-- 検索ボタンとクリアボタン（タブレット/PC用） -->
       <div class="hidden sm:flex sm:col-span-1 sm:items-center sm:justify-center">
-        <button type="button" id="search-clear" class="btn btn-outline btn-sm text-accent border-2 w-12 h-10 mr-1 hover:bg-accent hover:text-white hover:border-none" data-action="search-clear#clear">
+        <button type="button" id="search-clear" class="btn btn-outline btn-sm text-accent border-1 w-12 h-10 mr-1 hover:bg-accent hover:text-white hover:border-none" data-action="search-clear#clear">
           <i class="fa-solid fa-eraser mr-1"></i>
         </button>
         <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-24 h-10 text-xs sm:text-sm ml-1' %>
@@ -60,7 +60,7 @@
 
     <!-- 検索ボタン（スマートフォン用） -->
     <div class="sm:hidden mt-4 flex justify-center">
-      <button type="button" id="search-clear-mobile" class="btn btn-outline btn-sm text-accent border-2 w-16 h-10 mr-1 text-xs hover:bg-accent hover:text-white hover:border-none" data-action="search-clear#clear">
+      <button type="button" id="search-clear-mobile" class="btn btn-outline btn-sm text-accent border-1 w-16 h-10 mr-1 text-xs hover:bg-accent hover:text-white hover:border-none" data-action="search-clear#clear">
         クリア
       </button>
       <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-16 h-10 text-xs' %>
