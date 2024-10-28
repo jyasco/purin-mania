@@ -51,10 +51,10 @@
 
       <!-- 検索ボタンとクリアボタン（タブレット/PC用） -->
       <div class="hidden sm:flex sm:col-span-1 sm:items-center sm:justify-center">
+        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-24 h-10 text-xs sm:text-sm mr-1' %>
         <button type="button" id="search-clear" class="btn btn-outline btn-sm text-accent border-1 w-12 h-10 mr-1 hover:bg-accent hover:text-white hover:border-none" data-action="search-clear#clear">
           <i class="fa-solid fa-eraser mr-1"></i>
         </button>
-        <%= f.submit t('helpers.submit.search'), class: 'btn btn-accent text-white btn-sm w-24 h-10 text-xs sm:text-sm ml-1' %>
       </div>
     </div>
 
