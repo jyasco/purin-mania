@@ -1,28 +1,28 @@
-<div class="container mx-auto px-8 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-2xl">
+<div class="container mx-auto px-8 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-3xl">
   <div class="bg-white shadow-lg rounded-lg overflow-hidden px-6 sm:px-20 py-4 sm:py-6 md:py-10">
     <!-- ユーザー情報とアクションボタン -->
     <div class="p-2 sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
       <div class="flex items-center">
-        <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+        <div class="w-15 h-15 rounded-full overflow-hidden mr-3">
           <% if @post.user.avatar.attached? %>
-            <%= image_tag @post.user.avatar.variant(resize_to_fill: [40, 40]), class: "w-full h-full object-cover" %>
+            <%= image_tag @post.user.avatar.variant(resize_to_fill: [50, 50]), class: "w-full h-full object-cover" %>
           <% else %>
             <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
           <% end %>
         </div>
         <div>
           <p class="font-semibold"><%= @post.user.name %></p>
-          <p class="text-xs text-subtleText"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+          <p class="text-xs sm:text-sm text-subtleText"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
         </div>
       </div>
       <!-- 編集・削除ボタンまたはブックマーク -->
       <% if user_signed_in? && current_user.own?(@post) %>
         <div class="flex space-x-2">
           <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
-            <i class="fas fa-edit text-2xl"></i>
+            <i class="fas fa-edit text-2xl sm:text-3xl"></i>
           <% end %>
           <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'),turbo_frame: "_top" } do %>
-            <i class="fas fa-trash text-2xl"></i>
+            <i class="fas fa-trash text-2xl sm:text-3xl"></i>
           <% end %>
         </div>
       <% else %>
@@ -35,7 +35,7 @@
     </div>
 
     <!-- 店舗名 -->
-    <h1 class="text-2xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
+    <h1 class="text-3xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
 
     <!-- 投稿画像 -->
     <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
