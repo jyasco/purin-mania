@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root 'static_pages#top'
+  get 'contact', to: 'static_pages#contact', as: :contact
+  get 'terms', to: 'static_pages#terms', as: :terms_of_service
+  get 'privacy', to: 'static_pages#privacy', as: :privacy_policy
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
