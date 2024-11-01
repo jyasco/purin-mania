@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: %i[create destroy]
+
+  get 'ogp/:id', to: 'images#ogp', as: :ogp_image
 end

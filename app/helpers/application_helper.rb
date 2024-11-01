@@ -9,4 +9,63 @@ module ApplicationHelper
       'bg-[#4CAF50] text-white'
     end
   end
+
+  def show_meta_tags
+    assign_meta_tags if display_meta_tags.blank?
+    display_meta_tags
+  end
+
+  def assign_meta_tags(options = {})
+    defaults = I18n.t('meta-tags.defaults', locale: :ja).deep_symbolize_keys
+    options.reverse_merge!(defaults)
+
+    set_meta_tags(build_meta_tags(options))
+  end
+
+  private
+
+  def build_meta_tags(options)
+    {
+      site: options[:site],
+      title: options[:title],
+      reverse: true,
+      charset: 'utf-8',
+      description: options[:description],
+      keywords: options[:keywords],
+      canonical: request.original_url,
+      separator: '|',
+      og: build_og_tags(options),
+      twitter: build_twitter_tags(options)
+    }
+  end
+
+  def build_og_tags(options)
+    {
+      site_name: options[:site],
+      title: options[:title].presence || t('meta_tags.defaults.title'),
+      description: options[:description],
+      type: 'website',
+      url: request.original_url,
+      image: generate_ogp_image_url(options),
+      locale: 'ja-JP'
+    }
+  end
+
+  def build_twitter_tags(options)
+    {
+      card: 'summary_large_image',
+      site: options[:site],
+      image: generate_ogp_image_url(options)
+    }
+  end
+
+  def generate_ogp_image_url(options)
+    if options[:post].present? && options[:post].image.attached?
+      # 動的OGP画像生成のURL
+      Rails.application.routes.url_helpers.ogp_image_url(options[:post].id, host: request.base_url)
+    else
+      # デフォルトのOGP画像URL
+      image_url('default-ogp.png')
+    end
+  end
 end
