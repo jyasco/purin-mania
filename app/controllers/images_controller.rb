@@ -1,10 +1,9 @@
+# app/controllers/images_controller.rb
 class ImagesController < ApplicationController
   def ogp
     post = Post.find(params[:id])
-    text = post.shop.name
-    has_image = post.image.attached?
 
-    image = OgpCreator.build(text, has_image).tempfile.open.read
+    image = OgpCreator.build(post).tempfile.open.read
     send_data image, type: 'image/png', disposition: 'inline'
   end
 

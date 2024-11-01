@@ -2,32 +2,45 @@ class OgpCreator
   require 'mini_magick'  
   BASE_IMAGE_PATH = './app/assets/images/ogp.png'
   DEFAULT_OGP_PATH = './app/assets/images/default-ogp.png'
-  GRAVITY = 'center'
-  TEXT_POSITION = '0,0'
   FONT = './app/assets/fonts/KosugiMaru-Regular.ttf'
-  FONT_SIZE = 60
-  INDENTION_COUNT = 16
-  ROW_LIMIT = 2
+  BOLD_FONT = './app/assets/fonts/MPLUSRounded1c-Bold.ttf'
+  TEXT_COLOR = '#2C1803'
+  SHADOW_COLOR = 'rgba(20,10,0,0.6)'
 
-  def self.build(text, post_has_image)
-    if post_has_image
-      text = prepare_text(text)
+  def self.build(post)
+    if post.image.attached?
       image = MiniMagick::Image.open(BASE_IMAGE_PATH)
-      image.combine_options do |config|
-        config.font FONT
-        config.fill 'white'
-        config.gravity GRAVITY
-        config.pointsize FONT_SIZE
-        config.draw "text #{TEXT_POSITION} '#{text}'"
+      image_width = image.width
+      image_height = image.height
+      post_image = MiniMagick::Image.read(post.image.download)
+      post_image.resize "#{image_width / 2}x820^"
+      post_image.gravity 'center'
+      post_image.extent "#{image_width / 2}x820"
+      y_offset = (image_height - 820) / 2
+      image = image.composite(post_image) do |c|
+        c.compose "Over"
+        c.geometry "+#{image_width / 2}+#{y_offset}"
       end
-      image
-    else
-      MiniMagick::Image.open(DEFAULT_OGP_PATH)
-    end
-  end
 
-  private
-  def self.prepare_text(text)
-    text.to_s.scan(/.{1,#{INDENTION_COUNT}}/)[0...ROW_LIMIT].join("\n")
+      image.combine_options do |config|
+        # 店舗名
+        config.gravity 'West'
+        config.font BOLD_FONT
+        config.fill TEXT_COLOR
+        config.pointsize 80
+        config.draw "text 260,0 '#{post.shop.name}'"
+        
+        # ユーザー名
+        config.gravity 'West'
+        config.font FONT
+        config.fill SHADOW_COLOR
+        config.pointsize 32
+        config.draw "text 450,140 'by #{post.user.name}'"
+      end
+    else
+      image = MiniMagick::Image.open(DEFAULT_OGP_PATH)
+    end
+
+    image
   end
 end
