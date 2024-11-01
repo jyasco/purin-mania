@@ -32,11 +32,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    assign_meta_tags(
-      title: @post.title,
-      description: @post.description,
-      post: @post
-    )
   end
 
   def edit

@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <% assign_meta_tags(
+    title: "#{@post.shop.name} | PurinMania",
+    description: @post.body.truncate(25),
+    post: @post
+  ) %>
+<% end %>
+
 <div class="container mx-auto px-8 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-3xl">
   <div class="bg-white shadow-lg rounded-lg overflow-hidden px-6 sm:px-20 py-4 sm:py-6 md:py-10">
     <!-- ユーザー情報とアクションボタン -->
@@ -60,11 +68,11 @@
     <div class="px-4 py-2 text-center font-bold my-6">
       <div class="flex justify-center items-center space-x-2 sm:space-x-4">
         <span class="sm:text-lg md:text-xl lg:text-2xl">
-          甘さ: <%= t("enums.post.sweetness.#{@post.sweetness}") %>
+          甘さ:<%= t("enums.post.sweetness.#{@post.sweetness}") %>
         </span>
         <span class="sm:text-lg md:text-xl lg:text-2xl">|</span>
         <span class="sm:text-lg md:text-xl lg:text-2xl">
-          固さ: <%= t("enums.post.firmness.#{@post.firmness}") %>
+          固さ:<%= t("enums.post.firmness.#{@post.firmness}") %>
         </span>
       </div>
     </div>
@@ -79,6 +87,16 @@
     <!-- 住所 -->
     <div class="px-4 pb-4 text-sm sm:text-lg text-subtleText">
       <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
+    </div>
+
+    <!-- Xシェア -->
+    <div class="mt-2 sm:mt-4 text-center">
+      <% cache_key = "#{@post.id}-#{@post.updated_at.to_i}" %>
+      <% share_text = URI.encode_www_form_component("【プリン好き必見！】\n#{@post.shop.name}のプリンが美味しいらしい...\n#PurinMania") %>
+      <% twitter_share_url = "https://twitter.com/intent/tweet?text=#{share_text}&url=#{CGI.escape(post_url(@post, cache: cache_key))}" %>
+      <%= link_to twitter_share_url, target: '_blank', rel: 'noopener noreferrer', class: "inline-block rounded-full" do %>
+        <i class="fa-brands fa-square-x-twitter text-2xl sm:text-3xl text-accent"></i>
+      <% end %>
     </div>
   </div>
 </div>
