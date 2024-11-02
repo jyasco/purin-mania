@@ -61,8 +61,7 @@ module ApplicationHelper
 
   def generate_ogp_image_url(options)
     if options[:post].present? && options[:post].image.attached?
-      # 動的OGP画像生成のURL
-      Rails.application.routes.url_helpers.ogp_image_url(options[:post].id, host: request.base_url)
+      Rails.application.routes.url_helpers.url_for(options[:post].image)
     else
       # デフォルトのOGP画像URL
       image_url('default-ogp.png')
