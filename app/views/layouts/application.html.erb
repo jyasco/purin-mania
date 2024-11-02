@@ -20,6 +20,15 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
     <%= show_meta_tags %>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DL5FTCD91J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-DL5FTCD91J');
+    </script>
   </head>
 
   <body class="font-kosugi bg-base text-text">
