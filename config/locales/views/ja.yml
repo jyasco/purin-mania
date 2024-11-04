@@ -62,6 +62,8 @@ ja:
       oldest_first: 古い順
   mypage:
     title: マイページ
+    edit:
+      title: プロフィール編集
     bookmark_posts:
       list:
         no_posts: 保存しているプリンはありません
