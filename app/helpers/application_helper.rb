@@ -15,10 +15,18 @@ module ApplicationHelper
     display_meta_tags
   end
 
+  def page_title(title = '')
+    base_title = 'Purin Mania'
+    title.present? ? "#{title} | #{base_title}" : base_title
+  end
+
   def assign_meta_tags(options = {})
     defaults = I18n.t('meta-tags.defaults', locale: :ja).deep_symbolize_keys
     options.reverse_merge!(defaults)
-
+  
+    title = page_title(options[:title])
+    options[:title] = title
+  
     set_meta_tags(build_meta_tags(options))
   end
 
