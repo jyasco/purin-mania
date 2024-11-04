@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def page_title(title = '')
     base_title = 'Purin Mania'
-    title.present? ? "#{title} | #{base_title}" | base_title
+    title.present? ? "#{title} | #{base_title}" : base_title
   end
 
   def assign_meta_tags(options = {})
