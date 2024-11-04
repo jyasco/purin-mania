@@ -22,9 +22,15 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
-  tops:
+  static_pages:
     top:
       title: トップページ
+    contact:
+      title: お問い合わせ
+    terms:
+      title: 利用規約
+    privacy:
+      title: プライバシーポリシー
   header:
     sign_up: 新規登録
     login: ログイン
@@ -33,8 +39,6 @@ ja:
   posts:
     new:
       title: プリン投稿作成
-    show:
-      title: プリン詳細
     index:
       title: プリン一覧
     edit:
@@ -56,8 +60,6 @@ ja:
       lowest_rated: 評価が低い順
       newest_first: 新しい順
       oldest_first: 古い順
-
-
   mypage:
     title: マイページ
     bookmark_posts:
