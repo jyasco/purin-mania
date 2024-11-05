@@ -74,4 +74,13 @@ ja:
       nav_buttons:
         posts: 投稿したプリン
         bookmarks: 保存したプリン
+  tooltips:
+    sweetness:
+      mild: 控えめな甘さです
+      medium_sweet: 程よい甘さです
+      sweet: 甘党向けの甘さです
+    firmness:
+      smooth: なめらかな食感です
+      medium_firm: 程よい固さです
+      firm: 固めの食感です
 
