@@ -21,7 +21,7 @@ module.exports = {
         firmLight: '#D4B8A8',
         firmMedium: '#C29980',
         firmDeep: '#A67C5B',
-        textLight: '#F5F5F5', 
+        textLight: '#F5F5F5',
       },
       fontFamily: {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],

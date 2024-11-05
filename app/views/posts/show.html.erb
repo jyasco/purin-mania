@@ -44,7 +44,7 @@
     </div>
 
     <!-- 店舗名 -->
-    <h1 class="text-2xl md:text-3xl font-bold mt-8 mb-4 text-center"><%= @post.shop.name %></h1>
+    <h1 class="text-2xl md:text-3xl font-bold my-8 text-center"><%= @post.shop.name %></h1>
 
     <!-- 投稿画像 -->
     <% if @post.image.attached? %>
@@ -61,10 +61,10 @@
     </div>
 
     <!-- 評価、甘さ、固さの表示 -->
-    <div class="bg-base-200 rounded-lg mx-2 md:mx-6 p-6 my-6">
+    <div class="bg-base-200 bg-opacity-60 rounded-lg mx-2 md:mx-6 p-4 sm:p-6 my-6">
       <!-- 評価 -->
       <div class="mb-6 sm:mb-8">
-        <h3 class="text-sm sm:text-[16px] font-semibold mb-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
+        <h3 class="text-sm sm:text-[16px] text-subtleText font-semibold mb-3 ml-1 sm:ml-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
         <div class="flex justify-center">
           <% Post.overall_ratings.size.times do |i| %>
             <span 
@@ -80,7 +80,7 @@
         <!-- 甘さ -->
         <div class="bg-white rounded-lg p-4">
           <div class="flex items-center justify-between mb-2 sm:mb-4">
-            <span class="text-sm sm:text-[16px] font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
+            <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
             <span class="badge badge-sm sm:badge-md <%= sweetness_badge_color(@post.sweetness) %>">
               <%= t("enums.post.sweetness.#{@post.sweetness}") %>
             </span>
@@ -93,7 +93,7 @@
         <!-- 固さ -->
         <div class="bg-white rounded-lg p-4">
           <div class="flex items-center justify-between mb-2 sm:mb-4">
-            <span class="text-sm sm:text-[16px] font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
+            <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
             <span class="badge badge-sm sm:badge-md <%= firmness_badge_color(@post.firmness) %>">
               <%= t("enums.post.firmness.#{@post.firmness}") %>
             </span>
@@ -113,7 +113,7 @@
     </div>
 
     <!-- Xシェア -->
-    <div class="mt-2 sm:mt-4 text-center">
+    <div class="mt-4 sm:mt-6 mb-2 text-center">
       <% 
         base_url = post_url(@post)
         timestamp = Time.now.to_i
