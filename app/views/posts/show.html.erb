@@ -16,7 +16,7 @@
           <% if @post.user.avatar.attached? %>
             <%= image_tag @post.user.avatar.variant(resize_to_fill: [48, 48]), class: "w-full h-full object-cover" %>
           <% else %>
-            <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+            <%= image_tag "default_avatar.png", class: "w-full h-full object-cover" %>
           <% end %>
         </div>
         <div class="flex flex-col justify-center">
@@ -51,7 +51,7 @@
       <% if @post.image.attached? %>
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
       <% else %>
-        <%= image_tag "default_image.webp", class: "w-full h-full object-cover" %>
+        <%= image_tag "default_image.png", class: "w-full h-full object-cover" %>
       <% end %>
     </div>
 
