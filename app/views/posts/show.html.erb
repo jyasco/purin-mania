@@ -44,54 +44,86 @@
     </div>
 
     <!-- 店舗名 -->
-    <h1 class="text-2xl md:text-3xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
+    <h1 class="text-2xl md:text-3xl font-bold my-8 text-center"><%= @post.shop.name %></h1>
 
     <!-- 投稿画像 -->
-    <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
-      <% if @post.image.attached? %>
+    <% if @post.image.attached? %>
+      <div class="w-11/12 mx-auto aspect-square flex items-center justify-center rounded-lg mt-6 sm:mt-8 mb-6  sm:mb-8 overflow-hidden">
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
-      <% else %>
-        <%= image_tag "default_image.png", class: "w-full h-full object-cover" %>
-      <% end %>
+      </div>
+    <% else %>
+      <div class="mb-6 sm:mb-8"></div>
+    <% end %>
+
+    <!-- コメント -->
+    <div class="px-6 md:px-12 lg:px-16 py-4">
+      <%= simple_format(@post.body, class: "text-sm sm:text-lg text-left break-words text-text text-opacity-80") %>
     </div>
 
-    <!-- 評価 -->
-    <div class="flex justify-center mb-4">
-      <% Post.overall_ratings.size.times do |i| %>
-        <span 
-          class="inline-block w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mask mask-star-2 mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
-          aria-hidden="true"
-        ></span>
-      <% end %>
-    </div>
-
-    <!-- 固さと甘さ -->
-    <div class="px-4 py-2 text-center font-bold my-6">
-      <div class="flex justify-center items-center space-x-2 sm:space-x-4">
-        <span class="sm:text-lg md:text-xl lg:text-2xl">
-          甘さ:<%= t("enums.post.sweetness.#{@post.sweetness}") %>
-        </span>
-        <span class="sm:text-lg md:text-xl lg:text-2xl">|</span>
-        <span class="sm:text-lg md:text-xl lg:text-2xl">
-          固さ:<%= t("enums.post.firmness.#{@post.firmness}") %>
-        </span>
+    <!-- 評価、甘さ、固さの表示 -->
+    <div class="bg-base-200 bg-opacity-60 rounded-lg mx-2 md:mx-6 p-4 sm:p-6 my-6">
+      <!-- 評価 -->
+      <div class="mb-6 sm:mb-10">
+        <h3 class="text-sm sm:text-[16px] text-subtleText font-semibold mb-3 ml-1 sm:ml-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
+        <div class="flex justify-center">
+          <% Post.overall_ratings.size.times do |i| %>
+            <span 
+              class="inline-block w-7 h-7 sm:w-10 sm:h-10 mask mask-star-2 mx-0.5 sm:mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+              aria-hidden="true"
+            ></span>
+          <% end %>
+        </div>
+      </div>
+    
+      <!-- 甘さと固さ -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- 甘さ -->
+        <div class="bg-white rounded-lg p-4">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
+            <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= sweetness_badge_color(@post.sweetness) %>">
+              <%= t("enums.post.sweetness.#{@post.sweetness}") %>
+            </span>
+          </div>
+          <div class="relative">
+            <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-sweetLight">
+              <div style="width:<%= sweetness_percentage(@post.sweetness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-sweetDeep"></div>
+            </div>
+            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= sweetness_percentage(@post.sweetness) %>% - 8px);">
+              <div class="w-4 h-4 bg-white rounded-full border-2 border-sweetDeep"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 固さ -->
+        <div class="bg-white rounded-lg p-4">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
+            <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= firmness_badge_color(@post.firmness) %>">
+              <%= t("enums.post.firmness.#{@post.firmness}") %>
+            </span>
+          </div>
+          <div class="relative">
+            <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-firmLight">
+              <div style="width:<%= firmness_percentage(@post.firmness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-firmDeep"></div>
+            </div>
+            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= firmness_percentage(@post.firmness) %>% - 8px);">
+              <div class="w-4 h-4 bg-white rounded-full border-2 border-firmDeep"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- コメント -->
-    <div class="px-4 sm:px-6 md:px-8 lg:px-14 py-4">
-      <%= simple_format(@post.body, class: "text-sm sm:text-lg text-left break-words") %>
-    </div>
-
-    <hr class="mt-6 mb-4 border-placeholder">
+    <hr class="my-4 mx-2 md:mx-6 border-placeholder">
 
     <!-- 住所 -->
-    <div class="px-4 pb-4 text-sm sm:text-lg text-subtleText">
+    <div class="px-4 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
       <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
     </div>
 
     <!-- Xシェア -->
-    <div class="mt-2 sm:mt-4 text-center">
+    <div class="mt-4 sm:mt-6 mb-2 text-center">
       <% 
         base_url = post_url(@post)
         timestamp = Time.now.to_i

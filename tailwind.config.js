@@ -15,6 +15,13 @@ module.exports = {
         text: '#2C1803',
         placeholder: '#C5B6A8',
         subtleText: '#8F7A66',
+        sweetLight: '#E6A8B8',
+        sweetMedium: '#D47F92',
+        sweetDeep: '#C2566D',
+        firmLight: '#D4B8A8',
+        firmMedium: '#C29980',
+        firmDeep: '#A67C5B',
+        textLight: '#F5F5F5',
       },
       fontFamily: {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],

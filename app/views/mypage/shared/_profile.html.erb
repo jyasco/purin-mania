@@ -1,6 +1,6 @@
 <div class="flex flex-col items-center py-8 bg-base-100">
   <div class="avatar">
-    <div class="w-24 h-24 rounded-full overflow-hidden">
+    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden">
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
       <% else %>
@@ -8,7 +8,7 @@
       <% end %>
     </div>
   </div>
-  <h2 class="text-neutral text-2xl font-bold mt-4"><%= current_user.name %></h2>
+  <h2 class="text-neutral text-lg sm:text-2xl font-bold mt-4"><%= current_user.name %></h2>
   <%= link_to edit_user_registration_path, class: "btn btn-primary btn-sm w-16 h-9 sm:w-20 sm:h-10 mt-4 px-4 text-white" do %>
     <%= t('helpers.submit.edit') %>
   <% end %>
