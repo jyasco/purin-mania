@@ -55,15 +55,12 @@
               ></span>
             <% end %>
           </div>
-          <div class="flex flex-wrap justify-center sm:justify-start items-center mb-2 text-sm sm:text-[18px] text-center sm:text-left">
+          <div class="flex flex-wrap justify-center sm:justify-start items-center mb-3 text-sm sm:text-[18px] text-center sm:text-left">
             <div class="flex items-center">
-              <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.sweetness') %>:</span>
-              <span><%= I18n.t("enums.post.sweetness.#{post.sweetness}") %></span>
+              <span class="badge <%= sweetness_badge_color(post.sweetness) %> mr-1"><%= I18n.t("enums.post.sweetness.#{post.sweetness}") %></span>
             </div>
-            <div class="mx-1">|</div>
             <div class="flex items-center">
-              <span class="font-semibold mr-1"><%= t('activerecord.attributes.post.firmness') %>:</span>
-              <span><%= I18n.t("enums.post.firmness.#{post.firmness}") %></span>
+              <span class="badge <%= firmness_badge_color(post.firmness) %>"><%= I18n.t("enums.post.firmness.#{post.firmness}") %></span>
             </div>
           </div>
           <p class="mb-2 text-sm sm:text-[16px] text-subtleText">

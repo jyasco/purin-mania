@@ -69,11 +69,11 @@
     <div class="px-4 sm:py-2 text-center font-bold my-4 sm:my-6">
       <div class="flex justify-center items-center space-x-2 sm:space-x-4">
         <span class="sm:text-lg md:text-xl lg:text-2xl">
-          甘さ:<%= t("enums.post.sweetness.#{@post.sweetness}") %>
+          <%= t('activerecord.attributes.post.sweetness') %>:<%= t("enums.post.sweetness.#{@post.sweetness}") %>
         </span>
         <span class="sm:text-lg md:text-xl lg:text-2xl">|</span>
         <span class="sm:text-lg md:text-xl lg:text-2xl">
-          固さ:<%= t("enums.post.firmness.#{@post.firmness}") %>
+          <%= t('activerecord.attributes.post.firmness') %>:<%= t("enums.post.firmness.#{@post.firmness}") %>
         </span>
       </div>
     </div>
