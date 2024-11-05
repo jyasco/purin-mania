@@ -44,29 +44,29 @@
     </div>
 
     <!-- 店舗名 -->
-    <h1 class="text-2xl md:text-3xl font-bold my-6 text-center"><%= @post.shop.name %></h1>
+    <h1 class="text-2xl md:text-3xl font-bold mt-6 mb-4 text-center"><%= @post.shop.name %></h1>
 
     <!-- 投稿画像 -->
-    <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mb-8 overflow-hidden">
-      <% if @post.image.attached? %>
+    <% if @post.image.attached? %>
+      <div class="w-11/12 mx-auto aspect-square bg-gray-300 flex items-center justify-center rounded-lg mt-6 sm:mt-8 mb-6  sm:mb-8 overflow-hidden">
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
-      <% else %>
-        <%= image_tag "default_image.png", class: "w-full h-full object-cover" %>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class="mb-6 sm:mb-8"></div>
+    <% end %>
 
     <!-- 評価 -->
-    <div class="flex justify-center mb-4">
+    <div class="flex justify-center sm:mb-4">
       <% Post.overall_ratings.size.times do |i| %>
         <span 
-          class="inline-block w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mask mask-star-2 mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+          class="inline-block w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mask mask-star-2 mx-0.5 sm:mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
           aria-hidden="true"
         ></span>
       <% end %>
     </div>
 
     <!-- 固さと甘さ -->
-    <div class="px-4 py-2 text-center font-bold my-6">
+    <div class="px-4 sm:py-2 text-center font-bold my-4 sm:my-6">
       <div class="flex justify-center items-center space-x-2 sm:space-x-4">
         <span class="sm:text-lg md:text-xl lg:text-2xl">
           甘さ:<%= t("enums.post.sweetness.#{@post.sweetness}") %>
@@ -79,14 +79,14 @@
     </div>
 
     <!-- コメント -->
-    <div class="px-4 sm:px-6 md:px-8 lg:px-14 py-4">
+    <div class="px-6 md:px-12 lg:px-16 py-4">
       <%= simple_format(@post.body, class: "text-sm sm:text-lg text-left break-words") %>
     </div>
 
-    <hr class="mt-6 mb-4 border-placeholder">
+    <hr class="my-4 mx-2 md:mx-6 border-placeholder">
 
     <!-- 住所 -->
-    <div class="px-4 pb-4 text-sm sm:text-lg text-subtleText">
+    <div class="px-4 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
       <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
     </div>
 
