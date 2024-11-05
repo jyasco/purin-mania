@@ -81,7 +81,7 @@
         <div class="bg-white rounded-lg p-4">
           <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
-            <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= sweetness_badge_color(@post.sweetness) %>">
+            <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= sweetness_badge_color(@post.sweetness) %>">
               <%= t("enums.post.sweetness.#{@post.sweetness}") %>
             </span>
           </div>
@@ -94,7 +94,7 @@
         <div class="bg-white rounded-lg p-4">
           <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
-            <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= firmness_badge_color(@post.firmness) %>">
+            <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= firmness_badge_color(@post.firmness) %>">
               <%= t("enums.post.firmness.#{@post.firmness}") %>
             </span>
           </div>
