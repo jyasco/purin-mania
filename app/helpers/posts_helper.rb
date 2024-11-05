@@ -28,9 +28,9 @@ module PostsHelper
   def sweetness_percentage(sweetness)
     case sweetness
     when 'mild'
-      33
+      15
     when 'medium_sweet'
-      66
+      50
     when 'sweet'
       100
     else
@@ -41,9 +41,9 @@ module PostsHelper
   def firmness_percentage(firmness)
     case firmness
     when 'smooth'
-      33
+      15
     when 'medium_firm'
-      66
+      50
     when 'firm'
       100
     else
