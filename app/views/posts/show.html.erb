@@ -63,12 +63,12 @@
     <!-- 評価、甘さ、固さの表示 -->
     <div class="bg-base-200 bg-opacity-60 rounded-lg mx-2 md:mx-6 p-4 sm:p-6 my-6">
       <!-- 評価 -->
-      <div class="mb-6 sm:mb-8">
+      <div class="mb-6 sm:mb-10">
         <h3 class="text-sm sm:text-[16px] text-subtleText font-semibold mb-3 ml-1 sm:ml-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
         <div class="flex justify-center">
           <% Post.overall_ratings.size.times do |i| %>
             <span 
-              class="inline-block w-7 h-7 sm:w-10 sm:h-10 mask mask-star-2 mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
+              class="inline-block w-7 h-7 sm:w-10 sm:h-10 mask mask-star-2 mx-0.5 sm:mx-1 <%= i < Post.overall_ratings[@post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
               aria-hidden="true"
             ></span>
           <% end %>
