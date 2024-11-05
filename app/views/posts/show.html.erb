@@ -79,26 +79,26 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <!-- 甘さ -->
         <div class="bg-white rounded-lg p-4">
-          <div class="flex items-center justify-between mb-2 sm:mb-4">
+          <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
-            <span class="badge badge-sm sm:badge-md <%= sweetness_badge_color(@post.sweetness) %>">
+            <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= sweetness_badge_color(@post.sweetness) %>">
               <%= t("enums.post.sweetness.#{@post.sweetness}") %>
             </span>
           </div>
-          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-sweetLight">
+          <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-sweetLight">
             <div style="width:<%= sweetness_percentage(@post.sweetness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-sweetDeep"></div>
           </div>
         </div>
       
         <!-- 固さ -->
         <div class="bg-white rounded-lg p-4">
-          <div class="flex items-center justify-between mb-2 sm:mb-4">
+          <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
-            <span class="badge badge-sm sm:badge-md <%= firmness_badge_color(@post.firmness) %>">
+            <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= firmness_badge_color(@post.firmness) %>">
               <%= t("enums.post.firmness.#{@post.firmness}") %>
             </span>
           </div>
-          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-firmLight">
+          <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-firmLight">
             <div style="width:<%= firmness_percentage(@post.firmness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-firmDeep"></div>
           </div>
         </div>
