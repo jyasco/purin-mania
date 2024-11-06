@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_082846) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_105617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_082846) do
     t.integer "overall_rating", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sweetness_percentage", null: false
+    t.integer "firmness_percentage", null: false
     t.index ["firmness"], name: "index_posts_on_firmness"
     t.index ["overall_rating"], name: "index_posts_on_overall_rating"
     t.index ["shop_id", "user_id"], name: "index_posts_on_shop_id_and_user_id"

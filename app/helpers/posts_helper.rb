@@ -24,30 +24,4 @@ module PostsHelper
       'bg-gray-400 text-textLight'
     end
   end
-
-  def sweetness_percentage(sweetness)
-    case sweetness
-    when 'mild'
-      15
-    when 'medium_sweet'
-      50
-    when 'sweet'
-      100
-    else
-      0
-    end
-  end
-
-  def firmness_percentage(firmness)
-    case firmness
-    when 'smooth'
-      15
-    when 'medium_firm'
-      50
-    when 'firm'
-      100
-    else
-      0
-    end
-  end
 end
