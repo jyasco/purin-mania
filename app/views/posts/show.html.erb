@@ -87,9 +87,9 @@
           </div>
           <div class="relative">
             <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-sweetLight">
-              <div style="width:<%= sweetness_percentage(@post.sweetness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-sweetDeep"></div>
+              <div style="width:<%= @post.sweetness_percentage %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-sweetDeep"></div>
             </div>
-            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= sweetness_percentage(@post.sweetness) %>% - 8px);">
+            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= @post.sweetness_percentage %>% - 8px);">
               <div class="w-4 h-4 bg-white rounded-full border-2 border-sweetDeep"></div>
             </div>
           </div>
@@ -105,9 +105,9 @@
           </div>
           <div class="relative">
             <div class="overflow-hidden h-2 mb-3 text-xs flex rounded bg-firmLight">
-              <div style="width:<%= firmness_percentage(@post.firmness) %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-firmDeep"></div>
+              <div style="width:<%= @post.firmness_percentage %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-firmDeep"></div>
             </div>
-            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= firmness_percentage(@post.firmness) %>% - 8px);">
+            <div class="absolute top-1/2 -translate-y-1/2" style="left: calc(<%= @post.firmness_percentage %>% - 8px);">
               <div class="w-4 h-4 bg-white rounded-full border-2 border-firmDeep"></div>
             </div>
           </div>
