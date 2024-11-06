@@ -16,4 +16,44 @@
   .custom-file-input::file-selector-button:hover {
     @apply opacity-80;
   }
+
+  .custom-range-sweetness {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #C2566D 0%, #C2566D var(--value), #E6A8B8 var(--value) 100%);
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .custom-range-sweetness::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    border-radius: 50%;
+    background-color: #F5F5F5;
+    border: 4px solid #C2566D; /* Thumb border color */
+    cursor: pointer;
+  }
+
+  .custom-range-firmness {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #A67C5B 0%, #A67C5B var(--value), #D4B8A8 var(--value) 100%);
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .custom-range-firmness::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Thumb width */
+    height: 20px; /* Thumb height */
+    border-radius: 50%;
+    background-color: #F5F5F5;
+    border: 4px solid #A67C5B; /* Thumb border color */
+    cursor: pointer;
+  }
 }
