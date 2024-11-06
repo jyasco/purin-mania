@@ -12,6 +12,8 @@ export default class extends Controller {
     const value = parseInt(range.value)
     const attribute = range.dataset.attribute
 
+    range.style.setProperty('--value', value + '%')
+
     this.statusTextTargets.forEach(statusText => {
       if (statusText.dataset.attribute !== attribute) return
 
