@@ -22,8 +22,6 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
-    sweetness_confirm: "保存される甘さ"
-    firmness_confirm: "保存される固さ"
   static_pages:
     top:
       title: トップページ
