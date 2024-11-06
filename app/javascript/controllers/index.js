@@ -13,5 +13,5 @@ application.register("tab", TabController)
 import SearchClearController from "./search_clear_controller"
 application.register("search-clear", SearchClearController)
 
-import StatusBarController from "./status_bar_controller"
-application.register("status-bar", StatusBarController)
+import RangeSliderController from "./range_slider_controller"
+application.register("range-slider", RangeSliderController)
