@@ -11,20 +11,28 @@
       <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
 
-    <div class="mb-4">
-      <%= f.label :sweetness, class: "block text-neutral font-semibold mb-2" %>
-      <%= f.select :sweetness, 
-                   Post.sweetnesses.keys.map { |s| [t("enums.post.sweetness.#{s}"), s] }, 
-                   { prompt: t('defaults.select_prompt') }, 
-                   class: "select select-bordered w-full bg-white" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :firmness, class: "block text-neutral font-semibold mb-2" %>
-      <%= f.select :firmness, 
-                   Post.firmnesses.keys.map { |f| [t("enums.post.firmness.#{f}"), f] }, 
-                   { prompt: t('defaults.select_prompt') }, 
-                   class: "select select-bordered w-full bg-white" %>
+    <div data-controller="status-bar">
+      <div class="mb-4">
+        <%= f.label :sweetness_percentage, t('activerecord.attributes.post.sweetness'), class: "block text-neutral font-semibold mb-2" %>
+        <%= f.range_field :sweetness_percentage, in: 0..100, step: 1, class: "range", data: { action: "input->status-bar#updateStatus", status_bar_target: "range", attribute: "sweetness" } %>
+        <div class="w-full flex justify-between text-[10px] sm:text-xs px-2">
+          <div class="w-1/3 text-left"><%= t('enums.post.sweetness.mild') %></div>
+          <div class="w-1/3 text-center"><%= t('enums.post.sweetness.medium_sweet') %></div>
+          <div class="w-1/3 text-right"><%= t('enums.post.sweetness.sweet') %></div>
+        </div>
+        <p class="text-xs sm:text-sm my-2"><%= t('defaults.sweetness_confirm') %>: <span data-status-bar-target="status" data-status-bar-attribute="sweetness"></span></p>
+      </div>
+    
+      <div class="mb-4">
+        <%= f.label :firmness_percentage, t('activerecord.attributes.post.firmness'), class: "block text-neutral font-semibold mb-2" %>
+        <%= f.range_field :firmness_percentage, in: 0..100, step: 1, class: "range", data: { action: "input->status-bar#updateStatus", status_bar_target: "range", attribute: "firmness" } %>
+        <div class="w-full flex justify-between text-[10px] sm:text-xs px-2">
+          <div class="w-1/3 text-left"><%= t('enums.post.firmness.smooth') %></div>
+          <div class="w-1/3 text-center"><%= t('enums.post.firmness.medium_firm') %></div>
+          <div class="w-1/3 text-right"><%= t('enums.post.firmness.firm') %></div>
+        </div>
+        <p class="text-xs sm:text-sm my-2"><%= t('defaults.firmness_confirm') %>: <span data-status-bar-target="status" data-status-bar-attribute="firmness"></span></p>
+      </div>
     </div>
 
     <div class="mb-4">
