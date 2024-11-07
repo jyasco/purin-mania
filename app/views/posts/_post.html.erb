@@ -57,12 +57,12 @@
           </div>
           <div class="flex flex-wrap justify-center sm:justify-start items-center mb-3 text-sm sm:text-[18px] text-center sm:text-left">
             <div class="flex items-center">
-              <div class="tooltip" data-tip="<%= t("tooltips.sweetness.#{post.sweetness}") %>">
+              <div class="tooltip" data-tip="<%= t("tooltips.sweetness", percentage: post.sweetness_percentage) %>">
                 <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= sweetness_badge_color(post.sweetness) %> mr-0.5 sm:mr-1"><%= t("enums.post.sweetness.#{post.sweetness}") %></span>
               </div>
             </div>
             <div class="flex items-center">
-              <div class="tooltip" data-tip="<%= t("tooltips.firmness.#{post.firmness}") %>">
+              <div class="tooltip" data-tip="<%= t("tooltips.firmness", percentage: post.firmness_percentage) %>">
                 <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= firmness_badge_color(post.firmness) %>"><%= t("enums.post.firmness.#{post.firmness}") %></span>
               </div>
             </div>
