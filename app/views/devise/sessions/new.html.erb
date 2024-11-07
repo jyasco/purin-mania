@@ -7,7 +7,7 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
         <%= render 'shared/error_messages', object: f.object %>
 
-        <div class="mb-6 sm:mb-8 text-sm sm:text-[16px]">
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :email, class: "block font-semibold mb-2" %>
           <%= f.email_field :email, autofocus: true, class: "input input-bordered w-full bg-white", autocomplete: "email" %>
         </div>

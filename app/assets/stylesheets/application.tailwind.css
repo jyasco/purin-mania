@@ -6,7 +6,7 @@
 
 @layer components {
   .custom-file-input {
-    @apply file-input-bordered form-control w-full mx-auto text-placeholder bg-white;
+    @apply file-input-bordered form-control w-full mx-auto text-placeholder bg-white text-sm sm:text-[16px];
   }
 
   .custom-file-input::file-selector-button {
