@@ -1,19 +1,19 @@
-<div class="bg-base-100 p-6 rounded-md">
+<div class="p-6">
   <%= form_with(model: post, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="mb-4">
-      <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block text-neutral font-semibold mb-2" %>
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
     
-    <div class="mb-4">
-      <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block text-neutral font-semibold mb-2" %>
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
 
     <div data-controller="range-slider">
-      <div class="mb-4">
-        <%= f.label :sweetness_percentage, t('activerecord.attributes.post.sweetness'), class: "block text-neutral font-semibold mb-2" %>
+      <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+        <%= f.label :sweetness_percentage, t('activerecord.attributes.post.sweetness'), class: "block font-semibold mb-4 sm:mb-6" %>
         <%= f.range_field :sweetness_percentage, in: 0..100, step: 1, class: "w-full custom-range-sweetness", data: { action: "input->range-slider#updateStatus", range_slider_target: "range", attribute: "sweetness" } %>
         <div class="w-full flex text-xs sm:text-sm justify-between px-2 mt-2">
           <div data-range-slider-target="statusText" data-status="mild" data-attribute="sweetness" class="w-1/3 text-center transition-all duration-300"><%= t('enums.post.sweetness.mild') %></div>
@@ -22,8 +22,8 @@
         </div>
       </div>
     
-      <div class="mb-4">
-        <%= f.label :firmness_percentage, t('activerecord.attributes.post.firmness'), class: "block text-neutral font-semibold mb-2" %>
+      <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+        <%= f.label :firmness_percentage, t('activerecord.attributes.post.firmness'), class: "block font-semibold mb-4 sm:mb-6" %>
         <%= f.range_field :firmness_percentage, in: 0..100, step: 1, class: "w-full custom-range-firmness", data: { action: "input->range-slider#updateStatus", range_slider_target: "range", attribute: "firmness" } %>
         <div class="w-full flex text-xs sm:text-sm justify-between px-2 mt-2">
           <div data-range-slider-target="statusText" data-status="smooth" data-attribute="firmness" class="w-1/3 text-center transition-all duration-300"><%= t('enums.post.firmness.smooth') %></div>
@@ -33,8 +33,8 @@
       </div>
     </div>
 
-    <div class="mb-4">
-      <%= f.label :overall_rating, class: "block text-neutral font-semibold mb-2" %>
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :overall_rating, class: "block font-semibold mb-4 sm:mb-6" %>
       <div class="rating rating-lg flex justify-center space-x-2">
         <% Post.overall_ratings.each do |key, value| %>
           <%= f.radio_button :overall_rating, key, class: "mask mask-star-2 bg-accent" %>
@@ -42,19 +42,13 @@
       </div>
     </div>
 
-    <div class="mb-4">
-      <%= f.label :image, class: "block text-neutral font-semibold mb-2" %>
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :image, class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.file_field :image, accept: 'image/*', class: "file-input custom-file-input" %>
     </div>
 
-    <% if post.image.attached? %>
-      <div class="mb-4 flex justify-center">
-        <%= image_tag post.image.variant(resize_to_limit: [300, 300]), class: "rounded-lg object-cover w-64 h-64" %>
-      </div>
-    <% end %>
-
-    <div class="mb-6">
-      <%= f.label :body, class: "block text-neutral font-semibold mb-2" %>
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :body, class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_area :body, placeholder: t('posts.form.body_placeholder'), class: "textarea textarea-bordered w-full bg-white placeholder-placeholder text-sm placeholder:text-placeholder", rows: 4 %>
     </div>
 

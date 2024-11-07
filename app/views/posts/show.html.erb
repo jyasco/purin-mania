@@ -118,9 +118,11 @@
     <hr class="my-4 mx-2 md:mx-6 border-placeholder">
 
     <!-- 住所 -->
-    <div class="px-4 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
-      <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop&.address.present? ? @post.shop.address : t('posts.address_not_registered') %>
-    </div>
+    <% if @post.shop&.address.present? %>
+      <div class="px-4 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
+        <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop.address %>
+      </div>
+    <% end %>
 
     <!-- Xシェア -->
     <div class="mt-4 sm:mt-6 mb-2 text-center">

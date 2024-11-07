@@ -67,8 +67,11 @@
               </div>
             </div>
           </div>
-          <p class="mb-2 sm:ml-1 text-sm sm:text-[16px] text-subtleText">
-            <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop&.address.present? ? post.shop.address : t('posts.address_not_registered') %>
+          <% if post.shop&.address.present? %>
+            <p class="mb-2 sm:ml-1 text-sm sm:text-[16px] text-subtleText">
+              <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
+            </p> 
+          <% end %>
           <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(55) %></p>
         </div>
       </div>
