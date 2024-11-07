@@ -1,18 +1,14 @@
-<div class="container mx-auto px-4 py-8 min-h-screen flex flex-col justify-between">
-  <div>
-    <h2 class="text-3xl font-bold text-center mb-6">自分好みのプリンを見つけよう</h2>
-    <div class="text-center mb-8">
-      <%= link_to "プリンを探す", "#", class: "btn btn-primary text-white" %>
-    </div>
-    <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md mx-auto">
-      <h3 class="text-xl font-bold mb-2">機能説明</h3>
-      <p>ここに機能の説明文を入れます。</p>
-    </div>
+<div class="flex flex-col items-center p-6">
+  <h1 class="text-5xl md:text-7xl font-bold font-rounded text-accent pt-40">Purin Mania</h1>
+  <p class="text-sm sm:text-lg pt-6">理想のプリンが、きっと見つかる！</p>
+  <div class="pt-8 flex justify-betweet space-x-4 sm:space-x-8 items-center">
+    <%= link_to "プリンを探す", posts_path, class: "btn btn-primary rounded-lg py-2 sm:py-3 text-xs sm:text-sm text-textLight"%>
+    <%= link_to "ログインする", new_user_session_path, class: "btn btn-success rounded-lg py-2 sm:py-3 text-xs sm:text-sm text-textLight"%>
   </div>
-  
-  <div class="mt-8 flex justify-center space-x-4 mb-0 text-sm sm:text-[16px]">
-    <%= link_to "利用規約", terms_of_service_path, class: "text-accent hover:underline" %>
-    <%= link_to "プライバシーポリシー", privacy_policy_path, class: "text-accent hover:underline" %>
-    <%= link_to "お問い合わせ", contact_path, class: "text-accent hover:underline" %>
-  </div>
+</div>
+
+<div class="flex justify-center absolute bottom-20 sm:bottom-24 w-full space-x-4 mb-0 text-sm sm:text-[16px]">
+  <%= link_to "利用規約", terms_of_service_path, class: "text-accent hover:underline" %>
+  <%= link_to "プライバシーポリシー", privacy_policy_path, class: "text-accent hover:underline" %>
+  <%= link_to "お問い合わせ", contact_path, class: "text-accent hover:underline" %>
 </div>
