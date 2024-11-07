@@ -17,17 +17,17 @@ class Post < ApplicationRecord
   validates :overall_rating, presence: true
   validates :sweetness_percentage, :firmness_percentage, presence: true, inclusion: { in: 0..100 }
 
-  enum sweetness: { mild: 0, medium_sweet: 1, sweet: 2 }
-  enum firmness: { smooth: 0, medium_firm: 1, firm: 2 }
-  enum overall_rating: {
-  very_poor: 1,
-  poor: 2,
-  ordinary: 3,
-  good: 4,
-  excellent: 5
+  enum :sweetness, { mild: 0, medium_sweet: 1, sweet: 2 }
+  enum :firmness, { smooth: 0, medium_firm: 1, firm: 2 }
+  enum :overall_rating, {
+    very_poor: 1,
+    poor: 2,
+    ordinary: 3,
+    good: 4,
+    excellent: 5
   }
 
-  before_save :set_sweetness_and_firmness
+  before_validation :set_sweetness_and_firmness
 
   # 将来的に実装予定の機能のためのコメントアウト
   # belongs_to :category
@@ -43,16 +43,22 @@ class Post < ApplicationRecord
   private
 
   def set_sweetness_and_firmness
-    self.sweetness = case sweetness_percentage
-                     when 0..33 then 'mild'
-                     when 34..66 then 'medium_sweet'
-                     else 'sweet'
-                     end
-
-    self.firmness = case firmness_percentage
-                    when 0..33 then 'smooth'
-                    when 34..66 then 'medium_firm'
-                    else 'firm'
-                    end
+    case sweetness_percentage
+    when 0..33
+      self.sweetness = 'mild'
+    when 34..66
+      self.sweetness = 'medium_sweet'
+    else
+      self.sweetness = 'sweet'
+    end
+  
+    case firmness_percentage
+    when 0..33
+      self.firmness = 'smooth'
+    when 34..66
+      self.firmness = 'medium_firm'
+    else
+      self.firmness = 'firm'
+    end
   end
 end
