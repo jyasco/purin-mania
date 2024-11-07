@@ -24,7 +24,10 @@ ja:
       deleted: "%{item}を削除しました"
   static_pages:
     top:
-      title: トップページ
+      title: PurinMania
+      sub_title: 理想のプリンが、きっと見つかる！
+      start: プリンを探す
+      login: ログインする
     contact:
       title: お問い合わせ
     terms:
