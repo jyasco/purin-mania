@@ -25,6 +25,7 @@ module.exports = {
       },
       fontFamily: {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],
+        'rounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
       },
     },
   },
@@ -39,7 +40,7 @@ module.exports = {
           "neutral": "#2C1803",
           "base-100": "#FFF5E6",
           "info": "#3ABFF8",
-          "success": "#36D399",
+          "success": "#4CAF50",
           "warning": "#FBBD23",
           "error": "#F87272",
         },

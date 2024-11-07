@@ -15,7 +15,7 @@
     <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180' %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+1p&family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
@@ -31,7 +31,7 @@
     </script>
   </head>
 
-  <body class="font-kosugi bg-base text-text">
+  <body class="font-kosugi bg-base text-text min-h-screen relative">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>

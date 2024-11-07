@@ -28,8 +28,6 @@
   </div>
 </div>
 
-<div class="flex justify-center space-x-4 mb-8 text-sm sm:text-[16px]">
-  <%= link_to "利用規約", terms_of_service_path, class: "text-accent hover:underline" %>
-  <%= link_to "プライバシーポリシー", privacy_policy_path, class: "text-accent hover:underline" %>
-  <%= link_to "お問い合わせ", contact_path, class: "text-accent hover:underline" %>
-</div>
+<div class="mt-12 sm:mt-16">
+  <%= render  'shared/footer_links' %>
+</dov>
