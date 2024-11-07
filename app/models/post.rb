@@ -33,7 +33,7 @@ class Post < ApplicationRecord
   # belongs_to :category
 
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "sweetness", "firmness", "overall_rating", "created_at"]
+    ["body", "sweetness_percentage", "firmness_percentage", "sweetness", "firmness", "overall_rating", "created_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)
