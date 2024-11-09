@@ -18,7 +18,7 @@ ja:
       category:
         cafe: カフェ・喫茶店
         sweets_shop: 洋菓子店
-        retail: 市販品（コンビニ/スーパー等）
+        retail: 市販品（コンビニ・スーパー等）
   activerecord:
     models:
       post: 投稿
