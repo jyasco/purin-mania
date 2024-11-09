@@ -57,6 +57,7 @@ ja:
       sweetness: 甘さ
       firmness: 固さ
       overall_rating: 評価
+      category: 店舗種類
       sort: 並び替え
       highest_rated: 評価が高い順
       lowest_rated: 評価が低い順
