@@ -1,6 +1,7 @@
 <div class="p-6">
   <%= form_with(model: post, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
+    
     <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
       <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
@@ -11,12 +12,12 @@
       <%= f.select :category,
                    Post.categories.keys.map { |s| [t("enums.post.category.#{s}"), s] }, 
                    { prompt: t('defaults.select_prompt') }, 
-                   class: "select select-bordered w-full bg-white" %>
+                   { class: "select select-bordered w-full bg-white", id: "category-select", onchange: "updateAddressField();" } %>
     </div>
 
-    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+    <div id="address-field" class="mb-8 sm:mb-10 text-sm sm:text-[16px] hidden">
       <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block font-semibold mb-2 sm:mb-4" %>
-      <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
+      <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder", id: "shop_address" %>
     </div>
 
     <div data-controller="range-slider">
@@ -29,7 +30,7 @@
           <div data-range-slider-target="statusText" data-status="sweet" data-attribute="sweetness" class="w-1/3 text-center transition-all duration-300"><%= t('enums.post.sweetness.sweet') %></div>
         </div>
       </div>
-    
+
       <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
         <%= f.label :firmness_percentage, t('activerecord.attributes.post.firmness'), class: "block font-semibold mb-4 sm:mb-6" %>
         <%= f.range_field :firmness_percentage, in: 0..100, step: 1, class: "w-full custom-range-firmness", data: { action: "input->range-slider#updateStatus", range_slider_target: "range", attribute: "firmness" } %>
@@ -61,7 +62,50 @@
     </div>
 
     <div class="text-center">
-      <%= f.submit t('defaults.post'), class: "btn btn-primary text-white w-28" %>
+      <%= f.submit t('defaults.post'), class: "btn btn-primary text-white w-28", onclick: "return formCheck();" %>
     </div>
   <% end %>
 </div>
+
+<script>
+  // 初期化関数
+  function initializeForm() {
+    const categorySelect = document.getElementById("category-select");
+    const addressField = document.getElementById("address-field");
+    const shopAddress = document.getElementById("shop_address");  
+  
+    // カテゴリーの初期値をフォームに反映
+    categorySelect.value = "<%= @post.category %>";
+  
+    // 初期値に基づいて住所フィールドを表示または非表示
+    updateAddressField();
+  }
+  
+  // カテゴリー変更時の住所フィールド出し分け関数
+  function updateAddressField() {
+    const categorySelect = document.getElementById("category-select");
+    const addressField = document.getElementById("address-field");
+  
+    if (categorySelect.value === "cafe" || categorySelect.value === "sweets_shop") {
+      addressField.classList.remove("hidden");
+    } else {
+      addressField.classList.add("hidden");
+    }
+  }
+  
+  // フォーム送信時に住所フィールドをクリアする関数
+  function formCheck() {
+    const categorySelect = document.getElementById("category-select");
+    const shopAddress = document.getElementById("shop_address");
+  
+    // カテゴリーがretailの場合に住所フィールドをクリア
+    if (categorySelect.value === "retail") {
+      shopAddress.value = "";
+    }
+  
+    return true; // フォーム送信を続行
+  }
+  
+  // Turbo対応: turbo:load イベントにより、ページ読み込み・遷移後に初期化を実行
+  document.addEventListener("turbo:load", initializeForm);
+</script>
