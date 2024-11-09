@@ -16,6 +16,7 @@ class Post < ApplicationRecord
   validates :firmness, presence: true
   validates :overall_rating, presence: true
   validates :sweetness_percentage, :firmness_percentage, presence: true, inclusion: { in: 0..100 }
+  validates :category, presence: true
 
   enum :sweetness, { mild: 0, medium_sweet: 1, sweet: 2 }
   enum :firmness, { smooth: 0, medium_firm: 1, firm: 2 }
@@ -26,11 +27,9 @@ class Post < ApplicationRecord
     good: 4,
     excellent: 5
   }
+  enum :category, { cafe: 0, sweets_shop: 1, retail: 2 }, prefix: true
 
   before_validation :set_sweetness_and_firmness
-
-  # 将来的に実装予定の機能のためのコメントアウト
-  # belongs_to :category
 
   def self.ransackable_attributes(auth_object = nil)
     ["body", "sweetness_percentage", "firmness_percentage", "sweetness", "firmness", "overall_rating", "created_at"]
