@@ -5,7 +5,15 @@
       <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
     </div>
-    
+
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :category, class: "block font-semibold mb-2 sm:mb-4" %>
+      <%= f.select :category,
+                   Post.categories.keys.map { |s| [t("enums.post.category.#{s}"), s] }, 
+                   { prompt: t('defaults.select_prompt') }, 
+                   class: "select select-bordered w-full bg-white" %>
+    </div>
+
     <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
       <%= f.label :shop_address, t('activerecord.attributes.shop.address'), class: "block font-semibold mb-2 sm:mb-4" %>
       <%= f.text_field :shop_address, placeholder: t('posts.form.shop_address_placeholder'), value: @post.shop_address || @post.shop&.address, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
