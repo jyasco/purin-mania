@@ -7,11 +7,11 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import TabController from "./tab_controller"
-application.register("tab", TabController)
+import RangeSliderController from "./range_slider_controller"
+application.register("range-slider", RangeSliderController)
 
 import SearchClearController from "./search_clear_controller"
 application.register("search-clear", SearchClearController)
 
-import RangeSliderController from "./range_slider_controller"
-application.register("range-slider", RangeSliderController)
+import TabController from "./tab_controller"
+application.register("tab", TabController)
