@@ -48,7 +48,7 @@
 
     <!-- 投稿画像 -->
     <% if @post.image.attached? %>
-      <div class="w-11/12 mx-auto aspect-square flex items-center justify-center rounded-lg mt-6 sm:mt-8 mb-6  sm:mb-8 overflow-hidden">
+      <div class="w-11/12 mx-auto aspect-square rounded-sm flex items-center justify-center mt-6 sm:mt-8 mb-6  sm:mb-8 overflow-hidden">
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
       </div>
     <% else %>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- 評価、甘さ、固さの表示 -->
-    <div class="bg-base-200 bg-opacity-60 rounded-lg mx-2 md:mx-6 p-4 sm:p-6 my-6">
+    <div class="bg-base-200 bg-opacity-60 rounded-sm mx-2 md:mx-6 p-4 sm:p-6 my-6">
       <!-- 評価 -->
       <div class="mb-6 sm:mb-10">
         <h3 class="text-sm sm:text-[16px] text-subtleText font-semibold mb-3 ml-1 sm:ml-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
@@ -78,7 +78,7 @@
       <!-- 甘さと固さ -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <!-- 甘さ -->
-        <div class="bg-white rounded-lg p-4">
+        <div class="bg-white rounded-sm p-4">
           <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.sweetness') %>:</span>
             <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= sweetness_badge_color(@post.sweetness) %>">
@@ -96,7 +96,7 @@
         </div>
         
         <!-- 固さ -->
-        <div class="bg-white rounded-lg p-4">
+        <div class="bg-white rounded-sm p-4">
           <div class="flex items-center justify-between mb-4">
             <span class="text-sm sm:text-[16px] text-subtleText font-semibold"><%= t('activerecord.attributes.post.firmness') %>:</span>
             <span class="badge text-[10px] sm:text-[12px] py-2 sm:py-2.5 <%= firmness_badge_color(@post.firmness) %>">

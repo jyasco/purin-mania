@@ -35,7 +35,7 @@
             </div>
           </div>
           <!-- 画像ー -->
-          <div class="aspect-square rounded-md overflow-hidden pt-4">
+          <div class="aspect-square overflow-hidden pt-4">
             <% if post.image.attached? %>
               <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: "w-full h-full object-cover" %>
             <% else %>
