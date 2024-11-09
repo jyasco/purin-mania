@@ -32,7 +32,7 @@ class Post < ApplicationRecord
   before_validation :set_sweetness_and_firmness
 
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "sweetness_percentage", "firmness_percentage", "sweetness", "firmness", "overall_rating", "created_at"]
+    ["category","body", "sweetness_percentage", "firmness_percentage", "sweetness", "firmness", "overall_rating", "created_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)

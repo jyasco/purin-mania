@@ -40,11 +40,11 @@
             data: { search_clear_target: "select" } %>
       </div>
 
-      <!-- 総合評価の絞り込み -->
+      <!-- カテゴリーの絞り込み -->
       <div class="col-span-1">
-        <%= f.select :overall_rating_eq,
-            Post.overall_ratings.map { |k, v| [t("enums.post.overall_rating.#{k}"), v] },
-            { include_blank: t('.overall_rating') },
+        <%= f.select :category_eq,
+            Post.categories.map { |k, v| [t("enums.post.category.#{k}"), v] },
+            { include_blank: t('.category') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
             data: { search_clear_target: "select" } %>
       </div>
