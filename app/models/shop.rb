@@ -5,7 +5,6 @@ class Shop < ApplicationRecord
   validates :address, allow_blank: true, length: { maximum: 255 }
 
   # 将来的に実装予定の機能のためのコメントアウト
-  # belongs_to :category, optional: true
   # geocoded_by :address
   # after_validation :geocode, if: :address_changed?
 
