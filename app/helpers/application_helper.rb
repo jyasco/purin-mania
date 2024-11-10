@@ -10,6 +10,32 @@ module ApplicationHelper
     end
   end
 
+  def sweetness_badge_color(sweetness)
+    case sweetness
+    when 'mild', 'prefer_mild'
+      'bg-sweetLight text-textLight'
+    when 'medium_sweet', 'prefer_medium_sweet'
+      'bg-sweetMedium text-textLight'
+    when 'sweet', 'prefer_sweet'
+      'bg-sweetDeep text-textLight'
+    else
+      'bg-gray-400 text-textLight'
+    end
+  end
+
+  def firmness_badge_color(firmness)
+    case firmness
+    when 'smooth', 'prefer_smooth'
+      'bg-firmLight text-textLight'
+    when 'medium_firm', 'prefer_medium_firm'
+      'bg-firmMedium text-textLight'
+    when 'firm', 'prefer_firm'
+      'bg-firmDeep text-textLight'
+    else
+      'bg-gray-400 text-textLight'
+    end
+  end
+
   def show_meta_tags
     assign_meta_tags if display_meta_tags.blank?
     display_meta_tags
