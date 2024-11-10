@@ -13,8 +13,32 @@
         </div>
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+          <%= f.label :email, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.text_field :email, class: "input input-bordered w-full bg-white" %>
+        </div>
+        
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+          <%= f.label :preferred_sweetness, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.select :preferred_sweetness, User.preferred_sweetnesses.keys.map { |k| [t("enums.user.preferred_sweetness.#{k}"), k] },
+              { include_blank: t('defaults.unset') },
+              class: "select select-bordered select-keep-blank w-full text-xs sm:text-sm bg-white" %>
+        </div>
+        
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+          <%= f.label :preferred_firmness, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.select :preferred_firmness, User.preferred_firmnesses.keys.map { |k| [t("enums.user.preferred_firmness.#{k}"), k] },
+              { include_blank: t('defaults.unset') },
+              class: "select select-bordered select-keep-blank w-full text-xs sm:text-sm bg-white" %>
+        </div>
+
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :avatar, class: "block font-semibold mb-2 sm:mb-4" %>
           <%= f.file_field :avatar, accept: 'image/*', class: "file-input custom-file-input" %>
+        </div>
+
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+          <%= f.label :comment, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.text_area :comment, class: "textarea textarea-bordered w-full bg-white" %>
         </div>
 
         <div class="text-center mt-12 sm:mt-16">

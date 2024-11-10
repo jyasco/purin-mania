@@ -19,6 +19,15 @@ ja:
         cafe: カフェ・喫茶店
         sweets_shop: 洋菓子店
         retail: 市販品（コンビニ・スーパー等）
+    user:
+      preferred_sweetness:
+        prefer_mild: 控えめ
+        prefer_medium_sweet: ほどよい
+        prefer_sweet: 甘党向け
+      preferred_firmness:
+        prefer_smooth: なめらか
+        prefer_medium_firm: ほどよい
+        prefer_firm: かため
   activerecord:
     models:
       post: 投稿

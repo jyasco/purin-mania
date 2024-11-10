@@ -13,7 +13,7 @@ document.addEventListener('turbo:load', function() {
 
     // フォーカス時の処理
     select.addEventListener('focus', function() {
-      if (this.value === '') {
+      if (this.value === '' && !this.classList.contains('select-keep-blank')) {
         placeholder.hidden = true;
       }
     });

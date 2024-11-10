@@ -27,7 +27,7 @@ class Post < ApplicationRecord
     good: 4,
     excellent: 5
   }
-  enum :category, { cafe: 0, sweets_shop: 1, retail: 2 }, prefix: true
+  enum :category, { cafe: 0, sweets_shop: 1, retail: 2 }
 
   before_validation :set_sweetness_and_firmness
 
