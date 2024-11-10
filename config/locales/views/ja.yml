@@ -14,7 +14,7 @@ ja:
     create: 作成
     post: 投稿
     delete_confirm: 削除しますか？
-    select_prompt: 選択してください
+    unset: 未設定
     search_word: エリア・店名など
     flash_message:
       created: "%{item}を作成しました"

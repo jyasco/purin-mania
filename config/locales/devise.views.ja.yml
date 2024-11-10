@@ -28,8 +28,8 @@ ja:
         name: ユーザー名
         avatar: プロフィール画像
         comment: コメント
-        prefer_sweetness: 甘さの好み
-        prefer_firmness: 固さの好み
+        preferred_sweetness: 甘さの好み
+        preferred_firmness: 固さの好み
     models:
       user: ユーザー
   devise:
