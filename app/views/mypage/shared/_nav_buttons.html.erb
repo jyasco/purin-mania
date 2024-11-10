@@ -1,6 +1,6 @@
 <div data-controller="tab">
-  <div class="flex justify-center space-x-4 pb-4">
-    <div role="tablist" class="tabs tabs-bordered">  
+  <div class="flex justify-center space-x-4 pb-4 max-w-sm sm:max-w-2xl mx-auto px-8 sm:px-4">
+    <div role="tablist" class="tabs tabs-bordered w-full">  
       <%= link_to t('.posts'), mypage_mypage_path, role: "tab", class: "tab transition-colors duration-200 border-b-2 text-sm md:text-[16px]", data: { turbo_frame: "mypage_content", action: "click->tab#switchTab", tab_target: "tab" } %>
       <%= link_to t('.bookmarks'), mypage_bookmark_posts_path, role: "tab", class: "tab transition-colors duration-200 border-b-2 text-sm md:text-[16px]", data: { turbo_frame: "mypage_content", action: "click->tab#switchTab", tab_target: "tab" } %>
     </div>
