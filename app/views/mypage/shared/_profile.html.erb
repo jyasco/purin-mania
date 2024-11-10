@@ -13,16 +13,16 @@
       </div>
     </div>
     <!-- ユーザー名と編集 -->
-    <div class="flex items-center mt-2 sm:mt-4 space-x-1 sm:space-x-2">
-      <h2 class="text-sm sm:text-xl font-bold truncate max-w-[100px] sm:max-w-[200px]"><%= user.name %></h2>
-      <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover" do %>
+    <div class="flex items-center mt-2 sm:mt-4 space-x-1 sm:space-x-2 relative">
+      <h2 class="text-[14px] sm:text-lg font-bold truncate max-w-[120px] sm:max-w-[200px]"><%= user.name %></h2>
+      <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover z-[10]" do %>
         <i class="fas fa-pen text-xs sm:text-sm"></i>
       <% end %>
     </div>
   </div>
 
   <!-- 好みのプリンとコメント -->
-  <div class="flex flex-col justify-center w-3/5 px-2 sm:px-8 text-left">
+  <div class="flex flex-col justify-center w-3/5 px-4 sm:px-8 text-left">
     <div class="text-[14px] sm:text-[18px]">
       <%= t('mypage.edit.preferences') %>:
       <% if user.preferred_sweetness.present? %>
@@ -37,7 +37,7 @@
       <% end %>
     </div>
     <% if user.comment.present? %>
-      <p class="mt-1 pr-4 sm:mt-2 pr-6 text-[12px] sm:text-[16px] text-text text-opacity-70"><%= user.comment %></p>
+      <p class="mt-1 sm:mt-2 sm:pr-10 text-[12px] sm:text-[16px] text-text text-opacity-70"><%= user.comment %></p>
     <% end %>
   </div>
 </div>
