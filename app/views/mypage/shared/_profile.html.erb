@@ -23,21 +23,19 @@
 
   <!-- 好みのプリンとコメント -->
   <div class="flex flex-col justify-center w-3/5 px-4 sm:px-8 text-left">
-    <div class="text-[14px] sm:text-[18px]">
-      <%= t('mypage.edit.preferences') %>:
-      <% if user.preferred_sweetness.present? %>
-        <%= t("enums.user.preferred_sweetness.#{user.preferred_sweetness}") %>
-      <% else %>  
-        <%= t('mypage.edit.unset') %>
-      <% end %>
-      <% if user.preferred_firmness.present? %>
-        <%= t("enums.user.preferred_firmness.#{user.preferred_firmness}") %>
-      <% else %>  
-        <%= t('mypage.edit.unset') %>
-      <% end %>
+    <div class="flex flex-col items-start">
+      <div class="text-[10px] sm:text-[14px] text-text text-opacity-80"><%= t('mypage.edit.preferences') %></div>
+      <div class="flex gap-1 mt-1 overflow-x-auto pb-1 w-full">
+        <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 whitespace-nowrap <%= sweetness_badge_color(user.preferred_sweetness) %>">
+          <%= user.preferred_sweetness.present? ? t("enums.user.preferred_sweetness.#{user.preferred_sweetness}") : t('mypage.edit.unset') %>
+        </span>
+        <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 whitespace-nowrap <%= firmness_badge_color(user.preferred_firmness) %>">
+          <%= user.preferred_firmness.present? ? t("enums.user.preferred_firmness.#{user.preferred_firmness}") : t('mypage.edit.unset') %>
+        </span>
+      </div>
     </div>
     <% if user.comment.present? %>
-      <p class="mt-1 sm:mt-2 sm:pr-10 text-[12px] sm:text-[16px] text-text text-opacity-70"><%= user.comment %></p>
+      <p class="mt-1 sm:mt-2 sm:pr-10 text-[12px] sm:text-[16px] text-text text-opacity-80"><%= user.comment %></p>
     <% end %>
   </div>
 </div>

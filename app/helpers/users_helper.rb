@@ -1,3 +1,3 @@
-module PostsHelper
+module UsersHelper
   include ApplicationHelper
 end
