@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :bookmark_posts, through: :bookmarks, source: :post
   has_one_attached :avatar
 
+  enum :preferred_sweetness, { prefer_mild: 0, prefer_medium_sweet: 1, prefer_sweet: 2 }
+  enum :preferred_firmness, { prefer_smooth: 0, prefer_medium_firm: 1, prefer_firm: 2 }
+
   def own?(object)
     object&.user_id == id
   end
