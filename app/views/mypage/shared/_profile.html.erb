@@ -14,7 +14,7 @@
     </div>
     <!-- ユーザー名と編集 -->
     <div class="flex items-center mt-2 sm:mt-4 space-x-1 sm:space-x-2">
-      <h2 class="text-sm sm:text-xl font-bold"><%= user.name %></h2>
+      <h2 class="text-sm sm:text-xl font-bold truncate max-w-[100px] sm:max-w-[200px]"><%= user.name %></h2>
       <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover" do %>
         <i class="fas fa-pen text-xs sm:text-sm"></i>
       <% end %>
