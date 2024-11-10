@@ -1,6 +1,6 @@
 <% content_for(:title, t('mypage.title')) %>
 <div class="bg-base-100 min-h-screen mb-6 sm:mb-0">
-  <%= render 'mypage/shared/profile' %>
+  <%= render 'mypage/shared/profile', user: @user %>
   <%= render 'mypage/shared/nav_buttons' %>
 
   <%= turbo_frame_tag "mypage_content" do %>

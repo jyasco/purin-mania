@@ -1,15 +1,43 @@
-<div class="flex flex-col items-center py-8 bg-base-100">
-  <div class="avatar">
-    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden">
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
-      <% else %>
-        <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+<div class="container mx-auto flex py-8 px-8 sm:px-4 max-w-sm sm:max-w-2xl relative">
+
+  <!-- アバターとユーザー名 -->
+  <div class="flex flex-col items-center w-2/5 sm:pl-8">
+    <!-- アバター -->
+    <div class="sm:mt-1">
+      <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden">
+        <% if user.avatar.attached? %>
+          <%= image_tag user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
+        <% else %>
+          <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+        <% end %>
+      </div>
+    </div>
+    <!-- ユーザー名と編集 -->
+    <div class="flex items-center mt-2 sm:mt-4 space-x-1 sm:space-x-2">
+      <h2 class="text-sm sm:text-xl font-bold"><%= user.name %></h2>
+      <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover" do %>
+        <i class="fas fa-pen text-xs sm:text-sm"></i>
       <% end %>
     </div>
   </div>
-  <h2 class="text-neutral text-lg sm:text-2xl font-bold mt-4"><%= current_user.name %></h2>
-  <%= link_to edit_user_registration_path, class: "btn btn-primary btn-sm w-16 h-9 sm:w-20 sm:h-10 mt-4 px-4 text-white" do %>
-    <%= t('helpers.submit.edit') %>
-  <% end %>
+
+  <!-- 好みのプリンとコメント -->
+  <div class="flex flex-col justify-center w-3/5 px-2 sm:px-8 text-left">
+    <div class="text-[14px] sm:text-[18px]">
+      <%= t('mypage.edit.preferences') %>:
+      <% if user.preferred_sweetness.present? %>
+        <%= t("enums.user.preferred_sweetness.#{user.preferred_sweetness}") %>
+      <% else %>  
+        <%= t('mypage.edit.unset') %>
+      <% end %>
+      <% if user.preferred_firmness.present? %>
+        <%= t("enums.user.preferred_firmness.#{user.preferred_firmness}") %>
+      <% else %>  
+        <%= t('mypage.edit.unset') %>
+      <% end %>
+    </div>
+    <% if user.comment.present? %>
+      <p class="mt-1 pr-4 sm:mt-2 pr-6 text-[12px] sm:text-[16px] text-text text-opacity-70"><%= user.comment %></p>
+    <% end %>
+  </div>
 </div>
