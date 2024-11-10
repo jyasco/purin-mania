@@ -3,7 +3,7 @@
     <% if @posts.present? %>
       <%= render partial: 'posts/post', collection: @posts %>
     <% else %>
-      <div class='text-sm md:text-[16px] text-center'><%= t('.no_posts') %></div>
+      <div class='text-[12px] md:text-[14px] text-center'><%= t('.no_posts') %></div>
     <% end %>
   </div>
 </div>
