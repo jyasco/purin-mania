@@ -3,12 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  VALID_USERNAMES = %w[contact terms privacy login logout sign_up posts profile settings help about]
 
   validates :nickname, presence: true, length: { maximum: 30 }
   validates :username, presence: true,
              uniqueness: { case_sensitive: false },
              format: { with: /\A[a-zA-Z0-9_.~-]+\z/, message: "は半角英数字、アンダースコア、ハイフン、ピリオド、チルドのみ使用できます" },
-             length: { minimum: 3, maximum: 20 }
+             length: { minimum: 3, maximum: 20 },
+             exclusion: { in: VALID_USERNAMES, message: "は使用できません" }
   validates :comment, length: { maximum: 50 }
 
   has_many :posts
