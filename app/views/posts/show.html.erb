@@ -14,13 +14,13 @@
       <div class="flex items-center">
         <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-2 flex-shrink-0">
           <% if @post.user.avatar.attached? %>
-            <%= image_tag @post.user.avatar.variant(resize_to_fill: [48, 48]), class: "w-full h-full object-cover" %>
+            <%= link_to image_tag(@post.user.avatar.variant(resize_to_fill: [48, 48]), class: "w-full h-full object-cover"), user_profile_path(@post.user.username) %>
           <% else %>
-            <%= image_tag "default_avatar.png", class: "w-full h-full object-cover" %>
+            <%= link_to image_tag("default_avatar.png", class: "w-full h-full object-cover"), user_profile_path(@post.user.username) %>
           <% end %>
         </div>
         <div class="flex flex-col justify-center">
-          <p class="text-[12px] sm:text-[14px] truncate max-w-[120px] sm:max-w-[200px]"><%= @post.user.nickname %></p>
+          <%= link_to @post.user.nickname, user_profile_path(@post.user.username), class: "text-[12px] sm:text-[14px] truncate max-w-[120px] sm:max-w-[200px]" %>
           <p class="text-xs sm:text-sm text-subtleText whitespace-nowrap pl-0.5"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
         </div>
       </div>
