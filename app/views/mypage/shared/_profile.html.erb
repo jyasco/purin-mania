@@ -8,7 +8,7 @@
         <% if user.avatar.attached? %>
           <%= image_tag user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
         <% else %>
-          <%= image_tag "default_avatar.webp", class: "w-full h-full object-cover" %>
+          <%= image_tag "default_avatar.png", class: "w-full h-full object-cover" %>
         <% end %>
       </div>
     </div>

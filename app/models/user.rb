@@ -22,6 +22,8 @@ class User < ApplicationRecord
   enum :preferred_sweetness, { prefer_mild: 0, prefer_medium_sweet: 1, prefer_sweet: 2 }
   enum :preferred_firmness, { prefer_smooth: 0, prefer_medium_firm: 1, prefer_firm: 2 }
 
+  before_validation :set_default_nickname
+
   def own?(object)
     object&.user_id == id
   end
@@ -45,5 +47,11 @@ class User < ApplicationRecord
 
   def bookmark?(post)
     bookmark_posts.include?(post)
+  end
+
+  private
+
+  def set_default_nickname
+    self.nickname = username unless nickname.present?
   end
 end
