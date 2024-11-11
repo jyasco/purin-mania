@@ -12,3 +12,4 @@ class UsersController < ApplicationController
       @posts = @user.posts.includes(:user).order(created_at: :desc)
     end
   end
+end

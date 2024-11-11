@@ -1,0 +1,16 @@
+<% content_for(:title, "#{@user.username}") %>
+<div class="min-h-screen mb-6 sm:mb-0">
+  <%= render 'mypage/shared/profile', user: @user %>
+  <div class="pb-4 max-w-sm sm:max-w-2xl mx-auto px-8 sm:px-4">
+    <hr class="border-none h-[1px] sm:h-0.5 bg-placeholder" />
+  </div>
+  <div class="container mx-auto px-8 sm:px-4 max-w-4xl">
+    <div class="space-y-4 mt-4">
+      <% if @posts.present? %>
+        <%= render partial: 'posts/post', collection: @posts %>
+      <% else %>
+        <div class='text-[12px] md:text-[14px] text-center'><%= t('.no_posts') %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
