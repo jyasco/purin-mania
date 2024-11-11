@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :bookmark_posts, only: [:index]
   end
 
-  get ':username', to: 'users#show', as: :user_profile
+  get ':username', to: 'users#show', as: :user_profile, constraints: { username: /[^\/]+/ }
 
   resources :bookmarks, only: %i[create destroy]
 
