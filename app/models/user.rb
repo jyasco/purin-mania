@@ -27,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    ["nickname","username"]
   end
 
   def update_avatar(new_avatar)
