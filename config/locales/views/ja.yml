@@ -40,6 +40,9 @@ ja:
     login: ログイン
     logout: ログアウト
     my_page: マイページ
+  users:
+    show:
+      no_posts: 投稿はありません
   posts:
     new:
       title: プリン投稿作成

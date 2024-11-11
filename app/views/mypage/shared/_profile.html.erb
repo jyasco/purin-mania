@@ -15,8 +15,10 @@
     <!-- ユーザー名と編集 -->
     <div class="flex items-center mt-1 sm:mt-2 space-x-1 sm:space-x-2 relative">
       <h2 class="text-[14px] sm:text-lg font-bold truncate max-w-[120px] sm:max-w-[200px]"><%= user.nickname %></h2>
-      <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover z-[10]" do %>
-        <i class="fas fa-pen text-xs sm:text-sm"></i>
+      <% if user == current_user %>
+        <%= link_to edit_user_registration_path, class: "text-accent hover:text-hover z-[8]" do %>
+          <i class="fas fa-pen text-xs sm:text-sm"></i>
+        <% end %>
       <% end %>
     </div>
   </div>
