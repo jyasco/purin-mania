@@ -20,7 +20,7 @@
           <% end %>
         </div>
         <div class="flex flex-col justify-center">
-          <p class="text-[12px] sm:text-[14px] truncate max-w-[120px] sm:max-w-[200px]"><%= @post.user.name %></p>
+          <p class="text-[12px] sm:text-[14px] truncate max-w-[120px] sm:max-w-[200px]"><%= @post.user.nickname %></p>
           <p class="text-xs sm:text-sm text-subtleText whitespace-nowrap pl-0.5"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
         </div>
       </div>

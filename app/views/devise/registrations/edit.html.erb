@@ -8,8 +8,13 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
-          <%= f.label :name, class: "block font-semibold mb-2 sm:mb-4" %>
-          <%= f.text_field :name, class: "input input-bordered w-full bg-white" %>
+          <%= f.label :nickname, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.text_field :nickname, class: "input input-bordered w-full bg-white" %>
+        </div>
+
+        <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+          <%= f.label :username, class: "block font-semibold mb-2 sm:mb-4" %>
+          <%= f.text_field :username, class: "input input-bordered w-full bg-white" %>
         </div>
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
