@@ -5,6 +5,7 @@ export default class extends Controller {
 
   connect() {
     this.updateActiveTab()
+    document.addEventListener('turbo:load', this.updateActiveTab.bind(this))
   }
 
   updateActiveTab() {
