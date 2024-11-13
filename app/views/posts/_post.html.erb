@@ -73,7 +73,17 @@
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p> 
           <% end %>
-          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(55) %></p>
+          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(45) %></p>
+          <% if user_signed_in? %>
+            <li class="flex items-center">
+              <div class="mr-1">
+                  <%= render 'posts/like_buttons', { post: post } %>
+              </div>
+              <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= post.id %>"> <%# w-[2ch]の設定により2桁分の幅を確保。text-leftで左揃え %>
+                  <%= post.likes.count %>
+              </div>
+            </li>
+          <% end %>
         </div>
       </div>
     </div>
