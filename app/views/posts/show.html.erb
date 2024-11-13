@@ -24,7 +24,7 @@
           <p class="text-xs sm:text-sm text-subtleText whitespace-nowrap pl-0.5"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
         </div>
       </div>
-      <!-- 編集・削除ボタンまたはブックマーク -->
+      <!-- 編集・削除ボタン -->
       <% if user_signed_in? && current_user.own?(@post) %>
         <div class="flex space-x-2">
           <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
@@ -32,12 +32,6 @@
           <% end %>
           <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'),turbo_frame: "_top" } do %>
             <i class="fas fa-trash text-[21px] sm:text-[25px]"></i>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="flex">  
-          <% if user_signed_in? %>
-            <%= render 'bookmark_buttons', { post: @post } %>
           <% end %>
         </div>
       <% end %>
@@ -51,8 +45,36 @@
 
     <!-- 投稿画像 -->
     <% if @post.image.attached? %>
-      <div class="w-11/12 mx-auto aspect-square rounded-sm flex items-center justify-center mb-10 overflow-hidden">
+      <div class="w-11/12 mx-auto aspect-square rounded-sm flex items-center justify-center mb-2 sm:mb-3 overflow-hidden">
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
+      </div>
+    <% end %>
+
+    <!-- ブックマークといいね -->
+    <% if user_signed_in? %>
+      <div class="flex justify-end mb-4 sm:mb-6 px-6">
+        <div class="flex items-center mr-1">
+          <div class="mr-1">
+            <%= render 'posts/like_buttons', { post: @post } %>
+          </div>
+          <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= @post.id %>">
+            <%= @post.likes.count %>
+          </div>
+        </div>
+        <% if @post.user != current_user %>
+          <div class="sm:mr-3">
+            <%= render 'bookmark_buttons', { post: @post } %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="flex items-center justify-end mb-4 sm:mb-6 px-6">
+        <div class="text-sweetDeep mr-1">
+          <i class="far fa-heart text-[18px] sm:text-[20px]"></i>
+        </div>
+        <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= @post.id %>">
+          <%= @post.likes.count %>
+        </div>
       </div>
     <% end %>
 
