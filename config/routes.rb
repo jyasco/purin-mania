@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes, only: [:create, :destroy]
     member do
-      get :liking_users
+      get :liked_users
     end
   end
 
