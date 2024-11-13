@@ -43,7 +43,7 @@
             <% end %>
           </div>
         </div>
-        <div class="w-full sm:w-3/5 p-4">
+        <div class="w-full sm:w-3/5 px-4 pt-4">
           <h2 class="text-xs md:text-sm text-subtleText mt-2 mb-1 sm:mb-2 text-center sm:text-left"><%= t("enums.post.category.#{post.category}") %></h2>
           <h1 class="text-xl sm:text-2xl font-bold mb-3 text-center sm:text-left">
             <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
