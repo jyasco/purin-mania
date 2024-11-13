@@ -1,13 +1,13 @@
 <%= turbo_frame_tag dom_id(post) do %>
   <div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-0 max-w-sm sm:max-w-2xl relative">
-    <!-- 編集・削除ボタンまたはブックマーク -->
+    <!-- 編集・削除ボタン -->
     <% if user_signed_in? && current_user.own?(post) %>
       <div class="absolute top-6 right-6 flex space-x-2 z-[5]">
         <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}", data: { turbo_frame: "_top" } do %>
-          <i class="fas fa-edit text-[20px] sm:text-[24px]"></i>
+          <i class="fas fa-edit text-[18px] sm:text-[20px]"></i>
         <% end %>
         <%= link_to post_path(post), class: "text-accent hover:text-hover", id: "button-delete-#{post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
-          <i class="fas fa-trash text-[20px] sm:text-[24px]"></i>
+          <i class="fas fa-trash text-[18px] sm:text-[20px]"></i>
         <% end %>
       </div>
     <% else %>
@@ -73,7 +73,29 @@
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p> 
           <% end %>
-          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(55) %></p>
+          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(45) %></p>
+          <!-- いいね -->
+          <% if user_signed_in? %>
+            <div class="flex justify-start ml-0.5 mt-2">
+              <div class="flex items-center mr-1">
+                <div class="mr-1">
+                  <%= render 'posts/like_buttons', { post: post } %>
+                </div>
+                <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= post.id %>">
+                  <%= post.likes.count %>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="flex items-center justify-start ml-0.5 mt-2">
+              <div class="text-sweetDeep mr-1">
+                <i class="far fa-heart text-[18px] sm:text-[20px]"></i>
+              </div>
+              <div class="text-xs text-gray-500 w-[2ch] text-left">
+                <%= post.likes.count %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

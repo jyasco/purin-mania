@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
   has_one_attached :avatar
 
   enum :preferred_sweetness, { prefer_mild: 0, prefer_medium_sweet: 1, prefer_sweet: 2 }
@@ -47,6 +49,18 @@ class User < ApplicationRecord
 
   def bookmark?(post)
     bookmark_posts.include?(post)
+  end
+
+  def like(post)
+    liked_posts << post
+  end
+  
+  def unlike(post)
+    liked_posts.destroy(post)
+  end
+  
+  def like?(post)
+    liked_posts.include?(post)
   end
 
   private
