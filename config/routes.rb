@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     sign_up: 'sign_up'
   }
 
-  resources :posts
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+    member do
+      get :liking_users
+    end
+  end
 
   namespace :mypage do
     get '/', to: 'posts#index', as: :mypage
