@@ -50,6 +50,18 @@ class User < ApplicationRecord
     bookmark_posts.include?(post)
   end
 
+  def like(post)
+    liked_posts << post
+  end
+  
+  def unlike(post)
+    liked_posts.destroy(post)
+  end
+  
+  def like?(post)
+    liked_posts.include?(post)
+  end
+
   private
 
   def set_default_nickname
