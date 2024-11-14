@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(post) do %>
   <div class="card bg-white shadow-lg mb-6 mx-auto flex-shrink px-0 max-w-sm sm:max-w-2xl relative">
-    <!-- 編集・削除ボタン -->
+    <!-- 編集・削除ボタン/ブックマーク -->
     <% if user_signed_in? && current_user.own?(post) %>
       <div class="absolute top-6 right-6 flex space-x-2 z-[5]">
         <%= link_to edit_post_path(post), class: "text-accent hover:text-hover", id: "button-edit-#{post.id}", data: { turbo_frame: "_top" } do %>
