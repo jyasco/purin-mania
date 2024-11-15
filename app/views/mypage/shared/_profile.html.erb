@@ -6,7 +6,7 @@
     <div class="sm:mt-1">
       <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden">
         <% if user.avatar.attached? %>
-          <%= image_tag user.avatar.variant(resize_to_fill: [96, 96]), class: "w-full h-full object-cover" %>
+          <%= image_tag user.avatar.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover" %>
         <% else %>
           <%= image_tag "default_avatar.png", class: "w-full h-full object-cover" %>
         <% end %>

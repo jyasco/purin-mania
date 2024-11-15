@@ -24,7 +24,7 @@
           <div class="flex items-center">
             <div class="w-10 h-10 rounded-full overflow-hidden mr-2 flex-shrink-0">
               <% if post.user.avatar.attached? %>
-                <%= link_to image_tag(post.user.avatar.variant(resize_to_fill: [48, 48]), class: "w-full h-full object-cover"), user_profile_path(post.user.username), data: { turbo_frame: "_top" } %>
+                <%= link_to image_tag(post.user.avatar.variant(resize_to_fill: [200, 200]), class: "w-full h-full object-cover"), user_profile_path(post.user.username), data: { turbo_frame: "_top" } %>
               <% else %>
                 <%= link_to image_tag("default_avatar.png", class: "w-full h-full object-cover"), user_profile_path(post.user.username), data: { turbo_frame: "_top" } %>
               <% end %>
