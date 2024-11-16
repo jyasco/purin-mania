@@ -16,7 +16,7 @@ ja:
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
         password: パスワード
-        password_confirmation: パスワード（確認用）
+        password_confirmation: パスワード（確認）
         remember_created_at: ログイン記憶時刻
         remember_me: ログイン状態を保持する
         reset_password_sent_at: パスワードリセット送信時刻
@@ -83,10 +83,12 @@ ja:
       success: "%{kind} アカウントによる認証に成功しました。"
     passwords:
       edit:
+        title: パスワード再設定
         change_my_password: パスワードを変更する
         change_your_password: パスワードを変更
-        confirm_new_password: 確認用新しいパスワード
+        confirm_new_password: 新しいパスワード（確認）
         new_password: 新しいパスワード
+        button: 更新
       new:
         title: パスワードリセット申請
         button: 送信
