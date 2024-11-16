@@ -57,6 +57,8 @@ ja:
     shop_name_default: お店
     index:
       no_posts: 投稿はありません
+    liked_users:
+     no_users: いいねしたユーザーはいません
     search_form:
       sweetness: 甘さ
       firmness: 固さ

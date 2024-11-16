@@ -10,7 +10,7 @@
 <div class="container mx-auto px-6 sm:px-4 py-6 sm:py-8 max-w-xl sm:max-w-3xl">
   <div class="bg-white shadow-lg rounded-lg overflow-hidden px-4 sm:px-10 py-4 sm:py-10">
     <!-- ユーザー情報とアクションボタン -->
-    <div class="p-2 sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
+    <div class="sm:p-4 flex justify-between items-center mb-3 sm:mb-4">
       <div class="flex items-center">
         <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-2 flex-shrink-0">
           <% if @post.user.avatar.attached? %>
@@ -45,21 +45,22 @@
 
     <!-- 投稿画像 -->
     <% if @post.image.attached? %>
-      <div class="w-11/12 mx-auto aspect-square rounded-sm flex items-center justify-center mb-2 sm:mb-3 overflow-hidden">
+      <div class="sm:mx-6 mx-auto aspect-square rounded-sm flex items-center justify-center mb-2 sm:mb-3 overflow-hidden">
         <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
       </div>
     <% end %>
 
     <!-- ブックマークといいね -->
     <% if user_signed_in? %>
-      <div class="flex justify-end mb-4 sm:mb-6 px-6">
+      <div class="flex justify-end mb-4 sm:mb-6 px-1 sm:px-6">
         <div class="flex items-center mr-1">
           <div class="mr-1">
             <%= render 'posts/like_buttons', { post: @post } %>
           </div>
-          <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= @post.id %>">
+          <div class="text-xs text-gray-500 w-[2ch] text-left cursor-pointer hover:underline" onclick="like_modal_<%= @post.id %>.showModal()" id="like-count-<%= @post.id %>">
             <%= @post.likes.count %>
           </div>
+          <%= render 'posts/like_modal', post: @post %>
         </div>
         <% if @post.user != current_user %>
           <div class="sm:mr-3">
@@ -84,7 +85,7 @@
     </div>
 
     <!-- 評価、甘さ、固さの表示 -->
-    <div class="bg-base-200 bg-opacity-60 rounded-sm mx-2 md:mx-6 p-4 sm:p-6 my-6">
+    <div class="bg-base-200 bg-opacity-60 rounded-sm md:mx-6 p-4 sm:p-6 my-6">
       <!-- 評価 -->
       <div class="mb-6 sm:mb-10">
         <h3 class="text-sm sm:text-[16px] text-subtleText font-semibold mb-3 ml-1 sm:ml-2"><%= t('activerecord.attributes.post.overall_rating') %></h3>
@@ -138,17 +139,17 @@
       </div>
     </div>
 
-    <hr class="my-4 mx-2 md:mx-6 border-placeholder">
+    <hr class="my-4 md:mx-6 border-placeholder">
 
     <!-- 住所 -->
     <% if @post.shop&.address.present? %>
-      <div class="px-4 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
+      <div class="px-2 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
         <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop.address %>
       </div>
     <% end %>
 
     <!-- Xシェア -->
-    <div class="mt-4 sm:mt-6 mb-2 text-center">
+    <div class="mt-4 sm:mt-6 sm:mb-2 text-center">
       <% 
         base_url = post_url(@post)
         timestamp = Time.now.to_i

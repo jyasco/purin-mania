@@ -4,3 +4,6 @@
 <%= turbo_stream.update "like-count-#{@post.id}" do %>
   <%= @post.likes.count %>
 <% end %>
+<%= turbo_stream.update "liked-users-list-#{@post.id}" do %>
+  <%= render 'posts/liked_users', post: @post %>
+<% end %>

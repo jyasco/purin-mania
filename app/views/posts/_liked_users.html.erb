@@ -1,0 +1,21 @@
+<div class="space-y-4">
+  <% liked_users = post.liked_users.order(created_at: :desc) %>
+  <% if liked_users.any? %>
+    <% liked_users.each do |user| %>
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full overflow-hidden mr-2 flex-shrink-0">
+          <% if user.avatar.attached? %>
+            <%= link_to image_tag(user.avatar.variant(resize_to_fill: [50, 50]), class: "w-full h-full object-cover"), user_profile_path(user.username), data: { turbo_frame: "_top" } %>
+          <% else %>
+            <%= link_to image_tag("default_avatar.png", class: "w-full h-full object-cover"), user_profile_path(user.username), data: { turbo_frame: "_top" } %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to user.nickname, user_profile_path(user.username), class: "text-[12px] sm:text-sm font-semibold", data: { turbo_frame: "_top" } %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-center text-gray-500 text-sm sm:text-[16px]"><%= t('.no_users') %></p>
+  <% end %>
+</div>
