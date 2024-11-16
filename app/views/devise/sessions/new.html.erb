@@ -32,10 +32,9 @@
       <div class="text-center mt-4 sm:mt-6 text-sm sm:text-[16px]">
         <%= t('devise.shared.links.sign_up_prompt') %><!--
         --><%= link_to t('devise.shared.links.here'), new_registration_path(resource_name), class: "text-accent hover:underline" %><br>
-        
-        <%# パスワードリセット未実装のため以下コメントアウト %>
-        <%# t('devise.shared.links.forgot_password_prompt') %><!--
-        --><%# link_to t('devise.shared.links.here'), new_password_path(resource_name), class: "text-accent hover:underline" %>
+        <span class="block mb-1 sm:mb-2"></span>
+        <%= t('devise.shared.links.forgot_password_prompt') %><!--
+        --><%= link_to t('devise.shared.links.here'), new_password_path(resource_name), class: "text-accent hover:underline" %>
       </div>
     </div>
   </div>
