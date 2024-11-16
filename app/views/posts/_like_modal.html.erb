@@ -1,12 +1,11 @@
 <dialog id="like_modal_<%= post.id %>" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">いいねしたユーザー</h3>
+  <div class="modal-box bg-white">
     <div id="liked-users-list-<%= post.id %>">
       <%= render 'posts/liked_users', post: post %>
     </div>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn">閉じる</button>
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4">×</button>
       </form>
     </div>
   </div>
