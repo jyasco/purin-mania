@@ -1,10 +1,13 @@
 <footer class="bg-main p-3 h-16 fixed bottom-0 w-full z-10">
-  <div class="mx-auto flex justify-center items-center h-full space-x-28 sm:space-x-48">
+  <div class="mx-auto flex justify-center items-center h-full space-x-28 sm:space-x-44">
     <%= link_to root_path, class: "text-accent hover:text-hover" do %>
       <i class="fas fa-home text-2xl sm:text-3xl align-middle"></i>
     <% end %>
     <%= link_to posts_path, class: "text-accent hover:text-hover" do %>
       <i class="fas fa-search text-2xl sm:text-3xl align-middle"></i>
+    <% end %>
+    <%= link_to posts_map_path, class: "text-accent hover:text-hover" do %>
+      <i class="fas fa-map-location-dot text-2xl sm:text-3xl align-middle"></i>
     <% end %>
     <%= link_to new_post_path, class: "text-accent hover:text-hover" do %>
       <i class="fas fa-plus text-2xl sm:text-3xl align-middle"></i>
