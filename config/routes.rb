@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     sign_up: 'sign_up'
   }
 
+  get 'posts/map'
+
   resources :posts do
     resources :likes, only: [:create, :destroy]
     member do

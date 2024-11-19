@@ -95,6 +95,8 @@ class PostsController < ApplicationController
     @liked_users = @post.liked_users.order(created_at: :desc)
   end
 
+  def map; end
+
   private
 
   def find_or_create_shop(name, address)
