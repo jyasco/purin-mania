@@ -1,15 +1,33 @@
-<h2>Google Map Test</h2>
-<input id="address" type="textbox" value="">
-<input type="button" value="送信" onclick="codeAddress()">
-<input type="button" value="現在地を表示" onclick="showCurrentLocation()">
-<div id="latlngDisplay">ここに緯度、経緯が表示される</div>
-<div id="addressDisplay">ここに住所が表示される</div>
-<div id="map"></div>
+<div id="map-container">
+  <input id="address" type="textbox" value="">
+  <input type="button" value="送信" onclick="codeAddress()">
+  <input type="button" value="現在地を表示" onclick="showCurrentLocation()">
+  <div id="latlngDisplay">ここに緯度、経緯が表示される</div>
+  <div id="addressDisplay">ここに住所が表示される</div>
+  <div id="map"></div>
+</div>
 
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
 #map {
-    height: 600px;
-    width: 600px;
+  flex-grow: 1;
+  width: 100%;
+}
+
+#address, input[type="button"], #latlngDisplay, #addressDisplay {
+  margin: 10px;
 }
 </style>
 
@@ -20,16 +38,21 @@ const latlngDis = document.getElementById('latlngDisplay');
 const addressDis = document.getElementById('addressDisplay');
 
 function initMap() {
-    const geocoder = new google.maps.Geocoder();
+  const geocoder = new google.maps.Geocoder();
 
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-    });
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+  });
 
-    marker = new google.maps.Marker({
-        map: map,
-    });
-    showCurrentLocation();
+  marker = new google.maps.Marker({
+    map: map,
+  });
+  showCurrentLocation();
+
+  // ウィンドウサイズが変更されたときに地図のサイズを調整
+  google.maps.event.addDomListener(window, 'resize', function() {
+    google.maps.event.trigger(map, 'resize');
+  });
 }
 
 function codeAddress() {
