@@ -10,6 +10,10 @@ class PostsController < ApplicationController
               .order(created_at: :desc)
   end
 
+  def map
+    @posts = Post.includes(:user, :shop).where.not(shops: { address: nil, latitude: nil, longitude: nil })
+  end
+
   def new
     @post = Post.new
     @post.build_shop  # 新しい店舗を作成するための空のオブジェクトを用意
@@ -94,8 +98,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @liked_users = @post.liked_users.order(created_at: :desc)
   end
-
-  def map; end
 
   private
 

@@ -115,6 +115,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
+    csv (3.3.0)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -139,6 +140,9 @@ GEM
     ffi (1.17.0-x86-linux-gnu)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
+    geocoder (1.8.3)
+      base64 (>= 0.1.0)
+      csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -369,6 +373,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  geocoder
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
