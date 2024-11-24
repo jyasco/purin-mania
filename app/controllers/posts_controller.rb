@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def map
-    @posts = Post.includes(:user, :shop).where.not(shops: { address: nil, latitude: nil, longitude: nil })
+    @posts = Post.includes(:user, :shop).where.not(shops: { address: "", latitude: nil, longitude: nil })
   end
 
   def new

@@ -45,14 +45,26 @@ function initMap() {
   });
 
   marker = new google.maps.Marker({
+    //position: { lat: 35.658581, lng: 139.745433 },
     map: map,
   });
   showCurrentLocation();
+  setShopMarkers();
 
   // ウィンドウサイズが変更されたときに地図のサイズを調整
   google.maps.event.addDomListener(window, 'resize', function() {
     google.maps.event.trigger(map, 'resize');
   });
+}
+
+function setShopMarkers() {
+  <% @posts.each do |post| %>
+    new google.maps.Marker({
+      position: {lat: <%= post.shop.latitude %>, lng: <%= post.shop.longitude %>}, 
+      map: map,
+      title: '<%= j post.shop.name %>'
+    });
+  <% end %>
 }
 
 function codeAddress() {
