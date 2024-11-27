@@ -1,41 +1,17 @@
-<div id="map-container">
-  <input id="address" type="textbox" value="">
-  <input type="button" value="送信" onclick="codeAddress()">
-  <input type="button" value="現在地を表示" onclick="showCurrentLocation()">
-  <div id="latlngDisplay">ここに緯度、経緯が表示される</div>
-  <div id="addressDisplay">ここに住所が表示される</div>
-  <div id="map"></div>
+<div id="map-container" class="h-screen w-screen flex flex-col">
+  <input id="address" type="textbox" value="" class="m-2.5">
+  <input type="button" value="送信" onclick="codeAddress()" class="m-2.5">
+  <input type="button" value="現在地を表示" onclick="showCurrentLocation()" class="m-2.5">
+  <div id="map" class="flex-grow w-full"></div>
 </div>
-
-<style>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#map-container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
-
-#map {
-  flex-grow: 1;
-  width: 100%;
-}
-
-#address, input[type="button"], #latlngDisplay, #addressDisplay {
-  margin: 10px;
-}
-</style>
 
 <script>
 let map, marker;
 
 const latlngDis = document.getElementById('latlngDisplay');
 const addressDis = document.getElementById('addressDisplay');
+const iconImage = 'https://maps.google.com/mapfiles/ms/micons/yellow-dot.png';
+const currentLocation = 'https://www.google.com/mapfiles/marker.png';
 
 function initMap() {
   const geocoder = new google.maps.Geocoder();
@@ -44,15 +20,19 @@ function initMap() {
     zoom: 12,
   });
 
-  marker = new google.maps.Marker({
-    map: map,
-  });
   showCurrentLocation();
+  setShopMarkers();
+}
 
-  // ウィンドウサイズが変更されたときに地図のサイズを調整
-  google.maps.event.addDomListener(window, 'resize', function() {
-    google.maps.event.trigger(map, 'resize');
-  });
+function setShopMarkers() {
+  <% @posts.each do |post| %>
+    new google.maps.Marker({
+      position: {lat: <%= post.shop.latitude %>, lng: <%= post.shop.longitude %>}, 
+      map: map,
+      title: '<%= j post.shop.name %>',
+      icon: iconImage
+    });
+  <% end %>
 }
 
 function codeAddress() {
@@ -79,7 +59,16 @@ function showCurrentLocation(){
             lng: position.coords.longitude
         };
         map.setCenter(userLocation);
-        marker.setPosition(userLocation);
+        if (marker) {
+            marker.setMap(null);
+        }
+        
+        // 新しいマーカーを作成
+        marker = new google.maps.Marker({
+            position: userLocation,
+            map: map,
+            icon: currentLocation // 現在地用のアイコンを使用
+        });
         latlngDis.innerHTML = `Latitude: ${userLocation.lat}, Longitude: ${userLocation.lng}`;
         }, function() {
         alert('位置情報の取得に失敗しました。');
