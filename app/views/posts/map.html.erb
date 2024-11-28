@@ -5,6 +5,12 @@
   <div id="map" class="flex-grow w-full"></div>
 </div>
 
+<dialog id="post_modal" class="modal">
+    <div class="modal-box">
+        <div class="post_show"></div>
+    </div>
+</dialog>
+
 <script>
 let map, marker;
 
@@ -22,16 +28,39 @@ function initMap() {
 
   showCurrentLocation();
   setShopMarkers();
+
+  document.addEventListener('click', function(event) {
+    const modal = document.getElementById('post_modal');
+    if (event.target === modal) {
+      modal.close();
+    }
+  });
 }
 
 function setShopMarkers() {
   <% @posts.each do |post| %>
-    new google.maps.Marker({
-      position: {lat: <%= post.shop.latitude %>, lng: <%= post.shop.longitude %>}, 
-      map: map,
-      title: '<%= j post.shop.name %>',
-      icon: iconImage
-    });
+    (() => {
+      let shopMarker = new google.maps.Marker({
+        position: {lat: <%= post.shop.latitude %>, lng: <%= post.shop.longitude %>}, 
+        map: map,
+        title: '<%= j post.shop.name %>',
+        icon: iconImage
+      });
+
+      shopMarker.addListener('click', function() {
+        const modalContent = `
+          <h3 class="font-bold text-lg"><%= j post.shop.name %></h3>
+          <p><%= j post.body %></p>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn">閉じる</button>
+            </form>
+          </div>
+        `;
+        document.querySelector('.post_show').innerHTML = modalContent;
+        document.getElementById('post_modal').showModal();
+      });
+    })();
   <% end %>
 }
 
