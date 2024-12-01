@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="w-full sm:w-3/5 px-4 pt-4">
-          <h2 class="text-xs md:text-sm text-subtleText mt-2 mb-1 sm:mb-2 text-center sm:text-left"><%= t("enums.post.category.#{post.category}") %></h2>
+          <h2 class="text-xs md:text-sm text-subtleText mt-2 mb-1 text-center sm:text-left"><%= t("enums.post.category.#{post.category}") %></h2>
           <h1 class="text-xl sm:text-2xl font-bold mb-3 text-center sm:text-left">
             <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
           </h1>
@@ -73,7 +73,7 @@
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p> 
           <% end %>
-          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(45) %></p>
+          <p class="sm:ml-0.5 text-sm sm:text-[16px] text-text text-opacity-80"><%= post.body.truncate(44) %></p>
           <!-- いいね -->
           <% if user_signed_in? %>
             <div class="flex justify-start ml-0.5 mt-2">
