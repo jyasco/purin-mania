@@ -82,7 +82,7 @@ function setShopMarkers() {
         </div>
         <div class='flex justify-center'>
           <% if post.image.present? %>
-            <%= image_tag post.image, class: 'object-contain w-60 h-60 mt-3' %>
+            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: 'object-cover w-60 h-60 mt-3' %>
           <% else %>
           <% end %>
         </div>
