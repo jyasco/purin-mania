@@ -1,3 +1,3 @@
-<%= link_to post_likes_path(post_id: post.id), id: "like-button-for-post-#{post.id}", data: { turbo_method: :post }, class: "text-sweetDeep" do %>
+<%= link_to post_likes_path(post_id: post.id), id: "like-button-for-post-#{post.id}", data: { turbo_method: :post }, class: "text-sweetDeep focus:outline-none focus-visible:outline-none" do %>
   <i class="far fa-heart text-[18px] sm:text-[20px]"></i>
 <% end %>
