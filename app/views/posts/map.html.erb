@@ -113,10 +113,12 @@ function setShopMarkers() {
             <p class="my-2 text-sm sm:text-[16px] text-subtleText">
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p>
-            <p><%= simple_format(truncate(post.body, length: 50, omission: '...'), class: "text-sm sm:text-[16px] break-words text-text text-opacity-80") %></p>
+            <div class='my-3 text-text text-opacity-80'>
+              <p><%= post.body.truncate(55) %></p>
+            </div>
           </div>
         </div>
-        <div class='text-right mt-3 mr-1'>
+        <div class='text-right mt-1 mr-1'>
           <%= link_to "詳細", post_path(post), class: "text-[12px] sm:text-[14px] text-accent underline" %>
         </div>
         `;
