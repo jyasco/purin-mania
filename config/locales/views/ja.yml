@@ -43,6 +43,9 @@ ja:
   users:
     show:
       no_posts: 投稿はありません
+  maps:
+    index:
+      title: マップ検索
   posts:
     new:
       title: プリン投稿作成

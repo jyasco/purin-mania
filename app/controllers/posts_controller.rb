@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: %i[index show map]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @q = Post.ransack(params[:q])
@@ -8,10 +8,6 @@ class PostsController < ApplicationController
               .includes(:user, :shop)
               .with_attached_image
               .order(created_at: :desc)
-  end
-
-  def map
-    @posts = Post.includes(:user, :shop).where.not(shops: { address: "", latitude: nil, longitude: nil })
   end
 
   def new
