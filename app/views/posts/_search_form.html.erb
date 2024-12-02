@@ -13,7 +13,7 @@
       <!-- 並び替え -->
       <div class="col-span-1 sm:col-span-1">
         <%= f.select :s,
-            [[t('.highest_rated'), 'overall_rating desc'], [t('.lowest_rated'), 'overall_rating asc'], [t('.sweetness_high'), 'sweetness_percentage desc'], [t('.sweetness_low'), 'sweetness_percentage asc'], [t('.firmness_high'), 'firmness_percentage desc'], [t('.firmness_low'), 'firmness_percentage asc'], [t('.newest_first'), 'created_at desc'], [t('.oldest_first'), 'created_at asc']],
+            [[t('.highest_rated'), 'overall_rating desc'], [t('.lowest_rated'), 'overall_rating asc'], [t('.sweetness_high'), 'sweetness_percentage desc'], [t('.sweetness_low'), 'sweetness_percentage asc'], [t('.firmness_high'), 'firmness_percentage desc'], [t('.firmness_low'), 'firmness_percentage asc']],
             { include_blank: t('.sort') },
             class: 'select select-bordered w-full text-xs sm:text-sm bg-white',
             data: { search_clear_target: "select" } %>
