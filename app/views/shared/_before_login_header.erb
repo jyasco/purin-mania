@@ -4,8 +4,8 @@
   </div>
   <div class="flex-none">
     <label for="my-drawer-4" class="drawer-button btn btn-ghost p-2">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-accent">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 sm:w-8 sm:h-8 text-hover">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
     </svg>  
     </label>
   </div>
@@ -18,7 +18,7 @@
   </div>
   <div class="drawer-side z-50">
     <label for="my-drawer-4" class="drawer-overlay z-40"></label>
-    <ul class="menu bg-base bg-opacity-80 text-base-content min-h-full w-80 p-4 z-50">
+    <ul class="menu bg-base bg-opacity-90 text-base-content min-h-full w-60 sm:w-80 p-4 z-50">
       <li><%= link_to t('header.login'), new_user_session_path, class: "hover:bg-accent hover:text-white" %></li>
       <li><%= link_to t('header.sign_up'), new_user_registration_path, class: "hover:bg-accent hover:text-white" %></li>
       <li><%= link_to t('header.how_to'), root_path, class: "hover:bg-accent hover:text-white" %></li>
