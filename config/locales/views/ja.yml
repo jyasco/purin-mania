@@ -40,12 +40,18 @@ ja:
     login: ログイン
     logout: ログアウト
     my_page: マイページ
+    how_to: アプリの使い方
+    maps_path: マップで検索
+    posts_path: 一覧から検索
+    new_post_path: 投稿作成
+    terms_of_service_path: 利用規約
+    privacy_policy_path: プライバシーポリシー
+    contact_path: お問い合わせ
   footer:
     maps_path: マップ検索
     posts_path: プリン検索
     new_post_path: 投稿作成
     mypage_path: マイページ
-
   users:
     show:
       no_posts: 投稿はありません
