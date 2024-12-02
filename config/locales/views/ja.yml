@@ -42,7 +42,7 @@ ja:
     my_page: マイページ
   footer:
     maps_path: マップ検索
-    posts_path: プリン一覧
+    posts_path: プリン検索
     new_post_path: 投稿作成
     mypage_path: マイページ
 
