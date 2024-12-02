@@ -76,8 +76,8 @@ ja:
       sort: 並び替え
       highest_rated: 評価が高い順
       lowest_rated: 評価が低い順
-      sweetness_high: 甘さが高い順
-      sweetness_low: 甘さが低い順
+      sweetness_high: 甘い順
+      sweetness_low: 甘さ控えめ順
       firmness_high: 固い順
       firmness_low: 柔らかい順
   mypage:
