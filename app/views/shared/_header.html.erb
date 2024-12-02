@@ -1,18 +1,39 @@
-<header class="bg-main p-3 h-16 fixed top-0 w-full z-10">
-  <div class="mx-auto px-4 sm:px-6 md:px-8 flex justify-between h-full items-center">
-    <%= link_to root_path, class: "flex items-center" do %>
-      <%= image_tag "logo.png", alt: "PurinMania", class: "h-8 sm:h-10" %>
-    <% end %>
-    <nav>
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle p-0">
-          <i class="fa-solid fas fa-user-circle text-2xl sm:text-3xl text-accent align-middle hover:text-hover"></i>
-        </label>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-32 mt-2">
-          <li class="text-center"><%= link_to t('header.my_page'), mypage_mypage_path, class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
-          <li class="border-t border-placeholder text-center"><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "py-2 text-text hover:bg-gray-100 justify-center" %></li>
-        </ul>
-      </div>
-    </nav>
+<div class="navbar bg-main p-3 h-16 fixed top-0 left-0  w-full z-10">
+  <div class="flex-1">
+    <%= link_to image_tag("logo.png", class: "h-6 sm:h-9"), root_path %>
   </div>
-</header>
+  <div class="flex-none">
+    <label for="my-drawer-4" class="drawer-button btn btn-ghost p-2">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 sm:w-8 sm:h-8 text-hover">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+    </svg>  
+    </label>
+  </div>
+</div>
+
+<div class="drawer drawer-end z-50">
+  <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+  </div>
+  <div class="drawer-side z-50">
+    <label for="my-drawer-4" class="drawer-overlay z-40"></label>
+    <ul class="menu bg-base bg-opacity-80 text-base-content min-h-full w-60 sm:w-80 p-4 z-50">
+      <li><%= link_to t('header.my_page'), mypage_mypage_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.how_to'), root_path, class: "hover:bg-accent hover:text-white" %></li>
+      <div class="divider divider-default"></div>
+      <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.posts_path'), posts_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.new_post_path'), new_post_path, class: "hover:bg-accent hover:text-white" %></li>
+      <div class="divider divider-default"></div>
+      <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.contact_path'), contact_path, class: "hover:bg-accent hover:text-white" %></li>
+      <div class="divider divider-default"></div>
+      <div class="text-center text-sm py-2">
+        © 2024 - PurinMania
+      </div>
+    </ul>
+  </div>
+</div>
