@@ -56,4 +56,8 @@
     border: 4px solid #A67C5B; /* Thumb border color */
     cursor: pointer;
   }
+
+  .menu-item-custom {
+    @apply hover:bg-accent hover:text-white active:bg-accent active:text-white focus:bg-accent focus:text-white !important;
+  }
 }

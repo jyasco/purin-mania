@@ -20,7 +20,7 @@
     <label for="my-drawer-4" class="drawer-overlay z-40"></label>
     <ul class="menu bg-base bg-opacity-90 text-[12px] sm:text-[14px] min-h-full w-60 sm:w-80 p-4 z-50">
       <li class="mb-2">
-        <%= link_to mypage_mypage_path, class: "flex items-center sm:ml-2 mt-2 sm:p-2 hover:bg-transparent" do %>
+        <%= link_to mypage_mypage_path, class: "flex items-center sm:ml-2 mt-2 sm:p-2 hover:bg-transparent focus:bg-transparent focus:text-text !bg-transparent !text-text" do %>
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-1 sm:mr-2 flex-shrink-0">
             <% if current_user.avatar.attached? %>
               <%= image_tag(current_user.avatar.variant(resize_to_fill: [200, 200]), class: "w-full h-full object-cover") %>
@@ -34,17 +34,17 @@
         <% end %>
       </li>
       <div class="divider divider-default my-2"></div>
-      <li><%= link_to t('header.my_page'), mypage_mypage_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.how_to'), root_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.my_page'), mypage_mypage_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.how_to'), root_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
-      <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.posts_path'), posts_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.new_post_path'), new_post_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.posts_path'), posts_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.new_post_path'), new_post_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
-      <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.contact_path'), contact_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.contact_path'), contact_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
       <div class="text-center text-sm py-2">
         © 2024 - PurinMania

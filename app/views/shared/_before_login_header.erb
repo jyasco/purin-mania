@@ -19,16 +19,16 @@
   <div class="drawer-side z-50">
     <label for="my-drawer-4" class="drawer-overlay z-40"></label>
     <ul class="menu bg-base bg-opacity-90 text-base-content min-h-full w-60 sm:w-80 p-4 z-50">
-      <li><%= link_to t('header.login'), new_user_session_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.sign_up'), new_user_registration_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.how_to'), root_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.login'), new_user_session_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.sign_up'), new_user_registration_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.how_to'), root_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
-      <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.posts_path'), posts_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.posts_path'), posts_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
-      <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "hover:bg-accent hover:text-white" %></li>
-      <li><%= link_to t('header.contact_path'), contact_path, class: "hover:bg-accent hover:text-white" %></li>
+      <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.contact_path'), contact_path, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
       <div class="text-center text-sm py-2">
         © 2024 - PurinMania
