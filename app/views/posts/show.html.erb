@@ -8,9 +8,9 @@
 <% end %>
 
 <div class="container mx-auto sm:py-8 max-w-xl sm:max-w-3xl">
-  <div class="bg-white sm:shadow-lg sm:rounded-lg overflow-hidden py-4">
+  <div class="bg-white sm:shadow-lg sm:rounded-lg overflow-hidden">
     <!-- ユーザー情報とアクションボタン -->
-    <div class="py-3 px-3 sm:py-4 sm:px-8 flex justify-between items-center mb-3 sm:mb-4">
+    <div class="py-3 px-3 sm:py-6 sm:px-6 flex justify-between items-center mb-3">
       <div class="flex items-center">
         <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-2 flex-shrink-0">
           <% if @post.user.avatar.attached? %>
@@ -163,7 +163,7 @@
     <% end %>
 
     <!-- Xシェア -->
-    <div class="my-4 sm:my-6 sm:mb-2 text-center">
+    <div class="my-4 sm:my-6 mb-6 sm:mb-8 text-center">
       <% 
         base_url = post_url(@post)
         timestamp = Time.now.to_i
