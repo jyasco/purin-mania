@@ -52,7 +52,7 @@
 
     <!-- ブックマークといいね -->
     <% if user_signed_in? %>
-      <div class="flex justify-end mb-4 sm:mb-6 px-1 sm:px-6">
+      <div class="flex justify-end mb-4 sm:mb-6 px-3 sm:px-6">
         <div class="flex items-center mr-1">
           <div class="mr-1">
             <%= render 'posts/like_buttons', { post: @post } %>
@@ -63,7 +63,7 @@
           <%= render 'posts/like_modal', post: @post %>
         </div>
         <% if @post.user != current_user %>
-          <div class="sm:mr-3">
+          <div class="mr-3">
             <%= render 'bookmark_buttons', { post: @post } %>
           </div>
         <% end %>
