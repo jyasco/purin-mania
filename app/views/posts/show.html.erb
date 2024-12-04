@@ -146,8 +146,18 @@
       <div class="mt-6 relative">
         <div id="map" style="height: 400px; width: 100%;"></div>
         <!-- 住所 -->
-        <div class="px-2 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
-          <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop.address %>
+        <div class="hidden sm:block absolute top-16 left-2 right-0 bg-white bg-opacity-90 py-4 px-6 w-1/3">
+          <div class="font-bold text-[18px] mb-1">
+            <%= @post.shop.name %>
+          </div>
+          <p class="text-[15px]"><%= @post.shop.address %></p>
+        </div>
+        <!-- スマートフォン用の住所表示 -->
+        <div class="sm:hidden py-4 px-6">
+          <div class="font-bold text-[15px] mb-0.5">
+            <%= @post.shop.name %>
+          </div>
+          <p class="text-[12px]"><%= @post.shop.address %></p>
         </div>
       </div>
     <% end %>
