@@ -120,7 +120,7 @@ function setShopMarkers() {
           </div>
         </div>
         <div class='text-right mt-1 mr-1'>
-          <%= link_to "詳細", post_path(post), class: "text-[12px] sm:text-[14px] text-accent underline focus:outline-none focus-visible:outline-none" %>
+          <%= link_to "詳細", post_path(post), data: { turbo: false }, class: "text-[12px] sm:text-[14px] text-accent underline focus:outline-none focus-visible:outline-none" %>
         </div>
         `;
         document.querySelector('.post_show').innerHTML = modalContent;

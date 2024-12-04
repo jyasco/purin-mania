@@ -141,15 +141,14 @@
       </div>
     </div>
 
-    <!-- マップ -->
-    <div class="mt-6 relative">
-      <div id="map" style="height: 400px; width: 100%;"></div>
-    </div>
-
-    <!-- 住所 -->
+    <!-- マップと住所 -->
     <% if @post.shop&.address.present? %>
-      <div class="px-2 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
-        <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop.address %>
+      <div class="mt-6 relative">
+        <div id="map" style="height: 400px; width: 100%;"></div>
+        <!-- 住所 -->
+        <div class="px-2 sm:px-8 pb-4 text-sm sm:text-lg text-subtleText">
+          <i class="fas fa-map-marker-alt mr-2 text-accent"></i><%= @post.shop.address %>
+        </div>
       </div>
     <% end %>
 
