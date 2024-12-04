@@ -37,16 +37,16 @@
           <!-- 画像ー -->
           <div class="aspect-square overflow-hidden pt-4">
             <% if post.image.attached? %>
-              <%= link_to image_tag(post.image.variant(resize_to_fill: [800, 800], format: :webp), class: "w-full h-full object-cover"), post_path(post), data: { turbo_frame: "_top" } %>
+              <%= link_to image_tag(post.image.variant(resize_to_fill: [800, 800], format: :webp), class: "w-full h-full object-cover"), post_path(post), data: { turbo: false } %>
             <% else %>
-              <%= link_to image_tag("default_image.png", class: "w-full h-full object-cover"), post_path(post), data: { turbo_frame: "_top" }  %>
+              <%= link_to image_tag("default_image.png", class: "w-full h-full object-cover"), post_path(post), data: { turbo: false } %>
             <% end %>
           </div>
         </div>
         <div class="w-full sm:w-3/5 px-4 pt-4">
           <h2 class="text-xs md:text-sm text-subtleText mt-2 mb-1 text-center sm:text-left"><%= t("enums.post.category.#{post.category}") %></h2>
           <h1 class="text-xl sm:text-2xl font-bold mb-3 text-center sm:text-left">
-            <%= link_to post.shop.name, post_path(post), data: { turbo_frame: "_top" } %>
+            <%= link_to post.shop.name, post_path(post), data: { turbo: false } %>
           </h1>
           <div class="flex justify-center sm:justify-start mb-4 space-x-1">
             <% Post.overall_ratings.size.times do |i| %>
