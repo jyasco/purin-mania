@@ -4,7 +4,7 @@
     
     <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
       <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
-      <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
+      <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder", id: "autocomplete" %>
     </div>
 
     <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
@@ -68,6 +68,38 @@
 </div>
 
 <script>
+  let autocomplete;
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      {
+        types: ['establishment'],
+        componentRestrictions: {'country': 'jp'},
+        fields: ['name', 'formatted_address', 'geometry']
+      });
+    autocomplete.addListener('place_changed', onPlaceChanged);
+  }
+
+  function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+  
+    if (!place.geometry) {
+      document.getElementById('autocomplete').placeholder = 'お店の名前を入力してください';
+    } else {
+      document.getElementById('autocomplete').value = place.name;
+      
+      // 住所の整形
+      let formattedAddress = place.formatted_address;
+      if (formattedAddress.startsWith('日本、')) {
+        formattedAddress = formattedAddress.replace('日本、', '');
+      }
+      if (formattedAddress.match(/〒\d{3}-\d{4}\s/)) {
+        formattedAddress = formattedAddress.replace(/〒\d{3}-\d{4}\s/, '');
+      }
+      
+      document.getElementById('shop_address').value = formattedAddress;
+    }
+  }
   // 初期化関数
   function initializeForm() {
     const categorySelect = document.getElementById("category-select");
@@ -109,3 +141,5 @@
   // Turbo対応: turbo:load イベントにより、ページ読み込み・遷移後に初期化を実行
   document.addEventListener("turbo:load", initializeForm);
 </script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initAutocomplete"></script>
