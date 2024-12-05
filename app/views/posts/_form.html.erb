@@ -3,16 +3,23 @@
     <%= render 'shared/error_messages', object: f.object %>
     
     <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
-      <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
-      <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder" %>
-    </div>
-
-    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
-      <%= f.label :category, class: "block font-semibold mb-2 sm:mb-4" %>
+      <div class="flex items-center mb-2 sm:mb-4">
+        <%= f.label :category, class: "block font-semibold" %>
+        <label for="category-modal" class="ml-1 cursor-pointer" onclick="category_info.showModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 sm:size-5 text-subtleText">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+          </svg>
+        </label>
+      </div>
       <%= f.select :category,
                    Post.categories.keys.map { |s| [t("enums.post.category.#{s}"), s] }, 
                    { prompt: t('defaults.select_prompt') }, 
                    { class: "select select-bordered w-full bg-white", id: "category-select", onchange: "updateAddressField();" } %>
+    </div>
+
+    <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
+      <%= f.label :shop_name, t('activerecord.attributes.shop.name'), class: "block font-semibold mb-2 sm:mb-4" %>
+      <%= f.text_field :shop_name, placeholder: t('posts.form.shop_name_placeholder'), value: @post.shop_name || @post.shop&.name, class: "input input-bordered w-full bg-white text-sm sm:text-[16px] placeholder:text-sm placeholder:text-placeholder", id: "autocomplete" %>
     </div>
 
     <div id="address-field" class="mb-8 sm:mb-10 text-sm sm:text-[16px] hidden">
@@ -67,7 +74,73 @@
   <% end %>
 </div>
 
+<dialog id="category_info" class="modal">
+  <div class = "modal-box bg-white text-[14px] sm:text-[16px]">
+    <div>
+      <p class="font-semibold mb-2">
+        <%= t('.cafe') %>
+      </p>
+      <ul class="pl-5 space-y-1">
+        <li>飲食店で提供される<span class="text-sweetDeep">デザートメニュー</span>として楽しめるプリン</li>
+      </ul>
+    </div>
+    <hr class="my-4 border-gray-300">
+    <div>
+      <p class="font-semibold mb-2">
+        <%= t('.sweets_shop') %>
+      </p>
+      <ul class="pl-5 space-y-1">
+        <li>専門店で購入できる<span class="text-sweetDeep">テイクアウト用</span>のプリン</li>
+      </ul>
+    </div>
+    <hr class="my-4 border-gray-300">
+    <div>
+      <p class="font-semibold mb-2">
+        <%= t('.retail') %>
+      </p>
+      <ul class="pl-5 space-y-1">
+        <li>コンビニ、スーパー、ドラッグストアなど<span class="text-sweetDeep">広く展開されている</span>店舗</li>
+      </ul>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
 <script>
+  let autocomplete;
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      {
+        types: ['establishment'],
+        componentRestrictions: {'country': 'jp'},
+        fields: ['name', 'formatted_address', 'geometry']
+      });
+    autocomplete.addListener('place_changed', onPlaceChanged);
+  }
+
+  function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+  
+    if (!place.geometry) {
+      document.getElementById('autocomplete').placeholder = 'お店の名前を入力してください';
+    } else {
+      document.getElementById('autocomplete').value = place.name;
+      
+      // 住所の整形
+      let formattedAddress = place.formatted_address;
+      if (formattedAddress.startsWith('日本、')) {
+        formattedAddress = formattedAddress.replace('日本、', '');
+      }
+      if (formattedAddress.match(/〒\d{3}-\d{4}\s/)) {
+        formattedAddress = formattedAddress.replace(/〒\d{3}-\d{4}\s/, '');
+      }
+      
+      document.getElementById('shop_address').value = formattedAddress;
+    }
+  }
   // 初期化関数
   function initializeForm() {
     const categorySelect = document.getElementById("category-select");
@@ -109,3 +182,5 @@
   // Turbo対応: turbo:load イベントにより、ページ読み込み・遷移後に初期化を実行
   document.addEventListener("turbo:load", initializeForm);
 </script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initAutocomplete"></script>

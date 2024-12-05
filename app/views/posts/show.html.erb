@@ -46,7 +46,7 @@
     <!-- 投稿画像 -->
     <% if @post.image.attached? %>
       <div class="sm:mx-6 mx-auto aspect-square rounded-sm flex items-center justify-center mb-2 sm:mb-3 overflow-hidden">
-        <%= image_tag @post.image.variant(resize_to_fill: [1200, 1200], format: :webp), class: "w-full h-full object-cover" %>
+        <%= image_tag @post.image.variant(resize_to_fill: [1000, 1000], format: :webp), class: "w-full h-full object-cover" %>
       </div>
     <% end %>
 
