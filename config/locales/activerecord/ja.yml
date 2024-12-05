@@ -16,9 +16,9 @@ ja:
         good: "4"
         excellent: "5"
       category:
-        cafe: カフェ・喫茶店
+        cafe: カフェ・レストラン
         sweets_shop: 洋菓子店
-        retail: 市販品（コンビニ・スーパー等）
+        retail: 市販店(コンビニ・スーパー等)
     user:
       preferred_sweetness:
         prefer_mild: 控えめ
