@@ -1,9 +1,10 @@
 <% content_for(:title, t('.title')) %>
-<div id="map-container" class="h-screen w-screen flex flex-col">
-  <input id="address" type="textbox" value="" class="m-2.5">
-  <input type="button" value="送信" onclick="codeAddress()" class="m-2.5">
-  <input type="button" value="現在地を表示" onclick="showCurrentLocation()" class="m-2.5">
-  <div id="map" class="flex-grow w-full"></div>
+<div id="search-container" class="fixed top-28 sm:top-4 left-1/2 transform -translate-x-1/2 z-10 flex justify-center space-x-2 w-4/5 sm:w-3/5">
+  <input id="pac-input" class="controls input input-bordered input-sm flex-grow text-sm bg-white" type="text" placeholder="店名/地名">
+  <button id="current-location-btn" class="btn btn-sm btn-primary text-xs sm:text-sm text-white">現在地</button>
+</div>
+<div id="map-container" class="flex-grow w-full">
+  <div id="map" class="w-full h-full"></div>
 </div>
 
 <dialog id="post_modal" class="modal">
@@ -25,6 +26,51 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
+    center: { lat: 35.6803997, lng: 139.7690174 } // デフォルトの中心を東京に設定
+  });
+
+  // 検索ボックスの初期化
+  const input = document.getElementById("pac-input");
+  const searchBox = new google.maps.places.SearchBox(input);
+
+  const currentLocationBtn = document.getElementById('current-location-btn');
+  currentLocationBtn.addEventListener('click', showCurrentLocation);
+
+  // 検索結果を現在のマップビューポートにバイアスをかける
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  let markers = [];
+
+  // ユーザーが予測を選択したときのイベントリスナー
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // 古いマーカーを削除
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // 各場所に対して、アイコン、名前、位置を取得
+    const bounds = new google.maps.LatLngBounds();
+    places.forEach((place) => {
+      if (!place.geometry || !place.geometry.location) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
   });
 
   showCurrentLocation();
@@ -130,21 +176,6 @@ function setShopMarkers() {
   <% end %>
 }
 
-function codeAddress() {
-    const geocoder = new google.maps.Geocoder();
-    const inputAddress = document.getElementById('address').value;
-    geocoder.geocode({ 'address': inputAddress }, function(results, status) {
-        if (status === 'OK') {
-        map.setCenter(results[0].geometry.location);
-        marker.setPosition(results[0].geometry.location);
-        latlngDis.innerHTML = `Latitude: ${results[0].geometry.location.lat()}, Longitude: ${results[0].geometry.location.lng()}`;
-        addressDis.innerHTML = results[0].formatted_address;
-        } else {
-        alert("該当する結果がありませんでした：" + status);
-        }
-    });
-}
-
 function showCurrentLocation(){
     // ユーザーの現在地を取得してマップに設定
     if (navigator.geolocation) {
@@ -178,4 +209,4 @@ function showCurrentLocation(){
 
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>

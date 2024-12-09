@@ -60,4 +60,8 @@
   .menu-item-custom {
     @apply hover:bg-accent hover:text-white active:bg-accent active:text-white focus:bg-accent focus:text-white !important;
   }
+
+  #map-container {
+    height: calc(100vh - 64px - 64px); /* ヘッダーとフッターの高さを引いている */
+  }
 }
