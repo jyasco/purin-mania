@@ -146,7 +146,7 @@
       <div class="mt-6 relative">
         <div id="map" style="height: 400px; width: 100%;"></div>
         <!-- 住所 -->
-        <div class="hidden sm:block absolute top-16 left-2 right-0 bg-white bg-opacity-90 py-4 px-6 w-1/3">
+        <div class="hidden sm:block absolute top-4 left-4 right-0 bg-white bg-opacity-90 py-4 px-6 w-1/3">
           <div class="font-bold text-[18px] mb-1">
             <%= @post.shop.name %>
           </div>
@@ -179,24 +179,40 @@
 </div>
 
 <script>
-  let map, marker;
-
-  const iconImage = 'https://maps.google.com/mapfiles/ms/micons/yellow-dot.png';
-
   function initMap() {
-    const shopLocation = {lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %>};
-  
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
-      center: shopLocation
+  const mapElement = document.getElementById('map');
+  const mapOptions = {
+    center: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
+    zoom: 16,
+    disableDefaultUI: true,
+  };
+  const googleMapUrl = `
+    <a href="https://www.google.com/maps/search/?api=1&query=<%= @post.shop.latitude %>,<%= @post.shop.longitude %>"
+    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+    Googleマップで見る</a>`
+  const infowindow = new google.maps.InfoWindow({
+    content: googleMapUrl,
+  });
+  const map = new google.maps.Map(mapElement, mapOptions);
+  const marker = new google.maps.Marker({
+    position: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
+    map: map,
+  });
+  marker.addListener("click", () => {
+    infowindow.open({
+    anchor: marker,
+    map,
     });
-
-    marker = new google.maps.Marker({
-      position: shopLocation,
-      map: map,
-      title: '<%= j @post.shop.name %>',
-      icon: iconImage
-    });
+  });
   }
+  document.addEventListener('turbo:load', function() {
+    const link = document.getElementById('link');
+    link.addEventListener('click', function() {
+    const postUrl = encodeURIComponent("<%= post_url(@post) %>");
+    const restaurantName = encodeURIComponent("<%= @post.shop.name %>");
+    const tweetText = `【ひとり外食投稿アプリ】%0aMeTimeMealsで${restaurantName}をチェック！%23Me_Time_Meals`;
+    window.open(`https://twitter.com/intent/tweet?url=${postUrl}&text=${tweetText}`, '_blank');
+    });
+  });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&callback=initMap" data-turbo-track="reload"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
