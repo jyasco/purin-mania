@@ -27,7 +27,7 @@
       <!-- 編集・削除ボタン -->
       <% if user_signed_in? && current_user.own?(@post) %>
         <div class="flex space-x-3">
-          <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
+          <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo: false } do %>
             <i class="fas fa-edit text-[18px] sm:text-[20px]"></i>
           <% end %>
           <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'),turbo_frame: "_top" } do %>
@@ -146,7 +146,7 @@
       <div class="mt-6 relative">
         <div id="map" style="height: 400px; width: 100%;"></div>
         <!-- 住所 -->
-        <div class="hidden sm:block absolute top-16 left-2 right-0 bg-white bg-opacity-90 py-4 px-6 w-1/3">
+        <div class="hidden sm:block absolute top-4 left-4 right-0 bg-white bg-opacity-90 py-4 px-6 w-1/3">
           <div class="font-bold text-[18px] mb-1">
             <%= @post.shop.name %>
           </div>
@@ -179,24 +179,18 @@
 </div>
 
 <script>
-  let map, marker;
-
-  const iconImage = 'https://maps.google.com/mapfiles/ms/micons/yellow-dot.png';
-
   function initMap() {
-    const shopLocation = {lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %>};
-  
-    map = new google.maps.Map(document.getElementById('map'), {
+    const mapElement = document.getElementById('map');
+    const mapOptions = {
+      center: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
       zoom: 16,
-      center: shopLocation
-    });
-
-    marker = new google.maps.Marker({
-      position: shopLocation,
+      disableDefaultUI: true,
+    };
+    const map = new google.maps.Map(mapElement, mapOptions);
+    const marker = new google.maps.Marker({
+      position: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
       map: map,
-      title: '<%= j @post.shop.name %>',
-      icon: iconImage
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&callback=initMap" data-turbo-track="reload"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
