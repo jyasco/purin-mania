@@ -40,7 +40,7 @@
       <div class="divider divider-default"></div>
       <li><%= link_to t('header.maps_path'), maps_path, data: { turbo: false }, class: "menu-item-custom !bg-transparent" %></li>
       <li><%= link_to t('header.posts_path'), posts_path, class: "menu-item-custom !bg-transparent" %></li>
-      <li><%= link_to t('header.new_post_path'), new_post_path, class: "menu-item-custom !bg-transparent" %></li>
+      <li><%= link_to t('header.new_post_path'), new_post_path, data: { turbo: false }, class: "menu-item-custom !bg-transparent" %></li>
       <div class="divider divider-default"></div>
       <li><%= link_to t('header.terms_of_service_path'), terms_of_service_path, class: "menu-item-custom !bg-transparent" %></li>
       <li><%= link_to t('header.privacy_policy_path'), privacy_policy_path, class: "menu-item-custom !bg-transparent" %></li>
