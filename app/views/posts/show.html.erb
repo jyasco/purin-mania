@@ -27,7 +27,7 @@
       <!-- 編集・削除ボタン -->
       <% if user_signed_in? && current_user.own?(@post) %>
         <div class="flex space-x-3">
-          <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo_frame: "_top" } do %>
+          <%= link_to edit_post_path(@post), class: "text-accent hover:text-hover", id: "button-edit-#{@post.id}", data: { turbo: false } do %>
             <i class="fas fa-edit text-[18px] sm:text-[20px]"></i>
           <% end %>
           <%= link_to post_path(@post), class: "text-accent hover:text-hover", id: "button-delete-#{@post.id}", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm'),turbo_frame: "_top" } do %>
