@@ -180,39 +180,17 @@
 
 <script>
   function initMap() {
-  const mapElement = document.getElementById('map');
-  const mapOptions = {
-    center: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
-    zoom: 16,
-    disableDefaultUI: true,
-  };
-  const googleMapUrl = `
-    <a href="https://www.google.com/maps/search/?api=1&query=<%= @post.shop.latitude %>,<%= @post.shop.longitude %>"
-    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-    Googleマップで見る</a>`
-  const infowindow = new google.maps.InfoWindow({
-    content: googleMapUrl,
-  });
-  const map = new google.maps.Map(mapElement, mapOptions);
-  const marker = new google.maps.Marker({
-    position: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
-    map: map,
-  });
-  marker.addListener("click", () => {
-    infowindow.open({
-    anchor: marker,
-    map,
+    const mapElement = document.getElementById('map');
+    const mapOptions = {
+      center: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
+      zoom: 16,
+      disableDefaultUI: true,
+    };
+    const map = new google.maps.Map(mapElement, mapOptions);
+    const marker = new google.maps.Marker({
+      position: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
+      map: map,
     });
-  });
   }
-  document.addEventListener('turbo:load', function() {
-    const link = document.getElementById('link');
-    link.addEventListener('click', function() {
-    const postUrl = encodeURIComponent("<%= post_url(@post) %>");
-    const restaurantName = encodeURIComponent("<%= @post.shop.name %>");
-    const tweetText = `【ひとり外食投稿アプリ】%0aMeTimeMealsで${restaurantName}をチェック！%23Me_Time_Meals`;
-    window.open(`https://twitter.com/intent/tweet?url=${postUrl}&text=${tweetText}`, '_blank');
-    });
-  });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
