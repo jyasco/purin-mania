@@ -27,6 +27,9 @@ module.exports = {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],
         'rounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
       },
+      scale: {
+        '90': '0.9',
+      },
     },
   },
   plugins: [require("daisyui")],
