@@ -4,7 +4,11 @@
   <button id="current-location-btn" class="btn btn-sm btn-primary text-xs sm:text-sm text-white">現在地</button>
 </div>
 <div id="map-container" class="flex-grow w-full">
-  <div id="map" class="w-full h-full"></div>
+  <div id="map" class="relative w-full h-full">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <img src="<%= asset_path('apple-touch-icon.png') %>" class="w-6 h-6 animate-bounce-slow" alt="Loading">
+    </div>
+  </div>
 </div>
 
 <dialog id="post_modal" class="modal">
@@ -26,7 +30,6 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: { lat: 35.6803997, lng: 139.7690174 } // デフォルトの中心を東京に設定
   });
 
   // 検索ボックスの初期化
