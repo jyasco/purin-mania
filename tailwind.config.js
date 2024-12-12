@@ -27,6 +27,18 @@ module.exports = {
         'kosugi': ['"Kosugi Maru"', 'sans-serif'],
         'rounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
       },
+      scale: {
+        '90': '0.9',
+      },
+      keyframes: {
+        bounce: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        }
+      },
+      animation: {
+        'bounce-slow': 'bounce 1s infinite',
+      },
     },
   },
   plugins: [require("daisyui")],
