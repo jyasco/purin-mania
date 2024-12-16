@@ -7,7 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 
-<div class="mt-8 mx-auto flex justify-center">
+<div class="my-8 mx-auto flex justify-center">
   <%= paginator.render do -%>
     <nav class="pagination join" role="navigation" aria-label="pager">
       <%= first_page_tag unless current_page.first? %>
