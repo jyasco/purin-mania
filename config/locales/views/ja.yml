@@ -108,3 +108,8 @@ ja:
   tooltips:
     sweetness: "甘さ: %{percentage}"
     firmness: "固さ: %{percentage}"
+  pagination:
+    previous: "<"
+    next: ">"
+    first: "<<"
+    last: ">>"
