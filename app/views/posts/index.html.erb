@@ -7,6 +7,7 @@
   <div class="space-y-4 my-4 sm:mt-6">
     <% if @posts.present? %>
       <%= render @posts %>
+      <%= paginate @posts %>
     <% else %>
       <div class='text-lg text-center'><%= t('posts.index.no_posts') %></div>
     <% end %>

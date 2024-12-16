@@ -8,6 +8,7 @@ class PostsController < ApplicationController
               .includes(:user, :shop)
               .with_attached_image
               .order(created_at: :desc)
+              .page(params[:page])
   end
 
   def new
