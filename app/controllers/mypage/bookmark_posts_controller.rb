@@ -3,6 +3,10 @@ class Mypage::BookmarkPostsController < ApplicationController
 
   def index
     @user = current_user
-    @bookmarked_posts = current_user.bookmarks.includes(post: :user).order(created_at: :desc).map(&:post)
+    @bookmarked_posts = Post.joins(:bookmarks)
+                            .where(bookmarks: { user_id: current_user.id })
+                            .includes(:user)
+                            .order('bookmarks.created_at DESC')
+                            .page(params[:page])
   end
 end
