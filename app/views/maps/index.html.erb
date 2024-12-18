@@ -168,8 +168,10 @@ function setShopMarkers() {
             </div>
           </div>
         </div>
-        <div class='text-right mt-1 mr-1'>
-          <%= link_to "詳細", post_path(post), data: { turbo: false }, class: "text-[12px] sm:text-[14px] text-accent underline focus:outline-none focus-visible:outline-none" %>
+        <div class='text-center mt-1 sm:mt-2 flex justify-center space-x-1 text-sm'>
+          <%= link_to t('.to_show'), post_path(post), data: { turbo: false }, class: "text-accent hover:text-accent/80 hover:underline" %>
+          <span class="text-gray-500">/</span>
+          <%= link_to t('.to_route'), "https://www.google.com/maps/dir/?api=1&destination=#{CGI.escape(post.shop.name + ' ' + post.shop.address)}", target: :_blank, class: "text-accent hover:text-accent/80 hover:underline" %>
         </div>
         `;
         document.querySelector('.post_show').innerHTML = modalContent;
