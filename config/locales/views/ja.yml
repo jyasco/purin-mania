@@ -58,6 +58,8 @@ ja:
   maps:
     index:
       title: マップ検索
+      to_show: 詳細ページ
+      to_route: 経路を調べる
   posts:
     new:
       title: プリン投稿作成
@@ -65,6 +67,8 @@ ja:
       title: プリン一覧
     edit:
       title: プリン投稿編集
+    show:
+      to_googlemap: Google mapで見る
     form:
       shop_name_placeholder: お店の名前を入力してください
       shop_address_placeholder: お店の住所を入力してください

@@ -152,7 +152,7 @@
           </div>
           <p class="text-[15px]"><%= @post.shop.address %></p>
           <div class="mt-2 w-full">
-            <%= link_to "Google mapで見る", "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@post.shop.name + ' ' + @post.shop.address)}", target: :_blank, class: "block w-full text-center text-[14px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
+            <%= link_to t('.to_googlemap'), "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@post.shop.name + ' ' + @post.shop.address)}", target: :_blank, class: "block w-full text-center text-[14px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
           </div>
         </div>
         <!-- スマートフォン用の住所表示 -->
@@ -162,7 +162,7 @@
           </div>
           <p class="text-[12px]"><%= @post.shop.address %></p>
           <div class="mt-2 w-full">
-            <%= link_to "Google mapで見る", "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@post.shop.name + ' ' + @post.shop.address)}", target: :_blank, class: "block w-full text-center text-[12px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
+            <%= link_to t('.to_googlemap'), "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@post.shop.name + ' ' + @post.shop.address)}", target: :_blank, class: "block w-full text-center text-[12px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
           </div>
         </div>
       </div>
