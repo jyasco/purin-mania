@@ -171,7 +171,7 @@ function setShopMarkers() {
         <div class='text-center mt-1 sm:mt-2 flex justify-center space-x-1 text-sm'>
           <%= link_to "詳細ページ", post_path(post), data: { turbo: false }, class: "text-accent hover:text-accent/80 hover:underline" %>
           <span class="text-gray-500">/</span>
-          <%= link_to "経路を調べる", "https://www.google.com/maps/dir/?api=1&destination=#{post.shop.latitude},#{post.shop.longitude}", target: :_blank, class: "text-accent hover:text-accent/80 hover:underline" %>
+          <%= link_to "経路を調べる", "https://www.google.com/maps/dir/?api=1&destination=#{CGI.escape(post.shop.name + ' ' + post.shop.address)}", target: :_blank, class: "text-accent hover:text-accent/80 hover:underline" %>
         </div>
         `;
         document.querySelector('.post_show').innerHTML = modalContent;
