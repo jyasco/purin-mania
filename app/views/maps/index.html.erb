@@ -168,10 +168,9 @@ function setShopMarkers() {
             </div>
           </div>
         </div>
-        <div class='text-center mt-1 sm:mt-2 flex justify-center space-x-1 text-sm'>
-          <%= link_to t('.to_show'), post_path(post), data: { turbo: false }, class: "text-accent hover:text-accent/80 hover:underline" %>
-          <span class="text-gray-500">/</span>
-          <%= link_to t('.to_route'), "https://www.google.com/maps/dir/?api=1&destination=#{CGI.escape(post.shop.name + ' ' + post.shop.address)}", target: :_blank, class: "text-accent hover:text-accent/80 hover:underline" %>
+        <div class='mt-1 sm:mt-2 flex justify-center space-x-2 text-center'>
+          <%= link_to t('.to_show'), post_path(post), data: { turbo: false }, class: "block w-1/2 text-center text-[12px] sm:text-[14px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
+          <%= link_to t('.to_route'), "https://www.google.com/maps/dir/?api=1&destination=#{CGI.escape(post.shop.name + ' ' + post.shop.address)}", target: :_blank, class: "block w-1/2 text-center text-[12px] sm:text-[14px] py-2 px-4 border border-accent text-accent bg-white hover:bg-accent hover:text-white transition duration-300 ease-in-out rounded-sm" %>
         </div>
         `;
         document.querySelector('.post_show').innerHTML = modalContent;
