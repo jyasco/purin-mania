@@ -58,8 +58,8 @@ ja:
   maps:
     index:
       title: マップ検索
-      to_show: 詳細ページ
-      to_route: 経路を調べる
+      to_show: 詳細ページへ
+      to_route: ルートを検索
   posts:
     new:
       title: プリン投稿作成
