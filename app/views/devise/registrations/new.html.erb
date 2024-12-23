@@ -32,6 +32,13 @@
         </div>
       <% end %>
 
+      <div>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
+          <i class="fa-brands fa-google"></i>
+          Googleアカウントでサインインする
+        <% end %>
+      </div>
+
       <div class="text-center mt-4 sm:mt-6 mb-12 sm:mb-16 text-sm sm:text-[16px]">
         <%= t('devise.shared.links.already_have_account') %><!--
         --><%= link_to t('devise.shared.links.here'), new_session_path(resource_name), class: "text-accent hover:underline" %>

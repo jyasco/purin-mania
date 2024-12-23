@@ -12,11 +12,10 @@ class User < ApplicationRecord
              uniqueness: { case_sensitive: false },
              format: { with: /\A[a-zA-Z0-9_.~-]+\z/, message: "は半角英数字、アンダースコア、ハイフン、ピリオド、チルドのみ使用できます" },
              length: { minimum: 3, maximum: 20 },
-             exclusion: { in: VALID_USERNAMES, message: "は使用できません" },
-             unless: :skip_username_validation?
+             exclusion: { in: VALID_USERNAMES, message: "は使用できません" }
   validates :comment, length: { maximum: 50 }
 
-  has_many :sns_credential, dependent: :destroy
+  has_many :sns_credentials, dependent: :destroy
   has_many :posts
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
@@ -138,9 +137,5 @@ class User < ApplicationRecord
 
   def set_default_nickname
     self.nickname = username unless nickname.present?
-  end
-
-  def skip_username_validation?
-    provider.present? && uid.present?
   end
 end
