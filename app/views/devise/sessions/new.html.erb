@@ -25,11 +25,17 @@
         <% end %>
 
         <div class="text-center">
-          <%= f.submit t('.button'), class: "btn btn-primary text-white" %>
+          <%= f.submit t('.button'), class: "btn btn-primary text-white mb-5" %>
         </div>
       <% end %>
 
-      <div class="text-center mt-4 sm:mt-6 text-sm sm:text-[16px]">
+      <div class="divider mx-auto">OR</div>
+      <!-- Google ログイン -->
+      <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post , data: { turbo: false } do %>
+        <%= image_tag "google_sign_in.png", class: "w-1/2 sm:w-2/5 mx-auto py-5" %>
+      <% end %>
+
+      <div class="text-center mt-4 sm:mt-5 text-sm sm:text-[16px]">
         <%= t('devise.shared.links.sign_up_prompt') %><!--
         --><%= link_to t('devise.shared.links.here'), new_registration_path(resource_name), class: "text-accent hover:underline" %><br>
         <span class="block mb-1 sm:mb-2"></span>
