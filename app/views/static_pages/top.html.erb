@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center p-6">
-  <h1 class="text-5xl md:text-7xl font-bold font-rounded text-accent pt-40"><%= t('.title') %></h1>
+  <h1 class="text-5xl sm:text-7xl font-bold font-rounded text-accent pt-40"><%= t('.title') %></h1>
   <p class="text-sm sm:text-lg pt-6"><%= t('.sub_title') %></p>
   <div class="pt-8 flex justify-betweet space-x-4 sm:space-x-8 items-center">
     <%= link_to t('.start'), posts_path, class: "btn btn-primary rounded-lg py-2 sm:py-3 text-xs sm:text-sm text-textLight"%>
@@ -7,4 +7,156 @@
   </div>
 </div>
 
-<%= render  'shared/footer_links' %>
+<div class='flex flex-col items-center text-center my-20'>
+ <p class='text-[12px] sm:text-[16px]'>
+   あなた好みの完璧なプリンを見つけませんか？<br>
+   お店の人気プリンから隠れた名品まで、<br>
+   写真だけでは分からない本当の魅力をあなたの元へ。<br>
+   固さや甘さ、評価などの詳細情報で比較したり、<br>地図から近くのプリンを探したり、<br>
+   絞り込み検索で理想のプリンを簡単に発見できます。<br>
+ </p>
+</div>
+
+<%# 未ログインでできること %>
+<div class="w-5/6 mx-auto max-w-sm sm:max-w-5xl mt-40 mb-20">
+  <div class="flex items-center justify-center mb-3">
+    <h2 class="text-sm sm:text-[16px] text-center text-primary font-bold">
+      <%= t('.without_login.title') %>
+    </h2>
+  </div>
+  <div class="flex items-center justify-center text-xs text-gray-500 mb-1">
+    <%= t('.without_login.can_scroll') %>
+  </div>
+  <%# マップ検索の説明 %>
+  <div class="mt-2 carousel rounded-box w-full max-w-full">
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.without_login.spot_search.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.without_login.spot_search.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/6817668bc4d31318f6ea985ffc8bafb5.gif" alt="Image from Gyazo" width="486"/>
+        </div>
+      </div>
+    </div>
+    <%# 経路検索の説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.without_login.route_search.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.without_login.route_search.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/54c87eaf1bdfcd211bb6398e89c33832.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+    <%# 一覧検索の説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.without_login.index_search.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.without_login.index_search.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/7d0893308cadbad773d6643600edeeb3.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+    <%# 詳細情報の説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.without_login.details.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.without_login.details.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/a59fa757754e064819e82184eb4546f5.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# ログイン後にできること %>
+<div class="w-5/6 mx-auto max-w-sm sm:max-w-5xl mb-16">
+  <div class="flex items-center justify-center mb-3">
+    <h2 class="text-sm sm:text-[16px] text-center text-primary font-bold">
+      <%= t('.with_login.title') %>
+    </h2>
+  </div>
+  <div class="flex items-center justify-center text-xs text-gray-500 mb-1">
+    <%= t('.with_login.can_scroll') %>
+  </div>
+  <%# 投稿作成の説明 %>
+  <div class="mt-2 carousel rounded-box w-full max-w-full">
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.with_login.create_post.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.with_login.create_post.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/901849f307e2acd16bdefbb99dfeda1b.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+    <%# ブックマークの説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.with_login.bookmark.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.with_login.bookmark.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/43596ac6981db4020971ce31e1164d2d.gif" alt="Image from Gyazo" width="486"/>
+        </div>
+      </div>
+    </div>
+    <%# いいね機能の説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.with_login.like.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.with_login.like.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/b1d1541a38eb57955111fed579f107af.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+    <%# マイページの説明 %>
+    <div class="carousel-item pr-4">
+      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+        <div class="card-body justify-center items-center">
+          <h3 class="text-[16px] font-bold">
+            <%= t('.with_login.mypage.title') %>
+          </h3>
+          <p class="mt-4 mb-2 text-sm">
+            <%= t('.with_login.mypage.description').html_safe %>
+          </p>
+          <img src="https://i.gyazo.com/57fe54f01848f1343fbb7583e9be51a1.gif" alt="Image from Gyazo" width="488"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='mt-40'>
+  <%= render  'shared/footer_links' %>
+</div>
