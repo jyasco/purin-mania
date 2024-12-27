@@ -7,14 +7,33 @@
   </div>
 </div>
 
-<div class='flex flex-col items-center text-center my-20'>
- <p class='text-[12px] sm:text-[16px]'>
-   あなた好みの完璧なプリンを見つけませんか？<br>
-   お店の人気プリンから隠れた名品まで、<br>
-   写真だけでは分からない本当の魅力をあなたの元へ。<br>
-   固さや甘さ、評価などの詳細情報で比較したり、<br>地図から近くのプリンを探したり、<br>
-   絞り込み検索で理想のプリンを簡単に発見できます。<br>
- </p>
+<div class='flex flex-col items-center text-center mt-12 mb-20'>
+  <div class="space-y-4 text-[12px] sm:text-[16px] max-w-2xl mx-auto">
+    <p class="font-medium">
+      あなた好みの完璧なプリンを見つけませんか？
+    </p>
+    
+    <div class="space-y-2">
+      <p>
+        人気店の定番から、まだ知られていない素敵なお店まで。<br>
+        写真だけでは伝わらない、食感や味わいの違いを詳しくご紹介。
+      </p>
+      
+      <p>
+        固さ、甘さ、みんなのレビューなど、細かな情報で比較できるから、<br>
+        好みのプリンが簡単に見つかります。
+      </p>
+      
+      <p>
+        お近くのお店をマップでチェックしたり、<br>
+        こだわりの条件でお気に入りを探したり。
+      </p>
+    </div>
+    
+    <p class="font-medium">
+      新しい「おいしい！」との出会いをサポートします。
+    </p>
+  </div>
 </div>
 
 <%# 未ログインでできること %>
@@ -24,13 +43,13 @@
       <%= t('.without_login.title') %>
     </h2>
   </div>
-  <div class="flex items-center justify-center text-xs text-gray-500 mb-1">
+  <div class="flex items-center justify-center text-xs text-subtleText mb-1">
     <%= t('.without_login.can_scroll') %>
   </div>
   <%# マップ検索の説明 %>
   <div class="mt-2 carousel rounded-box w-full max-w-full">
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.without_login.spot_search.title') %>
@@ -44,7 +63,7 @@
     </div>
     <%# 経路検索の説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.without_login.route_search.title') %>
@@ -58,7 +77,7 @@
     </div>
     <%# 一覧検索の説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.without_login.index_search.title') %>
@@ -72,7 +91,7 @@
     </div>
     <%# 詳細情報の説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.without_login.details.title') %>
@@ -94,13 +113,13 @@
       <%= t('.with_login.title') %>
     </h2>
   </div>
-  <div class="flex items-center justify-center text-xs text-gray-500 mb-1">
+  <div class="flex items-center justify-center text-xs text-subtleText mb-1">
     <%= t('.with_login.can_scroll') %>
   </div>
   <%# 投稿作成の説明 %>
   <div class="mt-2 carousel rounded-box w-full max-w-full">
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.with_login.create_post.title') %>
@@ -114,7 +133,7 @@
     </div>
     <%# ブックマークの説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.with_login.bookmark.title') %>
@@ -128,7 +147,7 @@
     </div>
     <%# いいね機能の説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.with_login.like.title') %>
@@ -142,7 +161,7 @@
     </div>
     <%# マイページの説明 %>
     <div class="carousel-item pr-4">
-      <div class="card bg-base-200 w-full max-w-xs mx-auto">
+      <div class="card bg-white shadow w-full max-w-xs mx-auto">
         <div class="card-body justify-center items-center">
           <h3 class="text-[16px] font-bold">
             <%= t('.with_login.mypage.title') %>
