@@ -77,12 +77,12 @@ Rails.application.configure do
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'purin-mania.onrender.com' }
+  config.action_mailer.default_url_options = { host: 'purinmania.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: 'purin-mania.onrender.com',
+    domain: 'purinmania.com',
     user_name: ENV['MAILER_SENDER'],
     password: ENV['MAILER_PASSWORD'],
     authentication: 'plain',
@@ -104,6 +104,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Enable DNS rebinding protection and other `Host` header attacks.
+  config.hosts << 'purinmania.com'
+  config.hosts << 'purin-mania.onrender.com'
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
