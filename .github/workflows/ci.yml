@@ -1,29 +1,3 @@
-Skip to content
-Navigation Menu
-jyasco
-/
-purin-mania
-
-Type / to search
-Code
-Issues
-62
-Pull requests
-1
-Discussions
-Actions
-Projects
-1
-Wiki
-Security
-Insights
-Settings
-Back to pull request #68
-daisyUIとtailwindの読み込み #3
-Jobs
-Run details
-Workflow file for this run
-.github/workflows/ci.yml at 40bd0f5
 name: CI
 
 on:
@@ -76,12 +50,6 @@ jobs:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
-      # redis:
-      #   image: redis
-      #   ports:
-      #     - 6379:6379
-      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client
@@ -99,7 +67,6 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests
@@ -109,4 +76,3 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
-Set up database and run initial migration · jyasco/purin-mania@40bd0f5
