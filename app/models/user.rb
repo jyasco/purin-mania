@@ -4,19 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
-  
-  VALID_USERNAMES = %w[contact terms privacy login logout sign_up posts profile settings help about]
+
+  VALID_USERNAMES = %w[contact terms privacy login logout sign_up posts profile settings help about].freeze
 
   validates :nickname, presence: true, length: { maximum: 30 }
   validates :username, presence: true,
-             uniqueness: { case_sensitive: false },
-             format: { with: /\A[a-zA-Z0-9_.~-]+\z/, message: "は半角英数字、アンダースコア、ハイフン、ピリオド、チルドのみ使用できます" },
-             length: { minimum: 3, maximum: 20 },
-             exclusion: { in: VALID_USERNAMES, message: "は使用できません" }
+                       uniqueness: { case_sensitive: false },
+                       format: { with: /\A[a-zA-Z0-9_.~-]+\z/, message: I18n.t('users.nickname_format') },
+                       length: { minimum: 3, maximum: 20 },
+                       exclusion: { in: VALID_USERNAMES, message: I18n.t('users.exclusion_message') }
   validates :comment, length: { maximum: 50 }
 
   has_many :sns_credentials, dependent: :destroy
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
   has_many :likes, dependent: :destroy
@@ -28,7 +28,8 @@ class User < ApplicationRecord
 
   before_validation :set_default_nickname
 
-  class << self   # ここからクラスメソッド。メソッドの最初につける'self.'を省略できる
+  # ここからクラスメソッド。メソッドの最初につける'self.'を省略できる
+  class << self
     # SnsCredentialsテーブルにデータがないときの処理
     def without_sns_data(auth)
       user = User.where(email: auth.info.email).first
@@ -44,7 +45,7 @@ class User < ApplicationRecord
           username: generate_unique_username(auth.info.email.split('@').first),
           nickname: auth.info.name,
           email: auth.info.email,
-          password: Devise.friendly_token(10)   # 10文字の予測不能な文字列を生成する
+          password: Devise.friendly_token(10) # 10文字の予測不能な文字列を生成する
         )
         sns = SnsCredential.create(
           user_id: user.id,
@@ -52,7 +53,7 @@ class User < ApplicationRecord
           provider: auth.provider
         )
       end
-      { user:, sns: }   # ハッシュ形式で呼び出し元に返す
+      { user:, sns: } # ハッシュ形式で呼び出し元に返す
     end
 
     # SnsCredentialsテーブルにデータがあるときの処理
@@ -73,12 +74,12 @@ class User < ApplicationRecord
     def generate_unique_username(base_username)
       username = base_username
       counter = 1
-      while User.exists?(username: username)
+      while User.exists?(username:)
         username = "#{base_username}#{counter}"
         counter += 1
       end
       username
-    end    
+    end
 
     # Googleアカウントの情報をそれぞれの変数に格納して上記のメソッドに振り分ける処理
     def find_oauth(auth)
@@ -101,7 +102,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["nickname","username"]
+    %w[nickname username]
   end
 
   def update_avatar(new_avatar)
@@ -124,11 +125,11 @@ class User < ApplicationRecord
   def like(post)
     liked_posts << post
   end
-  
+
   def unlike(post)
     liked_posts.destroy(post)
   end
-  
+
   def like?(post)
     liked_posts.include?(post)
   end
@@ -136,6 +137,6 @@ class User < ApplicationRecord
   private
 
   def set_default_nickname
-    self.nickname = username unless nickname.present?
+    self.nickname = username if nickname.blank?
   end
 end

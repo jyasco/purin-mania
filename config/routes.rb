@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :maps, only: %i[index]
 
   resources :posts do
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: %i[create destroy]
     member do
       get :liked_users
     end
@@ -43,8 +43,7 @@ Rails.application.routes.draw do
     resources :bookmark_posts, only: [:index]
   end
 
-  get ':username', to: 'users#show', as: :user_profile, constraints: { username: /[^\/]+/ }
+  get ':username', to: 'users#show', as: :user_profile, constraints: { username: %r{[^\/]+} }
 
   resources :bookmarks, only: %i[create destroy]
-
 end

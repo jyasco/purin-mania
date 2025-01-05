@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   attr_accessor :shop_name, :shop_address
-  
+
   belongs_to :user
   belongs_to :shop, optional: true
   has_many :bookmarks, dependent: :destroy
@@ -34,13 +34,13 @@ class Post < ApplicationRecord
   before_validation :set_sweetness_and_firmness
 
   def self.ransackable_attributes(auth_object = nil)
-    ["category","body", "sweetness_percentage", "firmness_percentage", "sweetness", "firmness", "overall_rating", "created_at"]
+    %w[category body sweetness_percentage firmness_percentage sweetness firmness overall_rating created_at]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["user", "shop"]
+    %w[user shop]
   end
-  
+
   private
 
   def set_sweetness_and_firmness
@@ -52,7 +52,7 @@ class Post < ApplicationRecord
     else
       self.sweetness = 'sweet'
     end
-  
+
     case firmness_percentage
     when 0..33
       self.firmness = 'smooth'
