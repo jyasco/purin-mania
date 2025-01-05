@@ -39,16 +39,16 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n', '~> 7.0.0'
 
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'image_processing', '~> 1.2'
 
-gem "meta-tags"
+gem 'meta-tags'
 
 gem 'ransack'
 
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails'
 
 gem 'geocoder'
@@ -68,13 +68,13 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 3.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console'
-  gem 'letter_opener'
-  gem 'letter_opener_web', '~> 3.0'
 end
 
 group :test do

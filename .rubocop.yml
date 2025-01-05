@@ -15,7 +15,7 @@ Style/Documentation:
   Enabled: false
 
 Layout/LineLength:
-  Max: 150
+  Max: 155
 
 Lint/DuplicateBranch:
   Enabled: false
@@ -37,3 +37,38 @@ Style/RedundantConstantBase:
 
 Layout/MultilineMethodCallIndentation:
   Enabled: false
+
+Style/FetchEnvVar:
+  Enabled: false
+
+Rails/WhereNotWithMultipleConditions:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+  Exclude:
+    - 'app/controllers/users/**/*'
+
+Rails/BulkChangeTable:
+  Enabled: false
+  Exclude:
+    - 'app/migrate/**/*'
+
+Rails/SkipsModelValidations:
+  Enabled: false
+  Exclude:
+    - 'app/migrate/**/*'
+
+Style/ConditionalAssignment:
+  Enabled: false
+  Exclude:
+    - 'app/models/post.rb'

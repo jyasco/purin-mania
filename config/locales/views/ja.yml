@@ -83,6 +83,9 @@ ja:
     new_post_path: 投稿作成
     mypage_path: マイページ
   users:
+    nickname_format: 'は半角英数字、アンダースコア、ハイフン、ピリオド、チルドのみ使用できます'
+    exclusion_message: 'は使用できません'
+    not_found: 'ユーザーが見つかりませんでした'
     show:
       no_posts: 投稿はありません
   maps:
