@@ -9,28 +9,28 @@ RSpec.describe Post, type: :model do
     end
 
     it 'categoryが未選択の場合バリデーションが機能してinvalidになるか' do
-      post_without_category = build(:post, category: "")
+      post_without_category = build(:post, category: '')
       expect(post_without_category).to be_invalid
-      expect(post_without_category.errors[:category]).to include("を入力してください")
+      expect(post_without_category.errors[:category]).to include('を入力してください')
     end
 
     it 'shop.nameが未入力の場合バリデーションが機能してinvalidになるか' do
       post_without_shop = build(:post) # Postオブジェクトを作成
-      post_without_shop.shop = build(:shop, name: "") # shopを作成し、nameを空に設定
+      post_without_shop.shop = build(:shop, name: '') # shopを作成し、nameを空に設定
       expect(post_without_shop).to be_invalid # Postオブジェクトが無効であることを期待
-      expect(post_without_shop.shop.errors[:name]).to include("を入力してください") # shopのnameエラーを確認
+      expect(post_without_shop.shop.errors[:name]).to include('を入力してください') # shopのnameエラーを確認
     end
 
     it 'bodyが未入力の場合バリデーションが機能してinvalidになるか' do
-      post_without_body = build(:post, body: "")
+      post_without_body = build(:post, body: '')
       expect(post_without_body).to be_invalid
-      expect(post_without_body.errors[:body]).to include("を入力してください")
+      expect(post_without_body.errors[:body]).to include('を入力してください')
     end
 
     it 'bodyが555文字を超える場合バリデーションが機能してinvalidになるか' do
-      post_long_body = build(:post, body: "a" * 556)
+      post_long_body = build(:post, body: 'a' * 556)
       expect(post_long_body).to be_invalid
-      expect(post_long_body.errors[:body]).to include("は555文字以内で入力してください")
+      expect(post_long_body.errors[:body]).to include('は555文字以内で入力してください')
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe Post, type: :model do
 
     it 'categoryがcafeまたはsweets_shopの場合、shop.addressが正しく保存されるか' do
       %i[cafe sweets_shop].each do |category|
-        post = build(:post, category: category, shop: build(:shop, address: '東京都渋谷区'))
+        post = build(:post, category:, shop: build(:shop, address: '東京都渋谷区'))
         post.save
         expect(post.shop.address).to eq '東京都渋谷区'
       end
@@ -65,7 +65,7 @@ RSpec.describe Post, type: :model do
         expect(post.sweetness.to_sym).to eq expected_sweetness
       end
     end
-    
+
     it 'firmnessがfirmness_percentageに基づいて正しく設定されているか' do
       {
         0 => :smooth,
@@ -79,6 +79,6 @@ RSpec.describe Post, type: :model do
         post.save
         expect(post.firmness.to_sym).to eq expected_firmness
       end
-    end    
+    end
   end
 end
