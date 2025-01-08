@@ -78,5 +78,6 @@ RSpec.configure do |config|
     Capybara.server_port = 4444
     Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
     Capybara.ignore_hidden_elements = false
+    Capybara.default_max_wait_time = 5  # Capybaraの待機時間を調整
   end
 end
