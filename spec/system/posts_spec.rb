@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :system do
+RSpec.describe 'Posts', type: :system do
   include LoginMacros
   let(:user) { create(:user) }
   let(:post) { create(:post) }
@@ -58,7 +58,7 @@ RSpec.describe "Posts", type: :system do
           fill_in 'コメント', with: 'a' * 10
           click_button '投稿'
           # 最後に作成された投稿を取得
-          new_post = Post.last # 新しく作成された投稿を取得
+          Post.last # 新しく作成された投稿を取得
           expect(page).to have_content '投稿を作成しました'
         end
       end
@@ -68,7 +68,7 @@ RSpec.describe "Posts", type: :system do
           visit new_post_path
           select '選択してください', from: 'category-select'
           fill_in 'autocomplete', with: 'test_shop'
-          fill_in 'コメント', with: 'a'*10
+          fill_in 'コメント', with: 'a' * 10
           click_button '投稿'
           expect(page).to have_content '投稿を作成できませんでした'
           expect(page).to have_content 'お店の種類を入力してください'
@@ -82,7 +82,7 @@ RSpec.describe "Posts", type: :system do
           select '洋菓子店', from: 'category-select'
           fill_in 'autocomplete', with: ''
           fill_in 'shop_address', with: '東京都千代田区丸の内1-6-5'
-          fill_in 'コメント', with: 'a'*10
+          fill_in 'コメント', with: 'a' * 10
           click_button '投稿'
           expect(page).to have_content '投稿を作成できませんでした'
           expect(page).to have_content 'お店を入力してください'
@@ -106,14 +106,14 @@ RSpec.describe "Posts", type: :system do
     end
 
     describe '投稿編集' do
-      let!(:post) { create(:post, user: user) } # 現在のユーザーに関連付けて投稿を作成
+      let!(:post) { create(:post, user:) } # 現在のユーザーに関連付けて投稿を作成
       before { visit edit_post_path(post) }
 
       context 'フォームの入力値が正常' do
         it '投稿編集が成功する' do
           select '洋菓子店', from: 'category-select'
           fill_in 'autocomplete', with: 'test_shop'
-          fill_in 'コメント', with: 'a'*10
+          fill_in 'コメント', with: 'a' * 10
           click_button '投稿'
           expect(page).to have_content '投稿を更新しました'
           expect(current_path).to eq post_path(post)
@@ -124,7 +124,7 @@ RSpec.describe "Posts", type: :system do
         it '投稿編集が失敗する' do
           select '洋菓子店', from: 'category-select'
           fill_in 'autocomplete', with: ''
-          fill_in 'コメント', with: 'a'*10
+          fill_in 'コメント', with: 'a' * 10
           click_button '投稿'
           expect(page).to have_content '投稿を更新できませんでした'
           expect(page).to have_content 'お店を入力してください'
@@ -146,7 +146,7 @@ RSpec.describe "Posts", type: :system do
     end
 
     describe '投稿削除' do
-      let!(:post) { create(:post, user: user) }
+      let!(:post) { create(:post, user:) }
       it '投稿削除が成功する' do
         visit posts_path
         click_link "button-delete-#{post.id}"

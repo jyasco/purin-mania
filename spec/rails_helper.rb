@@ -24,7 +24,7 @@ require 'rspec/rails'
 # require only the support files necessary.
 
 # capybara等ファイルの読み込み設定
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -78,6 +78,6 @@ RSpec.configure do |config|
     Capybara.server_port = 4444
     Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
     Capybara.ignore_hidden_elements = false
-    Capybara.default_max_wait_time = 5  # Capybaraの待機時間を調整
+    Capybara.default_max_wait_time = 5 # Capybaraの待機時間を調整
   end
 end
