@@ -132,12 +132,12 @@ function setShopMarkers() {
         </div>
         <div class='flex justify-center'>
           <% if post.image.present? %>
-            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: 'object-cover w-60 h-60 mt-3' %>
+            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: 'object-cover w-60 h-60 mt-2 sm:mt-3' %>
           <% else %>
           <% end %>
         </div>
-        <div class='flex flex-col items-center justify-center mt-4'>
-          <div class="mb-4 flex justify-center space-x-1">
+        <div class='flex flex-col items-center justify-center mt-2 sm:mt-3'>
+          <div class="mb-1 flex justify-center space-x-1">
             <% Post.overall_ratings.size.times do |i| %>
               <span 
                 class="inline-block w-6 h-6 sm:w-7 sm:h-7 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
@@ -148,22 +148,22 @@ function setShopMarkers() {
           <div class="flex flex-wrap items-center mb-3 text-sm sm:text-[18px] text-center sm:text-left">
             <div class="flex items-center">
               <div class="tooltip" data-tip="<%= t("tooltips.sweetness", percentage: post.sweetness_percentage) %>">
-                <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= sweetness_badge_color(post.sweetness) %> mr-0.5 sm:mr-1"><%= t("enums.post.sweetness.#{post.sweetness}") %></span>
+                <span class="badge text-[10px] sm:text-xs py-2 sm:py-2.5 <%= sweetness_badge_color(post.sweetness) %> mr-0.5 sm:mr-1"><%= t("enums.post.sweetness.#{post.sweetness}") %></span>
               </div>
             </div>
             <div class="flex items-center">
               <div class="tooltip" data-tip="<%= t("tooltips.firmness", percentage: post.firmness_percentage) %>">
-                <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= firmness_badge_color(post.firmness) %>"><%= t("enums.post.firmness.#{post.firmness}") %></span>
+                <span class="badge text-[10px] sm:text-xs py-2 sm:py-2.5 <%= firmness_badge_color(post.firmness) %>"><%= t("enums.post.firmness.#{post.firmness}") %></span>
               </div>
             </div>
           </div>
         </div>
         <div class="flex items-center justify-center">
           <div class="text-left max-w-md mx-4 sm:mx-6">
-            <p class="my-2 text-sm sm:text-[16px] text-subtleText">
+            <p class="text-sm sm:text-[16px] text-subtleText">
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p>
-            <div class='my-3 text-text text-opacity-80'>
+            <div class='my-2 sm:my-3 text-text text-opacity-80'>
               <p><%= post.body.truncate(55) %></p>
             </div>
           </div>
