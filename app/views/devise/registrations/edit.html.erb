@@ -9,17 +9,17 @@
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :nickname, class: "block font-semibold mb-2 sm:mb-4" %>
-          <%= f.text_field :nickname, class: "input input-bordered w-full bg-white" %>
+          <%= f.text_field :nickname, placeholder: t('users.registrations.nickname_placeholder'), class: "input input-bordered w-full bg-white placeholder:text-sm placeholder:text-placeholder" %>
         </div>
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :username, class: "block font-semibold mb-2 sm:mb-4" %>
-          <%= f.text_field :username, class: "input input-bordered w-full bg-white" %>
+          <%= f.text_field :username, placeholder: t('users.registrations.username_placeholder'), class: "input input-bordered w-full bg-white placeholder:text-sm placeholder:text-placeholder" %>
         </div>
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :email, class: "block font-semibold mb-2 sm:mb-4" %>
-          <%= f.text_field :email, class: "input input-bordered w-full bg-white" %>
+          <%= f.text_field :email, placeholder: t('users.registrations.email_placeholder'), class: "input input-bordered w-full bg-white placeholder:text-sm placeholder:text-placeholder" %>
         </div>
         
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
@@ -43,7 +43,7 @@
 
         <div class="mb-8 sm:mb-10 text-sm sm:text-[16px]">
           <%= f.label :comment, class: "block font-semibold mb-2 sm:mb-4" %>
-          <%= f.text_area :comment, class: "textarea textarea-bordered w-full bg-white" %>
+          <%= f.text_area :comment, placeholder: t('users.registrations.comment_placeholder'), class: "textarea textarea-bordered w-full bg-white placeholder:text-sm placeholder:text-placeholder" %>
         </div>
 
         <div class="text-center mt-12 sm:mt-16">
