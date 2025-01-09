@@ -87,11 +87,11 @@ ja:
     exclusion_message: 'は使用できません'
     not_found: 'ユーザーが見つかりませんでした'
     sessions:
-      email_placeholder: '例：pudding.is.life@caramel.heaven'
+      email_placeholder: '例：pudding.is.life@email.com'
       password_placeholder: '半角英数字記号(6文字以上)'
     registrations:
       username_placeholder: '半角英数字および記号(._-~)'
-      email_placeholder: '例：i.love.pudding@sweet.and.smooth'
+      email_placeholder: '例：pudding.is.life@email.com'
       password_placeholder: '半角英数字記号(6文字以上)'
       password_confirmation_placeholder: 'パスワードを再入力'
       nickname_placeholder: 'プリン界の異名（例：甘党戦士ぷるるん丸）'
