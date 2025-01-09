@@ -88,7 +88,13 @@ ja:
     not_found: 'ユーザーが見つかりませんでした'
     sessions:
       email_placeholder: '例：example@email.com'
-      password_placeholder: '半角英数字(6文字以上)'
+      password_placeholder: '半角英数字記号(6文字以上)'
+    registrations:
+      username_placeholder: '半角英数字および記号(._-~)'
+      email_placeholder: '例：example@email.com'
+      password_placeholder: '半角英数字記号(6文字以上)'
+      password_confirmation_placeholder: 'パスワードを再入力'
+      
     show:
       no_posts: 投稿はありません
   maps:
