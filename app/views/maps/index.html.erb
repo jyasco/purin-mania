@@ -101,25 +101,25 @@ function setShopMarkers() {
         const modalContent = `
         <% if user_signed_in? %>
           <div class="flex justify-end mb-2">
-            <div class="flex items-center mr-1">
-              <div class="mr-1">
+            <div class="flex items-center">
+              <div>
                 <%= render 'posts/like_buttons', { post: post } %>
               </div>
-              <div class="text-xs text-gray-500 w-[2ch] text-left cursor-pointer hover:underline" onclick="like_modal_<%= post.id %>.showModal()" id="like-count-<%= post.id %>">
+              <div class="text-xs text-gray-500 w-[2ch] text-left pr-4 cursor-pointer hover:underline" onclick="like_modal_<%= post.id %>.showModal()" id="like-count-<%= post.id %>">
                 <%= post.likes.count %>
               </div>
               <%= render 'posts/like_modal', post: post %>
             </div>
             <% if post.user != current_user %>
-              <div class="sm:mr-3">
+              <div>
                 <%= render 'posts/bookmark_buttons', { post: post } %>
               </div>
             <% end %>
           </div>
         <% else %>
           <div class="flex items-center justify-end mb-2">
-            <div class="text-sweetDeep mr-1">
-              <i class="far fa-heart text-[18px] sm:text-[20px]"></i>
+            <div class="text-sweetDeep">
+              <i class="far fa-heart text-[18px] sm:text-[20px] pl-0.5 pr-1.5"></i>
             </div>
             <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= post.id %>">
               <%= post.likes.count %>
@@ -132,12 +132,12 @@ function setShopMarkers() {
         </div>
         <div class='flex justify-center'>
           <% if post.image.present? %>
-            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: 'object-cover w-60 h-60 mt-3' %>
+            <%= image_tag post.image.variant(resize_to_fill: [800, 800], format: :webp), class: 'object-cover w-60 h-60 mt-2 sm:mt-3' %>
           <% else %>
           <% end %>
         </div>
-        <div class='flex flex-col items-center justify-center mt-4'>
-          <div class="mb-4 flex justify-center space-x-1">
+        <div class='flex flex-col items-center justify-center mt-2 sm:mt-3'>
+          <div class="mb-1 flex justify-center space-x-1">
             <% Post.overall_ratings.size.times do |i| %>
               <span 
                 class="inline-block w-6 h-6 sm:w-7 sm:h-7 mask mask-star-2 <%= i < Post.overall_ratings[post.overall_rating] ? 'bg-accent' : 'bg-placeholder' %>"
@@ -148,22 +148,22 @@ function setShopMarkers() {
           <div class="flex flex-wrap items-center mb-3 text-sm sm:text-[18px] text-center sm:text-left">
             <div class="flex items-center">
               <div class="tooltip" data-tip="<%= t("tooltips.sweetness", percentage: post.sweetness_percentage) %>">
-                <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= sweetness_badge_color(post.sweetness) %> mr-0.5 sm:mr-1"><%= t("enums.post.sweetness.#{post.sweetness}") %></span>
+                <span class="badge text-[10px] sm:text-xs py-2 sm:py-2.5 <%= sweetness_badge_color(post.sweetness) %> mr-0.5 sm:mr-1"><%= t("enums.post.sweetness.#{post.sweetness}") %></span>
               </div>
             </div>
             <div class="flex items-center">
               <div class="tooltip" data-tip="<%= t("tooltips.firmness", percentage: post.firmness_percentage) %>">
-                <span class="badge text-xs sm:text-sm py-2 sm:py-2.5 <%= firmness_badge_color(post.firmness) %>"><%= t("enums.post.firmness.#{post.firmness}") %></span>
+                <span class="badge text-[10px] sm:text-xs py-2 sm:py-2.5 <%= firmness_badge_color(post.firmness) %>"><%= t("enums.post.firmness.#{post.firmness}") %></span>
               </div>
             </div>
           </div>
         </div>
         <div class="flex items-center justify-center">
           <div class="text-left max-w-md mx-4 sm:mx-6">
-            <p class="my-2 text-sm sm:text-[16px] text-subtleText">
+            <p class="text-sm sm:text-[16px] text-subtleText">
               <i class="fa fa-map-marker-alt mr-2 text-accent"></i><%= post.shop.address %>
             </p>
-            <div class='my-3 text-text text-opacity-80'>
+            <div class='my-2 sm:my-3 text-text text-opacity-80'>
               <p><%= post.body.truncate(55) %></p>
             </div>
           </div>
