@@ -101,25 +101,25 @@ function setShopMarkers() {
         const modalContent = `
         <% if user_signed_in? %>
           <div class="flex justify-end mb-2">
-            <div class="flex items-center mr-1">
-              <div class="mr-1">
+            <div class="flex items-center">
+              <div>
                 <%= render 'posts/like_buttons', { post: post } %>
               </div>
-              <div class="text-xs text-gray-500 w-[2ch] text-left cursor-pointer hover:underline" onclick="like_modal_<%= post.id %>.showModal()" id="like-count-<%= post.id %>">
+              <div class="text-xs text-gray-500 w-[2ch] text-left pr-4 cursor-pointer hover:underline" onclick="like_modal_<%= post.id %>.showModal()" id="like-count-<%= post.id %>">
                 <%= post.likes.count %>
               </div>
               <%= render 'posts/like_modal', post: post %>
             </div>
             <% if post.user != current_user %>
-              <div class="sm:mr-3">
+              <div>
                 <%= render 'posts/bookmark_buttons', { post: post } %>
               </div>
             <% end %>
           </div>
         <% else %>
           <div class="flex items-center justify-end mb-2">
-            <div class="text-sweetDeep mr-1">
-              <i class="far fa-heart text-[18px] sm:text-[20px]"></i>
+            <div class="text-sweetDeep">
+              <i class="far fa-heart text-[18px] sm:text-[20px] pl-0.5 pr-1.5"></i>
             </div>
             <div class="text-xs text-gray-500 w-[2ch] text-left" id="like-count-<%= post.id %>">
               <%= post.likes.count %>
