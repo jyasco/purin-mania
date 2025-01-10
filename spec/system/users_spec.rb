@@ -111,7 +111,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
@@ -128,7 +128,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
@@ -145,7 +145,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'エラーが発生したため ユーザー は保存されませんでした'
           expect(page).to have_content 'ユーザー名を入力してください'
@@ -163,7 +163,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'エラーが発生したため ユーザー は保存されませんでした'
           expect(page).to have_content 'メールアドレスを入力してください'
@@ -181,7 +181,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
@@ -198,7 +198,7 @@ RSpec.describe 'Users', type: :system do
           select '未設定', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
@@ -213,14 +213,14 @@ RSpec.describe 'Users', type: :system do
           fill_in 'メールアドレス', with: 'update@example.com'
           select 'ほどよい', from: '甘さの好み'
           select 'かため', from: '固さの好み'
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
         end
       end
 
-      context 'プリン愛が未入力' do
+      context 'ひとことが未入力' do
         it 'ユーザーの編集が成功する' do
           visit edit_user_registration_path
           fill_in '名前', with: 'テストユーザー'
@@ -230,7 +230,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: ''
+          fill_in 'ひとこと', with: ''
           click_button '更新'
           expect(page).to have_content 'プロフィールを更新しました'
           expect(current_path).to eq mypage_mypage_path
@@ -248,7 +248,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'エラーが発生したため ユーザー は保存されませんでした'
           expect(page).to have_content 'ユーザー名はすでに存在します'
@@ -267,7 +267,7 @@ RSpec.describe 'Users', type: :system do
           select 'かため', from: '固さの好み'
           # 画像ファイルを指定してアップロード
           attach_file('プロフィール画像', Rails.root.join('spec/fixtures/test_image.jpg'))
-          fill_in 'プリン愛', with: 'a' * 10
+          fill_in 'ひとこと', with: 'a' * 10
           click_button '更新'
           expect(page).to have_content 'エラーが発生したため ユーザー は保存されませんでした'
           expect(page).to have_content 'メールアドレスはすでに存在します'

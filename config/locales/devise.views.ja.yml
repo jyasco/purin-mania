@@ -28,7 +28,7 @@ ja:
         username: ユーザー名
         nickname: 名前
         avatar: プロフィール画像
-        comment: プリン愛
+        comment: ひとこと
         preferred_sweetness: 甘さの好み
         preferred_firmness: 固さの好み
     models:
