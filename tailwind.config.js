@@ -33,11 +33,11 @@ module.exports = {
       keyframes: {
         bounce: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-20px)' },
         }
       },
       animation: {
-        'bounce-slow': 'bounce 1s infinite',
+        'bounce-slow': 'bounce 0.7s infinite',
       },
     },
   },
