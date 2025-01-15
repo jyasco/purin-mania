@@ -191,7 +191,7 @@
       center: { lat: <%= @post.shop.latitude %>, lng: <%= @post.shop.longitude %> },
       zoom: 16,
       disableDefaultUI: true,
-      gestureHandling: 'greedy',
+      gestureHandling: 'cooperative',
     };
     const map = new google.maps.Map(mapElement, mapOptions);
     const marker = new google.maps.Marker({
