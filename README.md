@@ -10,7 +10,7 @@
 
 # サービス名：**PurinMania**
 サービスURL：[PurinMania | プリンのレビュー・検索アプリ](https://www.purinmania.com/)
-![alt text](app/assets/images/default-ogp-png)
+<img width="500" src="app/assets/images/default-ogp-png">
 <br>
 
 ## ■ サービスの概要
@@ -28,7 +28,7 @@
 ## ■ 機能紹介
 |ユーザー登録 |ログイン|
 |:--:|:--:|
-|<a href="https://gyazo.com/4110506a7d839e1983bf953a2b44a1ba"><img src="https://i.gyazo.com/4110506a7d839e1983bf953a2b44a1ba.png" alt="Image from Gyazo" width="400"/></a>|<a href="https://gyazo.com/3ca8736ccac6baa59fcbd26324cd8111"><img src="https://i.gyazo.com/3ca8736ccac6baa59fcbd26324cd8111.gif" alt="Image from Gyazo" width="396"/></a>
+|<a href="https://gyazo.com/3ca8736ccac6baa59fcbd26324cd8111"><img src="https://i.gyazo.com/3ca8736ccac6baa59fcbd26324cd8111.gif" alt="Image from Gyazo" width="396"/></a>|<a href="https://gyazo.com/4110506a7d839e1983bf953a2b44a1ba"><img src="https://i.gyazo.com/4110506a7d839e1983bf953a2b44a1ba.png" alt="Image from Gyazo" width="400"/></a>|
 |『ユーザー名』『メールアドレス』『パスワード』『確認用パスワード』を入力してユーザー登録を行います。<br>Googleアカウントを用いてGoogleログインを行う事も可能です。|『メールアドレス』『パスワード』を入力してログインを行います。<br>Googleアカウントを用いてGoogleログインを行う事も可能です。|
 
 |トップ画面 |投稿一覧・検索機能|
