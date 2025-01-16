@@ -25,7 +25,7 @@ ja:
       deleted: "%{item}を削除しました"
   static_pages:
     top:
-      title: PurinMania
+      title: プリンレビュー・検索アプリ
       sub_title: 理想のプリンが、きっと見つかる！
       start: プリンを探す
       login: ログインする
