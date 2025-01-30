@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     elsif @user == current_user
       redirect_to mypage_mypage_path
     else
-      @posts = @user.posts.includes(:user).order(created_at: :desc)
+      @posts = @user.posts.includes(:user).order(created_at: :desc).page(params[:page])
     end
   end
 end

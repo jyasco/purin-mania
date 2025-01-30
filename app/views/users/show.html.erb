@@ -1,5 +1,5 @@
 <% content_for(:title, "#{@user.username}") %>
-<div class="min-h-screen mb-6 sm:mb-0">
+<div class="min-h-screen mb-6">
   <%= render 'mypage/shared/profile', user: @user %>
   <div class="pb-4 max-w-sm sm:max-w-2xl mx-auto px-8 sm:px-4">
     <hr class="border-none h-[1px] sm:h-0.5 bg-placeholder" />
@@ -8,6 +8,7 @@
     <div class="space-y-4 mt-4">
       <% if @posts.present? %>
         <%= render partial: 'posts/post', collection: @posts %>
+        <%= paginate @posts %>
       <% else %>
         <div class='text-[12px] md:text-[14px] text-center'><%= t('.no_posts') %></div>
       <% end %>
