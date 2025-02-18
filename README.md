@@ -10,7 +10,7 @@
 
 # サービス名：**PurinMania**
 サービスURL：[PurinMania | プリンのレビュー・検索アプリ](https://www.purinmania.com/)
-<img width="500" src="app/assets/images/default-ogp-png">
+<img width="500" src="app/assets/images/default-ogp.png">
 <br>
 
 ## ■ サービスの概要
